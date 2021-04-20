@@ -1,0 +1,17 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__ . "/src")
+    ->in(__DIR__ . "/example")
+    ->in(__DIR__ . "/tests");
+
+$config = new PhpCsFixer\Config();
+
+return $config->setRules([
+    '@PhpCsFixer' => true,
+    'no_superfluous_elseif' => false,
+    'phpdoc_add_missing_param_annotation' => false,
+    'native_function_invocation' => true,
+    'native_constant_invocation' => true,
+])
+    ->setFinder($finder);

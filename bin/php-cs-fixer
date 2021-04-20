@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+
+BASE_DIR=$(realpath "$(dirname "$0")")
+PROJECT_DIR=$(realpath "${BASE_DIR}/../")
+
+if [ ! -f "$BASE_DIR/tools/php-cs-fixer/vendor/bin/php-cs-fixer" ]; then
+  mkdir --parents "$BASE_DIR/tools/php-cs-fixer"
+  "$PROJECT_DIR/composer.phar" require --working-dir="$BASE_DIR/tools/php-cs-fixer/" friendsofphp/php-cs-fixer
+fi
+
+BIN="$BASE_DIR/tools/php-cs-fixer/vendor/bin/php-cs-fixer --config="$PROJECT_DIR/.phpcs" $*"
+echo "$BIN"
+
+$BIN

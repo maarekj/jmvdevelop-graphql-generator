@@ -1,0 +1,1741 @@
+Generated/Custom/Scalar/AbstractDateTimeTzType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Scalar;
+
+    use DateTimeImmutable;
+    use GraphQL\Language\AST\Node;
+
+    abstract class AbstractDateTimeTzType
+    {
+    	abstract public function serialize(DateTimeImmutable $value): string|int|float|bool|null;
+
+
+    	abstract public function parseValue(string|int|float|bool|null $value): DateTimeImmutable;
+
+
+    	abstract public function parseLiteral(Node $valueNode, ?array $variables): DateTimeImmutable;
+    }
+Custom/Scalar/DateTimeTzType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Scalar;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Scalar\AbstractDateTimeTzType;
+
+    final class DateTimeTzType extends AbstractDateTimeTzType
+    {
+    }
+Generated/ScalarType/AbstractCompanyIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType;
+
+    use GraphQL\Language\AST\Node;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
+
+    abstract class AbstractCompanyIdType
+    {
+    	abstract public function serialize(Company $value): string|int|float|bool|null;
+
+
+    	abstract public function parseValue(string|int|float|bool|null $value): Company;
+
+
+    	abstract public function parseLiteral(Node $valueNode, ?array $variables): Company;
+    }
+ScalarType/CompanyIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType\AbstractCompanyIdType;
+
+    final class CompanyIdType extends AbstractCompanyIdType
+    {
+    }
+Generated/ScalarType/AbstractUserIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType;
+
+    use GraphQL\Language\AST\Node;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+
+    abstract class AbstractUserIdType
+    {
+    	abstract public function serialize(User $value): string|int|float|bool|null;
+
+
+    	abstract public function parseValue(string|int|float|bool|null $value): User;
+
+
+    	abstract public function parseLiteral(Node $valueNode, ?array $variables): User;
+    }
+ScalarType/UserIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType\AbstractUserIdType;
+
+    final class UserIdType extends AbstractUserIdType
+    {
+    }
+Generated/ScalarType/AbstractCategoryIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType;
+
+    use GraphQL\Language\AST\Node;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
+
+    abstract class AbstractCategoryIdType
+    {
+    	abstract public function serialize(Category $value): string|int|float|bool|null;
+
+
+    	abstract public function parseValue(string|int|float|bool|null $value): Category;
+
+
+    	abstract public function parseLiteral(Node $valueNode, ?array $variables): Category;
+    }
+ScalarType/CategoryIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType\AbstractCategoryIdType;
+
+    final class CategoryIdType extends AbstractCategoryIdType
+    {
+    }
+Generated/Custom/Interface/AbstractWithIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Interface;
+
+    use GraphQL\Type\Definition\Type;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+
+    abstract class AbstractWithIdType
+    {
+    	/**
+    	 * Object with id
+    	 */
+    	abstract public function resolveType(User|Category|Company $value): Type;
+    }
+Custom/Interface/WithIdType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Interface;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Interface\AbstractWithIdType;
+
+    final class WithIdType extends AbstractWithIdType
+    {
+    }
+Generated/InterfaceType/AbstractWithNameType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InterfaceType;
+
+    use GraphQL\Type\Definition\Type;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
+
+    abstract class AbstractWithNameType
+    {
+    	/**
+    	 * Object with string name
+    	 */
+    	abstract public function resolveType(Category|Company $value): Type;
+    }
+InterfaceType/WithNameType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\InterfaceType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InterfaceType\AbstractWithNameType;
+
+    final class WithNameType extends AbstractWithNameType
+    {
+    }
+Generated/ObjectType/AbstractUserType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ObjectType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+
+    abstract class AbstractUserType
+    {
+    	public function resolveId(User $root): string|int
+    	{
+    		return $root->getId();
+    	}
+
+
+    	public function resolveEmail(User $root): string
+    	{
+    		return $root->getEmail();
+    	}
+
+
+    	public function resolveLastname(User $root): string
+    	{
+    		return $root->getLastname();
+    	}
+
+
+    	public function resolveFirstname(User $root): string
+    	{
+    		return $root->getFirstname();
+    	}
+    }
+ObjectType/UserType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ObjectType\AbstractUserType;
+
+    final class UserType extends AbstractUserType
+    {
+    }
+Generated/ObjectType/AbstractCategoryType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ObjectType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
+
+    abstract class AbstractCategoryType
+    {
+    	public function resolveId(Category $root): string|int
+    	{
+    		return $root->getId();
+    	}
+
+
+    	public function resolveName(Category $root): string
+    	{
+    		return $root->getName();
+    	}
+    }
+ObjectType/CategoryType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ObjectType\AbstractCategoryType;
+
+    final class CategoryType extends AbstractCategoryType
+    {
+    }
+Generated/Custom/Object/AbstractCompanyType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Object;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+
+    abstract class AbstractCompanyType
+    {
+    	public function resolveId(Company $root): string|int
+    	{
+    		return $root->getId();
+    	}
+
+
+    	public function resolveName(Company $root): string
+    	{
+    		return $root->getName();
+    	}
+
+
+    	/**
+    	 * The manager of company
+    	 */
+    	abstract public function resolveUser(Company $root): User|null;
+
+
+    	/**
+    	 * All categories of company
+    	 *
+    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Category>
+    	 */
+    	abstract public function resolveCategories(Company $root): array;
+
+
+    	/**
+    	 * Search categories of company
+    	 *
+    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Category|null>|null
+    	 * @param list<string|null>|null $keywords
+    	 */
+    	abstract public function resolveSearchCategories(
+    		Company $root,
+    		string|null $name,
+    		array|null $keywords,
+    		string $orderBy
+    	): array|null;
+    }
+Custom/Object/CompanyType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Object\AbstractCompanyType;
+
+    final class CompanyType extends AbstractCompanyType
+    {
+    }
+Generated/InputObjectType/StringExprInputType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
+
+    final class StringExprInputType
+    {
+    	public function __construct(
+    		public string|null $eq,
+    		public string|null $neq,
+    		public string|null $like,
+    	) {
+    	}
+    }
+Generated/InputObjectType/IntExprInputType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
+
+    final class IntExprInputType
+    {
+    	public function __construct(
+    		public int|null $eq,
+    		public int|null $neq,
+    		public int|null $gt,
+    		public int|null $gte,
+    		public int|null $lt,
+    		public int|null $lte,
+    	) {
+    	}
+    }
+Generated/InputObjectType/SearchCompanyWhereInputType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
+
+    final class SearchCompanyWhereInputType
+    {
+    	/**
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_and
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_or
+    	 * @param 'YES'|'NO'|'DEFAULT'|null $withCategory
+    	 */
+    	public function __construct(
+    		public array|null $_and,
+    		public array|null $_or,
+    		public StringExprInputType|null $name,
+    		public IntExprInputType|null $id,
+    		public string|null $withCategory,
+    	) {
+    	}
+    }
+Generated/Custom/InputObject/CreateUserInputType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject;
+
+    final class CreateUserInputType
+    {
+    	public function __construct(
+    		public string $email,
+    		public string|null $lastname,
+    		public string|null $firstname,
+    	) {
+    	}
+    }
+Generated/InputObjectType/EditUserInputType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+
+    final class EditUserInputType
+    {
+    	public function __construct(
+    		public User $id,
+    		public string $email,
+    		public string|null $lastname,
+    		public string|null $firstname,
+    	) {
+    	}
+    }
+Generated/Custom/QueryField/AbstractSearchByNameField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\QueryField;
+
+    abstract class AbstractSearchByNameField
+    {
+    	/**
+    	 * Search all entities with name
+    	 *
+    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Category|\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
+    	 * @param 'ASC'|'DESC'|'DEFAULT'|null $orderByName
+    	 */
+    	abstract public function resolve(string|null $name, string|null $orderByName): array;
+    }
+Custom/QueryField/SearchByNameField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\QueryField\AbstractSearchByNameField;
+
+    final class SearchByNameField extends AbstractSearchByNameField
+    {
+    }
+Generated/QueryField/AbstractSearchCompaniesField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType;
+
+    abstract class AbstractSearchCompaniesField
+    {
+    	/**
+    	 * Search companies
+    	 *
+    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
+    	 */
+    	abstract public function resolve(SearchCompanyWhereInputType|null $where): array;
+    }
+QueryField/SearchCompaniesField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractSearchCompaniesField;
+
+    final class SearchCompaniesField extends AbstractSearchCompaniesField
+    {
+    }
+Generated/QueryField/AbstractCompanyField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
+
+    abstract class AbstractCompanyField
+    {
+    	/**
+    	 * Get a company with id
+    	 */
+    	public function resolve(Company $id): Company|null
+    	{
+    		return $id;
+    	}
+    }
+QueryField/CompanyField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractCompanyField;
+
+    final class CompanyField extends AbstractCompanyField
+    {
+    }
+Generated/QueryField/AbstractStrictCompanyField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
+
+    abstract class AbstractStrictCompanyField
+    {
+    	/**
+    	 * Get a company with id (strict)
+    	 */
+    	public function resolve(Company $id): Company
+    	{
+    		return $id;
+    	}
+    }
+QueryField/StrictCompanyField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractStrictCompanyField;
+
+    final class StrictCompanyField extends AbstractStrictCompanyField
+    {
+    }
+Generated/QueryField/AbstractCategoryField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
+
+    abstract class AbstractCategoryField
+    {
+    	/**
+    	 * Get a category with id
+    	 */
+    	public function resolve(Category $id): Category|null
+    	{
+    		return $id;
+    	}
+    }
+QueryField/CategoryField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractCategoryField;
+
+    final class CategoryField extends AbstractCategoryField
+    {
+    }
+Generated/QueryField/AbstractStrictCategoryField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
+
+    abstract class AbstractStrictCategoryField
+    {
+    	/**
+    	 * Get a category with id
+    	 */
+    	public function resolve(Category $id): Category
+    	{
+    		return $id;
+    	}
+    }
+QueryField/StrictCategoryField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractStrictCategoryField;
+
+    final class StrictCategoryField extends AbstractStrictCategoryField
+    {
+    }
+Generated/QueryField/AbstractUserField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+
+    abstract class AbstractUserField
+    {
+    	/**
+    	 * Get a user with id
+    	 */
+    	public function resolve(User $id): User|null
+    	{
+    		return $id;
+    	}
+    }
+QueryField/UserField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractUserField;
+
+    final class UserField extends AbstractUserField
+    {
+    }
+Generated/QueryField/AbstractUsersField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    abstract class AbstractUsersField
+    {
+    	/**
+    	 * Get all users
+    	 *
+    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\User>
+    	 */
+    	abstract public function resolve(): array;
+    }
+QueryField/UsersField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractUsersField;
+
+    final class UsersField extends AbstractUsersField
+    {
+    }
+Generated/QueryField/AbstractStrictUserField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+
+    abstract class AbstractStrictUserField
+    {
+    	/**
+    	 * Get a user with id
+    	 */
+    	public function resolve(User $id): User
+    	{
+    		return $id;
+    	}
+    }
+QueryField/StrictUserField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractStrictUserField;
+
+    final class StrictUserField extends AbstractStrictUserField
+    {
+    }
+Generated/Custom/Mutation/AbstractCreateUserMutation.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Mutation;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject\CreateUserInputType;
+
+    abstract class AbstractCreateUserMutation
+    {
+    	/**
+    	 * Create an User
+    	 */
+    	abstract public function resolve(CreateUserInputType $data): User;
+    }
+Custom/Mutation/CreateUserMutation.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Mutation;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Mutation\AbstractCreateUserMutation;
+
+    final class CreateUserMutation extends AbstractCreateUserMutation
+    {
+    }
+Generated/MutationField/AbstractEditUserMutation.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\MutationField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUserInputType;
+
+    abstract class AbstractEditUserMutation
+    {
+    	/**
+    	 * Create an User
+    	 */
+    	abstract public function resolve(EditUserInputType $data): User;
+    }
+MutationField/EditUserMutation.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\MutationField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\MutationField\AbstractEditUserMutation;
+
+    final class EditUserMutation extends AbstractEditUserMutation
+    {
+    }
+Generated/AbstractSchema.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated;
+
+    use GraphQL\Type\Definition\CustomScalarType;
+    use GraphQL\Type\Definition\EnumType;
+    use GraphQL\Type\Definition\InputObjectType;
+    use GraphQL\Type\Definition\InterfaceType;
+    use GraphQL\Type\Definition\ObjectType;
+    use GraphQL\Type\Definition\ScalarType;
+    use Psr\Container\ContainerInterface;
+    use Symfony\Contracts\Service\ServiceSubscriberInterface;
+
+    abstract class AbstractSchema implements ServiceSubscriberInterface
+    {
+    	private $property_scalar_type_DateTimeTz = null;
+    	private $property_scalar_type_CompanyId = null;
+    	private $property_scalar_type_UserId = null;
+    	private $property_scalar_type_CategoryId = null;
+    	private $property_enum_type_YesNo = null;
+    	private $property_enum_type_OrderDirection = null;
+    	private $property_interface_type_WithId = null;
+    	private $property_interface_type_WithName = null;
+    	private $property_object_type_User = null;
+    	private $property_object_type_Category = null;
+    	private $property_object_type_Company = null;
+    	private $property_input_object_type_StringExprInput = null;
+    	private $property_input_object_type_IntExprInput = null;
+    	private $property_input_object_type_SearchCompanyWhereInput = null;
+    	private $property_input_object_type_CreateUserInput = null;
+    	private $property_input_object_type_EditUserInput = null;
+
+
+    	public function __construct(private ContainerInterface $services)
+    	{
+    	}
+
+
+    	private function service(string $name)
+    	{
+    		return $this->services->get($name);
+    	}
+
+
+    	public function get_scalar_ID(): ScalarType
+    	{
+    		return \GraphQL\Type\Definition\Type::id();
+    	}
+
+
+    	private function transform_scalar_type_ID($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_String(): ScalarType
+    	{
+    		return \GraphQL\Type\Definition\Type::string();
+    	}
+
+
+    	private function transform_scalar_type_String($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_Int(): ScalarType
+    	{
+    		return \GraphQL\Type\Definition\Type::int();
+    	}
+
+
+    	private function transform_scalar_type_Int($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_Float(): ScalarType
+    	{
+    		return \GraphQL\Type\Definition\Type::float();
+    	}
+
+
+    	private function transform_scalar_type_Float($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_Boolean(): ScalarType
+    	{
+    		return \GraphQL\Type\Definition\Type::boolean();
+    	}
+
+
+    	private function transform_scalar_type_Boolean($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_DateTimeTz(): CustomScalarType
+    	{
+    		if ($this->property_scalar_type_DateTimeTz === null) {
+    		                    $this->property_scalar_type_DateTimeTz = new \GraphQL\Type\Definition\CustomScalarType([
+    		                        "description" => 'Represent date with timezone',
+    		                        "name" => 'DateTimeTz',
+    		                        "serialize" => function ($value) {
+    		                            return $this->service('type.DateTimeTz')->serialize($value);
+    		                        },
+    		                        "parseValue" => function ($value) {
+    		                            return $this->service('type.DateTimeTz')->parseValue($value);
+    		                        },
+    		                        "parseLiteral" => function (\GraphQL\Language\AST\Node $valueNode, array|null $variables = null) {
+    		                            return $this->service('type.DateTimeTz')->parseLiteral($valueNode, $variables);
+    		                        },
+    		                    ]);
+    		                }
+    		                return $this->property_scalar_type_DateTimeTz;
+    	}
+
+
+    	private function transform_scalar_type_DateTimeTz($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_CompanyId(): CustomScalarType
+    	{
+    		if ($this->property_scalar_type_CompanyId === null) {
+    		                    $this->property_scalar_type_CompanyId = new \GraphQL\Type\Definition\CustomScalarType([
+    		                        "description" => 'Represent an id of Company entity',
+    		                        "name" => 'CompanyId',
+    		                        "serialize" => function ($value) {
+    		                            return $this->service('type.CompanyId')->serialize($value);
+    		                        },
+    		                        "parseValue" => function ($value) {
+    		                            return $this->service('type.CompanyId')->parseValue($value);
+    		                        },
+    		                        "parseLiteral" => function (\GraphQL\Language\AST\Node $valueNode, array|null $variables = null) {
+    		                            return $this->service('type.CompanyId')->parseLiteral($valueNode, $variables);
+    		                        },
+    		                    ]);
+    		                }
+    		                return $this->property_scalar_type_CompanyId;
+    	}
+
+
+    	private function transform_scalar_type_CompanyId($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_UserId(): CustomScalarType
+    	{
+    		if ($this->property_scalar_type_UserId === null) {
+    		                    $this->property_scalar_type_UserId = new \GraphQL\Type\Definition\CustomScalarType([
+    		                        "description" => 'Represent an id of User entity',
+    		                        "name" => 'UserId',
+    		                        "serialize" => function ($value) {
+    		                            return $this->service('type.UserId')->serialize($value);
+    		                        },
+    		                        "parseValue" => function ($value) {
+    		                            return $this->service('type.UserId')->parseValue($value);
+    		                        },
+    		                        "parseLiteral" => function (\GraphQL\Language\AST\Node $valueNode, array|null $variables = null) {
+    		                            return $this->service('type.UserId')->parseLiteral($valueNode, $variables);
+    		                        },
+    		                    ]);
+    		                }
+    		                return $this->property_scalar_type_UserId;
+    	}
+
+
+    	private function transform_scalar_type_UserId($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_scalar_CategoryId(): CustomScalarType
+    	{
+    		if ($this->property_scalar_type_CategoryId === null) {
+    		                    $this->property_scalar_type_CategoryId = new \GraphQL\Type\Definition\CustomScalarType([
+    		                        "description" => 'Represent ad id of Category entity',
+    		                        "name" => 'CategoryId',
+    		                        "serialize" => function ($value) {
+    		                            return $this->service('type.CategoryId')->serialize($value);
+    		                        },
+    		                        "parseValue" => function ($value) {
+    		                            return $this->service('type.CategoryId')->parseValue($value);
+    		                        },
+    		                        "parseLiteral" => function (\GraphQL\Language\AST\Node $valueNode, array|null $variables = null) {
+    		                            return $this->service('type.CategoryId')->parseLiteral($valueNode, $variables);
+    		                        },
+    		                    ]);
+    		                }
+    		                return $this->property_scalar_type_CategoryId;
+    	}
+
+
+    	private function transform_scalar_type_CategoryId($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_enum_type_YesNo(): EnumType
+    	{
+    		if ($this->property_enum_type_YesNo === null) {
+    		                    $this->property_enum_type_YesNo = new \GraphQL\Type\Definition\EnumType([
+    		                        "description" => '',
+    		                        "name" => 'YesNo',
+    		                        "values" => [
+
+    		'YES' => [
+    		                "name" => 'YES',
+    		                "description" => 'Yes value',
+    		                "value" => 'YES',
+    		            ],
+    		'NO' => [
+    		                "name" => 'NO',
+    		                "description" => 'No value',
+    		                "value" => 'NO',
+    		            ],
+    		'DEFAULT' => [
+    		                "name" => 'DEFAULT',
+    		                "description" => 'Default value',
+    		                "value" => 'DEFAULT',
+    		            ],
+    		           ]
+    		                    ]);
+    		                }
+    		                return $this->property_enum_type_YesNo;
+    	}
+
+
+    	private function transform_enum_type_YesNo($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_enum_type_OrderDirection(): EnumType
+    	{
+    		if ($this->property_enum_type_OrderDirection === null) {
+    		                    $this->property_enum_type_OrderDirection = new \GraphQL\Type\Definition\EnumType([
+    		                        "description" => '',
+    		                        "name" => 'OrderDirection',
+    		                        "values" => [
+
+    		'ASC' => [
+    		                "name" => 'ASC',
+    		                "description" => '',
+    		                "value" => 'ASC',
+    		            ],
+    		'DESC' => [
+    		                "name" => 'DESC',
+    		                "description" => '',
+    		                "value" => 'DESC',
+    		            ],
+    		'DEFAULT' => [
+    		                "name" => 'DEFAULT',
+    		                "description" => '',
+    		                "value" => 'DEFAULT',
+    		            ],
+    		           ]
+    		                    ]);
+    		                }
+    		                return $this->property_enum_type_OrderDirection;
+    	}
+
+
+    	private function transform_enum_type_OrderDirection($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_interface_type_WithId(): InterfaceType
+    	{
+    		if ($this->property_interface_type_WithId === null) {
+    		                $this->property_interface_type_WithId = new \GraphQL\Type\Definition\InterfaceType([
+    		                    "description" => 'Object with id',
+    		                    "name" => 'WithId',
+    		                    "resolveType" => function($value) {
+    		                        return $this->service('type.WithId')->resolveType($value);
+    		                    },
+    		                    "fields" => function () {
+    		                        return [
+
+    		'id' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+    		                            "description" => '',
+    		                        ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		             }
+
+    		             return $this->property_interface_type_WithId;
+    	}
+
+
+    	private function transform_interface_type_WithId($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_interface_type_WithName(): InterfaceType
+    	{
+    		if ($this->property_interface_type_WithName === null) {
+    		                $this->property_interface_type_WithName = new \GraphQL\Type\Definition\InterfaceType([
+    		                    "description" => 'Object with string name',
+    		                    "name" => 'WithName',
+    		                    "resolveType" => function($value) {
+    		                        return $this->service('type.WithName')->resolveType($value);
+    		                    },
+    		                    "fields" => function () {
+    		                        return [
+
+    		'name' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                            "description" => '',
+    		                        ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		             }
+
+    		             return $this->property_interface_type_WithName;
+    	}
+
+
+    	private function transform_interface_type_WithName($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_object_type_User(): ObjectType
+    	{
+    		if ($this->property_object_type_User === null) {
+    		                $this->property_object_type_User = new \GraphQL\Type\Definition\ObjectType([
+    		                    "description" => 'User entity',
+    		                    "name" => 'User',
+    		                    "interfaces" => function () {
+    		                        return [
+    		                            $this->get_interface_type_WithId()
+    		                        ];
+    		                    },
+    		                    "fields" => function () {
+    		                        return [
+
+    		'id' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.User')->resolveId(root: $__root, );
+    		                            },
+    		                        ],
+    		'email' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.User')->resolveEmail(root: $__root, );
+    		                            },
+    		                        ],
+    		'lastname' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.User')->resolveLastname(root: $__root, );
+    		                            },
+    		                        ],
+    		'firstname' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.User')->resolveFirstname(root: $__root, );
+    		                            },
+    		                        ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		             }
+
+    		             return $this->property_object_type_User;
+    	}
+
+
+    	private function transform_object_type_User($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_object_type_Category(): ObjectType
+    	{
+    		if ($this->property_object_type_Category === null) {
+    		                $this->property_object_type_Category = new \GraphQL\Type\Definition\ObjectType([
+    		                    "description" => 'Category entity',
+    		                    "name" => 'Category',
+    		                    "interfaces" => function () {
+    		                        return [
+    		                            $this->get_interface_type_WithName(),
+    		$this->get_interface_type_WithId()
+    		                        ];
+    		                    },
+    		                    "fields" => function () {
+    		                        return [
+
+    		'id' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.Category')->resolveId(root: $__root, );
+    		                            },
+    		                        ],
+    		'name' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.Category')->resolveName(root: $__root, );
+    		                            },
+    		                        ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		             }
+
+    		             return $this->property_object_type_Category;
+    	}
+
+
+    	private function transform_object_type_Category($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_object_type_Company(): ObjectType
+    	{
+    		if ($this->property_object_type_Company === null) {
+    		                $this->property_object_type_Company = new \GraphQL\Type\Definition\ObjectType([
+    		                    "description" => 'Company entity',
+    		                    "name" => 'Company',
+    		                    "interfaces" => function () {
+    		                        return [
+    		                            $this->get_interface_type_WithName(),
+    		$this->get_interface_type_WithId()
+    		                        ];
+    		                    },
+    		                    "fields" => function () {
+    		                        return [
+
+    		'id' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.Company')->resolveId(root: $__root, );
+    		                            },
+    		                        ],
+    		'name' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.Company')->resolveName(root: $__root, );
+    		                            },
+    		                        ],
+    		'user' => [
+    		                            "type" => $this->get_object_type_User(),
+    		                            "description" => 'The manager of company',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.Company')->resolveUser(root: $__root, );
+    		                            },
+    		                        ],
+    		'categories' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Category()))),
+    		                            "description" => 'All categories of company',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.Company')->resolveCategories(root: $__root, );
+    		                            },
+    		                        ],
+    		'searchCategories' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::listOf($this->get_object_type_Category()),
+    		                            "description" => 'Search categories of company',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('type.Company')->resolveSearchCategories(root: $__root, name: ($this->transform_scalar_type_String(($__args)['name'] ?? null)), keywords: ((function ($__value) {
+    		                return $__value === null ? null : array_map(function ($__value) {
+    		                    return ($this->transform_scalar_type_String($__value));
+    		                }, $__value);
+    		            })(($__args)['keywords'] ?? null)), orderBy: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_String($__value));
+    		            })(($__args)['orderBy'] ?? null)));
+    		                            },
+    		                        ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		             }
+
+    		             return $this->property_object_type_Company;
+    	}
+
+
+    	private function transform_object_type_Company($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_input_object_type_StringExprInput(): InputObjectType
+    	{
+    		if ($this->property_input_object_type_StringExprInput === null) {
+    		                $this->property_input_object_type_StringExprInput = new \GraphQL\Type\Definition\InputObjectType([
+    		                    "description" => '',
+    		                    "name" => 'StringExprInput',
+    		                    "fields" => function () {
+    		                        return [
+
+    		'eq' => [
+    		                        "type" => $this->get_scalar_String(),
+    		                        "description" => '',
+    		                    ],
+    		'neq' => [
+    		                        "type" => $this->get_scalar_String(),
+    		                        "description" => '',
+    		                    ],
+    		'like' => [
+    		                        "type" => $this->get_scalar_String(),
+    		                        "description" => '',
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		            }
+
+    		            return $this->property_input_object_type_StringExprInput;
+    	}
+
+
+    	private function transform_input_object_type_StringExprInput($value)
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\StringExprInputType(eq: ($this->transform_scalar_type_String(($value)['eq'] ?? null)), neq: ($this->transform_scalar_type_String(($value)['neq'] ?? null)), like: ($this->transform_scalar_type_String(($value)['like'] ?? null)));
+    	}
+
+
+    	public function get_input_object_type_IntExprInput(): InputObjectType
+    	{
+    		if ($this->property_input_object_type_IntExprInput === null) {
+    		                $this->property_input_object_type_IntExprInput = new \GraphQL\Type\Definition\InputObjectType([
+    		                    "description" => '',
+    		                    "name" => 'IntExprInput',
+    		                    "fields" => function () {
+    		                        return [
+
+    		'eq' => [
+    		                        "type" => $this->get_scalar_Int(),
+    		                        "description" => '',
+    		                    ],
+    		'neq' => [
+    		                        "type" => $this->get_scalar_Int(),
+    		                        "description" => '',
+    		                    ],
+    		'gt' => [
+    		                        "type" => $this->get_scalar_Int(),
+    		                        "description" => '',
+    		                    ],
+    		'gte' => [
+    		                        "type" => $this->get_scalar_Int(),
+    		                        "description" => '',
+    		                    ],
+    		'lt' => [
+    		                        "type" => $this->get_scalar_Int(),
+    		                        "description" => '',
+    		                    ],
+    		'lte' => [
+    		                        "type" => $this->get_scalar_Int(),
+    		                        "description" => '',
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		            }
+
+    		            return $this->property_input_object_type_IntExprInput;
+    	}
+
+
+    	private function transform_input_object_type_IntExprInput($value)
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: ($this->transform_scalar_type_Int(($value)['eq'] ?? null)), neq: ($this->transform_scalar_type_Int(($value)['neq'] ?? null)), gt: ($this->transform_scalar_type_Int(($value)['gt'] ?? null)), gte: ($this->transform_scalar_type_Int(($value)['gte'] ?? null)), lt: ($this->transform_scalar_type_Int(($value)['lt'] ?? null)), lte: ($this->transform_scalar_type_Int(($value)['lte'] ?? null)));
+    	}
+
+
+    	public function get_input_object_type_SearchCompanyWhereInput(): InputObjectType
+    	{
+    		if ($this->property_input_object_type_SearchCompanyWhereInput === null) {
+    		                $this->property_input_object_type_SearchCompanyWhereInput = new \GraphQL\Type\Definition\InputObjectType([
+    		                    "description" => '',
+    		                    "name" => 'SearchCompanyWhereInput',
+    		                    "fields" => function () {
+    		                        return [
+
+    		'_and' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::listOf($this->get_input_object_type_SearchCompanyWhereInput()),
+    		                        "description" => '',
+    		                    ],
+    		'_or' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::listOf($this->get_input_object_type_SearchCompanyWhereInput()),
+    		                        "description" => '',
+    		                    ],
+    		'name' => [
+    		                        "type" => $this->get_input_object_type_StringExprInput(),
+    		                        "description" => '',
+    		                    ],
+    		'id' => [
+    		                        "type" => $this->get_input_object_type_IntExprInput(),
+    		                        "description" => '',
+    		                    ],
+    		'withCategory' => [
+    		                        "type" => $this->get_enum_type_YesNo(),
+    		                        "description" => '',
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		            }
+
+    		            return $this->property_input_object_type_SearchCompanyWhereInput;
+    	}
+
+
+    	private function transform_input_object_type_SearchCompanyWhereInput($value)
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType(_and: ((function ($__value) {
+    		                return $__value === null ? null : array_map(function ($__value) {
+    		                    return ($this->transform_input_object_type_SearchCompanyWhereInput($__value));
+    		                }, $__value);
+    		            })(($value)['_and'] ?? null)), _or: ((function ($__value) {
+    		                return $__value === null ? null : array_map(function ($__value) {
+    		                    return ($this->transform_input_object_type_SearchCompanyWhereInput($__value));
+    		                }, $__value);
+    		            })(($value)['_or'] ?? null)), name: ($this->transform_input_object_type_StringExprInput(($value)['name'] ?? null)), id: ($this->transform_input_object_type_IntExprInput(($value)['id'] ?? null)), withCategory: ($this->transform_enum_type_YesNo(($value)['withCategory'] ?? null)));
+    	}
+
+
+    	public function get_input_object_type_CreateUserInput(): InputObjectType
+    	{
+    		if ($this->property_input_object_type_CreateUserInput === null) {
+    		                $this->property_input_object_type_CreateUserInput = new \GraphQL\Type\Definition\InputObjectType([
+    		                    "description" => '',
+    		                    "name" => 'CreateUserInput',
+    		                    "fields" => function () {
+    		                        return [
+
+    		'email' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                        "description" => '',
+    		                    ],
+    		'lastname' => [
+    		                        "type" => $this->get_scalar_String(),
+    		                        "description" => '',
+    		                    ],
+    		'firstname' => [
+    		                        "type" => $this->get_scalar_String(),
+    		                        "description" => '',
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		            }
+
+    		            return $this->property_input_object_type_CreateUserInput;
+    	}
+
+
+    	private function transform_input_object_type_CreateUserInput($value)
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject\CreateUserInputType(email: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_String($__value));
+    		            })(($value)['email'] ?? null)), lastname: ($this->transform_scalar_type_String(($value)['lastname'] ?? null)), firstname: ($this->transform_scalar_type_String(($value)['firstname'] ?? null)));
+    	}
+
+
+    	public function get_input_object_type_EditUserInput(): InputObjectType
+    	{
+    		if ($this->property_input_object_type_EditUserInput === null) {
+    		                $this->property_input_object_type_EditUserInput = new \GraphQL\Type\Definition\InputObjectType([
+    		                    "description" => '',
+    		                    "name" => 'EditUserInput',
+    		                    "fields" => function () {
+    		                        return [
+
+    		'id' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_UserId()),
+    		                        "description" => '',
+    		                    ],
+    		'email' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                        "description" => '',
+    		                    ],
+    		'lastname' => [
+    		                        "type" => $this->get_scalar_String(),
+    		                        "description" => '',
+    		                    ],
+    		'firstname' => [
+    		                        "type" => $this->get_scalar_String(),
+    		                        "description" => '',
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		            }
+
+    		            return $this->property_input_object_type_EditUserInput;
+    	}
+
+
+    	private function transform_input_object_type_EditUserInput($value)
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUserInputType(id: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_UserId($__value));
+    		            })(($value)['id'] ?? null)), email: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_String($__value));
+    		            })(($value)['email'] ?? null)), lastname: ($this->transform_scalar_type_String(($value)['lastname'] ?? null)), firstname: ($this->transform_scalar_type_String(($value)['firstname'] ?? null)));
+    	}
+
+
+    	public function query(): ObjectType
+    	{
+    		return new \GraphQL\Type\Definition\ObjectType([
+    		                    "name" => 'Query',
+    		                    "fields" => function() {
+    		                        return [
+
+    		'searchByName' => [
+    		                        "name" => 'searchByName',
+    		                        "description" => 'Search all entities with name',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_interface_type_WithName()))),
+    		                        "args" => [[
+    		                                "name" => 'name',
+    		                                "description" => '',
+    		                                "type" => $this->get_scalar_String(),
+    		                            ], [
+    		                                "name" => 'orderByName',
+    		                                "description" => '',
+    		                                "type" => $this->get_enum_type_OrderDirection(),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.searchByName')->resolve(name: ($this->transform_scalar_type_String(($__args)['name'] ?? null)), orderByName: ($this->transform_enum_type_OrderDirection(($__args)['orderByName'] ?? null)));
+    		                        },
+    		                    ],
+    		'searchCompanies' => [
+    		                        "name" => 'searchCompanies',
+    		                        "description" => 'Search companies',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()))),
+    		                        "args" => [[
+    		                                "name" => 'where',
+    		                                "description" => '',
+    		                                "type" => $this->get_input_object_type_SearchCompanyWhereInput(),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.searchCompanies')->resolve(where: ($this->transform_input_object_type_SearchCompanyWhereInput(($__args)['where'] ?? null)));
+    		                        },
+    		                    ],
+    		'company' => [
+    		                        "name" => 'company',
+    		                        "description" => 'Get a company with id',
+    		                        "type" => $this->get_object_type_Company(),
+    		                        "args" => [[
+    		                                "name" => 'id',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_CompanyId()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.company')->resolve(id: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_CompanyId($__value));
+    		            })(($__args)['id'] ?? null)));
+    		                        },
+    		                    ],
+    		'strictCompany' => [
+    		                        "name" => 'strictCompany',
+    		                        "description" => 'Get a company with id (strict)',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()),
+    		                        "args" => [[
+    		                                "name" => 'id',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_CompanyId()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.strictCompany')->resolve(id: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_CompanyId($__value));
+    		            })(($__args)['id'] ?? null)));
+    		                        },
+    		                    ],
+    		'category' => [
+    		                        "name" => 'category',
+    		                        "description" => 'Get a category with id',
+    		                        "type" => $this->get_object_type_Category(),
+    		                        "args" => [[
+    		                                "name" => 'id',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_CategoryId()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.category')->resolve(id: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_CategoryId($__value));
+    		            })(($__args)['id'] ?? null)));
+    		                        },
+    		                    ],
+    		'strictCategory' => [
+    		                        "name" => 'strictCategory',
+    		                        "description" => 'Get a category with id',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Category()),
+    		                        "args" => [[
+    		                                "name" => 'id',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_CategoryId()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.strictCategory')->resolve(id: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_CategoryId($__value));
+    		            })(($__args)['id'] ?? null)));
+    		                        },
+    		                    ],
+    		'user' => [
+    		                        "name" => 'user',
+    		                        "description" => 'Get a user with id',
+    		                        "type" => $this->get_object_type_User(),
+    		                        "args" => [[
+    		                                "name" => 'id',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_UserId()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.user')->resolve(id: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_UserId($__value));
+    		            })(($__args)['id'] ?? null)));
+    		                        },
+    		                    ],
+    		'users' => [
+    		                        "name" => 'users',
+    		                        "description" => 'Get all users',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_User()))),
+    		                        "args" => [],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.users')->resolve();
+    		                        },
+    		                    ],
+    		'strictUser' => [
+    		                        "name" => 'strictUser',
+    		                        "description" => 'Get a user with id',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_object_type_User()),
+    		                        "args" => [[
+    		                                "name" => 'id',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_UserId()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('query_field.strictUser')->resolve(id: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_scalar_type_UserId($__value));
+    		            })(($__args)['id'] ?? null)));
+    		                        },
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    	}
+
+
+    	public function mutation(): ObjectType
+    	{
+    		return new \GraphQL\Type\Definition\ObjectType([
+    		                    "name" => 'Mutation',
+    		                    "fields" => function() {
+    		                        return [
+
+    		'createUser' => [
+    		                        "name" => 'createUser',
+    		                        "description" => 'Create an User',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_object_type_User()),
+    		                        "args" => [[
+    		                                "name" => 'data',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_input_object_type_CreateUserInput()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('mutation_field.createUser')->resolve(data: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_input_object_type_CreateUserInput($__value));
+    		            })(($__args)['data'] ?? null)));
+    		                        },
+    		                    ],
+    		'editUser' => [
+    		                        "name" => 'editUser',
+    		                        "description" => 'Create an User',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_object_type_User()),
+    		                        "args" => [[
+    		                                "name" => 'data',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_input_object_type_EditUserInput()),
+    		                            ]],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('mutation_field.editUser')->resolve(data: ((function ($__value) {
+    		                return $__value === null ? null : ($this->transform_input_object_type_EditUserInput($__value));
+    		            })(($__args)['data'] ?? null)));
+    		                        },
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    	}
+
+
+    	public static function getSubscribedServices(): array
+    	{
+    		return [
+    			'type.DateTimeTz' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Scalar\DateTimeTzType',
+    			'type.CompanyId' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType\CompanyIdType',
+    			'type.UserId' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType\UserIdType',
+    			'type.CategoryId' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType\CategoryIdType',
+    			'type.WithId' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Interface\WithIdType',
+    			'type.WithName' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\InterfaceType\WithNameType',
+    			'type.User' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType',
+    			'type.Category' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType',
+    			'type.Company' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType',
+    			'query_field.searchByName' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField\SearchByNameField',
+    			'query_field.searchCompanies' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\SearchCompaniesField',
+    			'query_field.company' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompanyField',
+    			'query_field.strictCompany' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictCompanyField',
+    			'query_field.category' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CategoryField',
+    			'query_field.strictCategory' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictCategoryField',
+    			'query_field.user' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UserField',
+    			'query_field.users' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UsersField',
+    			'query_field.strictUser' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictUserField',
+    			'mutation_field.createUser' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Mutation\CreateUserMutation',
+    			'mutation_field.editUser' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\MutationField\EditUserMutation',
+    		];
+    	}
+    }
+Schema.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\AbstractSchema;
+
+    final class Schema extends AbstractSchema
+    {
+    }

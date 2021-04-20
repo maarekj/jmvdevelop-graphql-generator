@@ -1,0 +1,18 @@
+{
+    "data": {
+        "users": [
+            {
+                "id": "1",
+                "lastname": "Maarek",
+                "firstname": "Joseph",
+                "email": "josephmaarek@gmail . com"
+            },
+            {
+                "id": "2",
+                "lastname": "Doe",
+                "firstname": "Jane",
+                "email": "vanessamaarek@gmail . com"
+            }
+        ]
+    }
+}

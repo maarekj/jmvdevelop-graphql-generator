@@ -1,0 +1,39 @@
+{
+  "name": "jmvdevelop/graphql-generator",
+  "description": "Generate a schema for webonyx/graphql-php",
+  "authors": [
+    {
+      "name": "Joseph Maarek",
+      "email": "josephmaarek@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "JmvDevelop\\GraphqlGenerator\\": "src"
+    },
+    "files": [
+      "src/Utils/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JmvDevelop\\GraphqlGenerator\\Example\\": "example"
+    }
+  },
+  "require-dev": {
+    "php": "^8.0",
+    "pestphp/pest": "^1.0",
+    "vimeo/psalm": "^4.7",
+    "webonyx/graphql-php": "^14.6",
+    "symfony/dependency-injection": "^5.2",
+    "symfony/config": "^5.2"
+  },
+  "require": {
+    "nette/php-generator": "^3.5",
+    "league/flysystem": "^2.0",
+    "league/flysystem-memory": "^2.0",
+    "spatie/pest-plugin-snapshots": "^1.0",
+    "symfony/console": "^5.2",
+    "webmozart/assert": "^1.10"
+  }
+}

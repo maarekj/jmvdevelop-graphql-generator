@@ -1,0 +1,14 @@
+{
+    "data": {
+        "jmv1": {
+            "id": "1",
+            "name": "A JMV 1",
+            "categories": []
+        },
+        "jmv2": {
+            "id": "2",
+            "name": "B JMV 2",
+            "categories": []
+        }
+    }
+}
