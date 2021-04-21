@@ -20,6 +20,9 @@
       "JmvDevelop\\GraphqlGenerator\\Example\\": "example"
     }
   },
+  "bin": [
+    "bin/graphql-generator"
+  ],
   "require-dev": {
     "php": "^8.0",
     "pestphp/pest": "^1.0",
