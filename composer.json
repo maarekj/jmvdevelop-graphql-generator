@@ -24,7 +24,6 @@
     "php": "^8.0",
     "pestphp/pest": "^1.0",
     "vimeo/psalm": "^4.7",
-    "webonyx/graphql-php": "^14.6",
     "symfony/dependency-injection": "^5.2",
     "symfony/config": "^5.2"
   },
@@ -34,6 +33,7 @@
     "league/flysystem-memory": "^2.0",
     "spatie/pest-plugin-snapshots": "^1.0",
     "symfony/console": "^5.2",
-    "webmozart/assert": "^1.10"
+    "webmozart/assert": "^1.10",
+    "webonyx/graphql-php": "^14.6"
   }
 }
