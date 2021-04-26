@@ -168,7 +168,7 @@ function graphqlToPsalmType(SchemaConfig $config, string $name): string
     $type = getTypeDefinitionOfTypeName($config->getSchema(), $name);
 
     if (null === $type) {
-        throw new \RuntimeException('Type not exist');
+        throw new \RuntimeException(sprintf('Type "%s" not exist', $name));
     } elseif ($type instanceof ScalarType) {
         return $type->getRootType();
     } elseif ($type instanceof InputObjectType) {
