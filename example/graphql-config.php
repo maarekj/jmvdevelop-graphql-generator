@@ -3,6 +3,7 @@
 use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+use JmvDevelop\GraphqlGenerator\Generator\ObjectField\AbstractObjectFieldGenerator;
 use JmvDevelop\GraphqlGenerator\Schema\Argument;
 use JmvDevelop\GraphqlGenerator\Schema\EnumType;
 use JmvDevelop\GraphqlGenerator\Schema\InputObjectType;
@@ -13,6 +14,8 @@ use JmvDevelop\GraphqlGenerator\Schema\QueryField;
 use JmvDevelop\GraphqlGenerator\Schema\ScalarType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaDefinition;
+
+$abstractGenerator = new AbstractObjectFieldGenerator();
 
 $schema = new SchemaDefinition();
 $schema
@@ -72,18 +75,18 @@ $schema
         fields: [
             ObjectType::field(name: 'id', type: 'ID!'),
             ObjectType::field(name: 'name', type: 'String!'),
-            ObjectType::field(name: 'user', type: 'User', description: 'The manager of company', autoGetter: false),
+            ObjectType::field(name: 'user', type: 'User', description: 'The manager of company', generator: $abstractGenerator),
             ObjectType::field(
                 name: 'categories',
                 type: '[Category!]!',
                 description: 'All categories of company',
-                autoGetter: false,
+                generator: $abstractGenerator,
             ),
             ObjectType::field(
                 name: 'searchCategories',
                 type: '[Category]',
                 description: 'Search categories of company',
-                autoGetter: false,
+                generator: $abstractGenerator,
                 args: [
                     Argument::create(name: 'name', type: 'String'),
                     Argument::create(name: 'keywords', type: '[String]'),

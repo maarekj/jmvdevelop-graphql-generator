@@ -2,6 +2,7 @@
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
+use JmvDevelop\GraphqlGenerator\Generator\ObjectField\ObjectFieldGenerator;
 use JmvDevelop\GraphqlGenerator\Generator\ObjectTypeGenerator;
 use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
 
@@ -41,9 +42,9 @@ final class ObjectType extends TypeDefinition implements OutputType
     }
 
     /** @param list<Argument> $args */
-    public static function field(string $name, string $type, array $args = [], bool $autoGetter = true, string $description = ''): ObjectField
+    public static function field(string $name, string $type, array $args = [], ?ObjectFieldGenerator $generator = null, string $description = ''): ObjectField
     {
-        return new ObjectField(name: $name, type: $type, args: $args, autoGetter: $autoGetter, description: $description);
+        return new ObjectField(name: $name, type: $type, args: $args, generator: $generator, description: $description);
     }
 
     public function getRootType(): string

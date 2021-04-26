@@ -30,7 +30,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
     {
         $dumper = new Dumper();
 
-        $serviceName = $this->serviceName();
+        $serviceName = $this->concretFqcnClass($config);
 
         $propertyName = 'property_object_type_'.$this->type->getName();
         $class->addProperty($propertyName)->setValue(null)->setPrivate();
@@ -97,11 +97,6 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
         return $method;
     }
 
-    public function serviceName(): string
-    {
-        return 'type.'.$this->type->getName();
-    }
-
     public function transformTypeMethodName(SchemaConfig $config): string
     {
         return 'transform_object_type_'.$this->type->getName();
@@ -115,7 +110,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
     public function subscribeService(SchemaConfig $config): array
     {
         return [
-            $this->serviceName() => $this->concretFqcnClass($config),
+            $this->concretFqcnClass($config) => $this->concretFqcnClass($config),
         ];
     }
 
@@ -147,11 +142,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
                 addArgumentInParameterOfMethod(config: $config, method: $resolveMethod, arg: $arg);
             }
 
-            if (!$field->hasAutoGetter()) {
-                $resolveMethod->setAbstract();
-            } else {
-                $resolveMethod->addBody(\sprintf('return $root->get%s();', \ucfirst($field->getName())));
-            }
+            $field->getGenerator()->generateBodyMethod(type: $this->type, field: $field, method: $resolveMethod);
         }
 
         writeFile(fs: $fs, config: $config, file: $file, overwrite: true);

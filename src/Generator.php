@@ -85,7 +85,7 @@ final class Generator
              * @param list<MutationField|QueryField> $fields
              * @param array<string, string>          $subscribedServices
              */
-            function (string $methodName, string $fieldName, string $suffixClass, array $fields, string $prefixServiceName, string $prefixNs, array &$subscribedServices) use ($class, $dumper): void {
+            function (string $methodName, string $fieldName, string $suffixClass, array $fields, array &$subscribedServices) use ($class, $dumper): void {
                 $queryMethod = $class->addMethod($methodName);
                 $queryMethod->setReturnType('\GraphQL\Type\Definition\ObjectType');
 
@@ -96,8 +96,8 @@ final class Generator
                     ', [$fieldName]);
 
                 foreach ($fields as $field) {
-                    $serviceName = $prefixServiceName.'.'.$field->getName();
-                    $subscribedServices[$serviceName] = $this->namespace.'\\'.$field->getSuffixNamespace().'\\'.\ucfirst($field->getName()).$suffixClass;
+                    $class = $this->namespace.'\\'.$field->getSuffixNamespace().'\\'.\ucfirst($field->getName()).$suffixClass;
+                    $subscribedServices[$class] = $class;
 
                     $queryMethod->addBody(\strtr(':fieldName => [
                         "name" => :fieldName,
@@ -109,7 +109,7 @@ final class Generator
                             return $this->service(:serviceName)->resolve(:callArgs);
                         },
                     ],', [
-                        ':serviceName' => $dumper->dump($serviceName),
+                        ':serviceName' => $dumper->dump($class),
                         ':fieldName' => $dumper->dump($field->getName()),
                         ':description' => $dumper->dump($field->getDescription()),
                         ':type' => getTypeFromRegistry(config: $this->config, type: Parser::parseType($field->getType())),
@@ -139,8 +139,6 @@ final class Generator
             fieldName: 'Query',
             suffixClass: 'Field',
             fields: $this->config->getSchema()->getQueryFields(),
-            prefixServiceName: 'query_field',
-            prefixNs: 'QueryField',
             subscribedServices: $subscribedServices,
         );
 
@@ -149,8 +147,6 @@ final class Generator
             fieldName: 'Mutation',
             suffixClass: 'Mutation',
             fields: $this->config->getSchema()->getMutationFields(),
-            prefixServiceName: 'mutation_field',
-            prefixNs: 'MutationField',
             subscribedServices: $subscribedServices
         );
 

@@ -28,7 +28,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
     {
         $dumper = new Dumper();
 
-        $serviceName = $this->serviceName();
+        $serviceName = $this->concretFqcnClass($config);
 
         $propertyName = 'property_interface_type_'.$this->type->getName();
         $class->addProperty($propertyName)->setValue(null)->setPrivate();
@@ -85,11 +85,6 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
         return $method;
     }
 
-    public function serviceName(): string
-    {
-        return 'type.'.$this->type->getName();
-    }
-
     public function transformTypeMethodName(SchemaConfig $config): string
     {
         return 'transform_interface_type_'.$this->type->getName();
@@ -102,7 +97,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
 
     public function subscribeService(SchemaConfig $config): array
     {
-        return [$this->serviceName() => $this->concretFqcnClass($config)];
+        return [$this->concretFqcnClass($config) => $this->concretFqcnClass($config)];
     }
 
     public function generateGeneratedClass(FilesystemOperator $fs, SchemaConfig $config): void

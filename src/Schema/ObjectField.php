@@ -2,6 +2,10 @@
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
+use JmvDevelop\GraphqlGenerator\Generator\ObjectField\AbstractObjectFieldGenerator;
+use JmvDevelop\GraphqlGenerator\Generator\ObjectField\GetterObjectFieldGenerator;
+use JmvDevelop\GraphqlGenerator\Generator\ObjectField\ObjectFieldGenerator;
+
 final class ObjectField extends Field
 {
     /**
@@ -11,37 +15,28 @@ final class ObjectField extends Field
         string $name,
         string $type,
         array $args = [],
-        private bool $autoGetter = true,
+        private ?ObjectFieldGenerator $generator = null,
         string $description = '',
     ) {
         parent::__construct(name: $name, type: $type, args: $args, description: $description);
-        $this->normalizeAutoGetter();
     }
 
-    public function hasAutoGetter(): bool
+    public function getGenerator(): ObjectFieldGenerator
     {
-        return $this->autoGetter;
+        if (null !== $this->generator) {
+            return $this->generator;
+        }
+        if (\count($this->getArgs()) > 0) {
+            return new AbstractObjectFieldGenerator();
+        }
+
+        return new GetterObjectFieldGenerator();
     }
 
-    /** @param list<Argument> $args */
-    public function setArgs(array $args): self
+    public function setGenerator(?ObjectFieldGenerator $generator): self
     {
-        parent::setArgs($args);
-        $this->normalizeAutoGetter();
+        $this->generator = $generator;
 
         return $this;
-    }
-
-    public function addArg(Argument $arg): self
-    {
-        parent::addArg($arg);
-        $this->normalizeAutoGetter();
-
-        return $this;
-    }
-
-    private function normalizeAutoGetter(): void
-    {
-        $this->autoGetter = \count($this->getArgs()) > 0 ? false : $this->autoGetter;
     }
 }

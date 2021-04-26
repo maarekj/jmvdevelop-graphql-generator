@@ -51,7 +51,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
             ',
                 [
                     ':property' => $propertyName,
-                    ':serviceName' => $dumper->dump($this->serviceName()),
+                    ':serviceName' => $dumper->dump($this->concretFqcnClass($config)),
                     ':name' => $dumper->dump($this->type->getName()),
                     ':description' => $dumper->dump($this->type->getDescription()),
                 ]
@@ -68,11 +68,6 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
         $method->addBody('return $value;');
 
         return $method;
-    }
-
-    public function serviceName(): string
-    {
-        return 'type.'.$this->type->getName();
     }
 
     public function transformTypeMethodName(SchemaConfig $config): string
@@ -92,7 +87,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
      */
     public function subscribeService(SchemaConfig $config): array
     {
-        return [$this->serviceName() => $this->concretFqcnClass($config)];
+        return [$this->concretFqcnClass($config) => $this->concretFqcnClass($config)];
     }
 
     public function generateGeneratedClass(FilesystemOperator $fs, SchemaConfig $config): void
