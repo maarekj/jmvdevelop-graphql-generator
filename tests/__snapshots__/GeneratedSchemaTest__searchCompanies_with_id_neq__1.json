@@ -1,26 +1,32 @@
 {
     "data": {
-        "searchCompanies": [
-            {
-                "id": "2",
-                "name": "B JMV 2"
-            },
-            {
-                "id": "3",
-                "name": "C JMV 3"
-            },
-            {
-                "id": "4",
-                "name": "D JMV 4"
-            },
-            {
-                "id": "5",
-                "name": "E JMV 5"
-            },
-            {
-                "id": "6",
-                "name": "F JMV 6"
-            }
-        ]
+        "searchCompanies": {
+            "currentPage": 1,
+            "nbPages": 1,
+            "count": 5,
+            "maxPerPage": 20,
+            "results": [
+                {
+                    "id": "2",
+                    "name": "B JMV 2"
+                },
+                {
+                    "id": "3",
+                    "name": "C JMV 3"
+                },
+                {
+                    "id": "4",
+                    "name": "D JMV 4"
+                },
+                {
+                    "id": "5",
+                    "name": "E JMV 5"
+                },
+                {
+                    "id": "6",
+                    "name": "F JMV 6"
+                }
+            ]
+        }
     }
 }

@@ -23,6 +23,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
     private $property_enum_type_OrderDirection;
     private $property_interface_type_WithId;
     private $property_interface_type_WithName;
+    private $property_object_type_PagerCompany;
     private $property_object_type_User;
     private $property_object_type_Category;
     private $property_object_type_Company;
@@ -247,6 +248,61 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
         }
 
         return $this->property_interface_type_WithName;
+    }
+
+    public function get_object_type_PagerCompany(): ObjectType
+    {
+        if (null === $this->property_object_type_PagerCompany) {
+            $this->property_object_type_PagerCompany = new \GraphQL\Type\Definition\ObjectType([
+                'description' => 'Pager for company entity',
+                'name' => 'PagerCompany',
+                'interfaces' => function () {
+                    return [
+                    ];
+                },
+                'fields' => function () {
+                    return [
+                        'currentPage' => [
+                            'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+                            'description' => '',
+                            'resolve' => function ($__root, array $__args = []) {
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCurrentPage(root: $__root, );
+                            },
+                        ],
+                        'maxPerPage' => [
+                            'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+                            'description' => '',
+                            'resolve' => function ($__root, array $__args = []) {
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveMaxPerPage(root: $__root, );
+                            },
+                        ],
+                        'nbPages' => [
+                            'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+                            'description' => '',
+                            'resolve' => function ($__root, array $__args = []) {
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveNbPages(root: $__root, );
+                            },
+                        ],
+                        'count' => [
+                            'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+                            'description' => '',
+                            'resolve' => function ($__root, array $__args = []) {
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCount(root: $__root, );
+                            },
+                        ],
+                        'results' => [
+                            'type' => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()))),
+                            'description' => '',
+                            'resolve' => function ($__root, array $__args = []) {
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveResults(root: $__root, );
+                            },
+                        ],
+                    ];
+                },
+            ]);
+        }
+
+        return $this->property_object_type_PagerCompany;
     }
 
     public function get_object_type_User(): ObjectType
@@ -589,7 +645,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                     'searchCompanies' => [
                         'name' => 'searchCompanies',
                         'description' => 'Search companies',
-                        'type' => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()))),
+                        'type' => $this->get_object_type_PagerCompany(),
                         'args' => [[
                             'name' => 'where',
                             'description' => '',
@@ -773,6 +829,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
             'JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType\CategoryIdType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType\CategoryIdType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Interface\WithIdType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Interface\WithIdType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\InterfaceType\WithNameType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\InterfaceType\WithNameType',
+            'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType',
@@ -856,6 +913,11 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
     }
 
     private function transform_interface_type_WithName($value)
+    {
+        return $value;
+    }
+
+    private function transform_object_type_PagerCompany($value)
     {
         return $value;
     }

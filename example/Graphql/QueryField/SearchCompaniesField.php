@@ -6,6 +6,7 @@ namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
 
 use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 use JmvDevelop\GraphqlGenerator\Example\Entity\CompanyRepo;
+use JmvDevelop\GraphqlGenerator\Example\Entity\Pager;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractSearchCompaniesField;
 
@@ -16,11 +17,13 @@ final class SearchCompaniesField extends AbstractSearchCompaniesField
     }
 
     /**
-     * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
+     * Search companies.
+     *
+     * @return null|Pager<Company>
      */
-    public function resolve(?SearchCompanyWhereInputType $where): array
+    public function resolve(?SearchCompanyWhereInputType $where): Pager | null
     {
-        return \array_values(\array_filter($this->repo->findAll(), function (Company $company) use ($where): bool {
+        $results = \array_values(\array_filter($this->repo->findAll(), function (Company $company) use ($where): bool {
             if (null === $where) {
                 return true;
             }
@@ -57,5 +60,13 @@ final class SearchCompaniesField extends AbstractSearchCompaniesField
 
             return true;
         }));
+
+        return new Pager(
+            currentPage: 1,
+            nbPages: 1,
+            count: \count($results),
+            maxPerPage: 20,
+            results: $results,
+        );
     }
 }

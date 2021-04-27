@@ -174,7 +174,7 @@ function graphqlToPsalmType(SchemaConfig $config, string $name): string
     } elseif ($type instanceof InputObjectType) {
         return '\\'.$type->getGenerator()->fqcnClass($config);
     } elseif ($type instanceof ObjectType) {
-        return $type->getRootType();
+        return $type->getPsalmType();
     } elseif ($type instanceof EnumType) {
         $types = \array_unique(\array_map(function (EnumValue $value): string {
             $v = $value->getValue();

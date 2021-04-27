@@ -187,6 +187,74 @@ InterfaceType/WithNameType.php: |
     final class WithNameType extends AbstractWithNameType
     {
     }
+Generated/ObjectType/AbstractPagerCompanyType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ObjectType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Pager;
+
+    abstract class AbstractPagerCompanyType
+    {
+    	/**
+    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 */
+    	public function resolveCurrentPage(Pager $root): int
+    	{
+    		return $root->getCurrentPage();
+    	}
+
+
+    	/**
+    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 */
+    	public function resolveMaxPerPage(Pager $root): int
+    	{
+    		return $root->getMaxPerPage();
+    	}
+
+
+    	/**
+    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 */
+    	public function resolveNbPages(Pager $root): int
+    	{
+    		return $root->getNbPages();
+    	}
+
+
+    	/**
+    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 */
+    	public function resolveCount(Pager $root): int
+    	{
+    		return $root->getCount();
+    	}
+
+
+    	/**
+    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
+    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 */
+    	public function resolveResults(Pager $root): array
+    	{
+    		return $root->getResults();
+    	}
+    }
+ObjectType/PagerCompanyType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ObjectType\AbstractPagerCompanyType;
+
+    final class PagerCompanyType extends AbstractPagerCompanyType
+    {
+    }
 Generated/ObjectType/AbstractUserType.php: |
     <?php
 
@@ -459,6 +527,7 @@ Generated/QueryField/AbstractSearchCompaniesField.php: |
 
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
 
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Pager;
     use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType;
 
     abstract class AbstractSearchCompaniesField
@@ -466,9 +535,9 @@ Generated/QueryField/AbstractSearchCompaniesField.php: |
     	/**
     	 * Search companies
     	 *
-    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
+    	 * @return \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>|null
     	 */
-    	abstract public function resolve(SearchCompanyWhereInputType|null $where): array;
+    	abstract public function resolve(SearchCompanyWhereInputType|null $where): Pager|null;
     }
 QueryField/SearchCompaniesField.php: |
     <?php
@@ -780,6 +849,7 @@ Generated/AbstractSchema.php: |
     	private $property_enum_type_OrderDirection = null;
     	private $property_interface_type_WithId = null;
     	private $property_interface_type_WithName = null;
+    	private $property_object_type_PagerCompany = null;
     	private $property_object_type_User = null;
     	private $property_object_type_Category = null;
     	private $property_object_type_Company = null;
@@ -1100,6 +1170,71 @@ Generated/AbstractSchema.php: |
 
 
     	private function transform_interface_type_WithName($value)
+    	{
+    		return $value;
+    	}
+
+
+    	public function get_object_type_PagerCompany(): ObjectType
+    	{
+    		if ($this->property_object_type_PagerCompany === null) {
+    		                $this->property_object_type_PagerCompany = new \GraphQL\Type\Definition\ObjectType([
+    		                    "description" => 'Pager for company entity',
+    		                    "name" => 'PagerCompany',
+    		                    "interfaces" => function () {
+    		                        return [
+
+    		                        ];
+    		                    },
+    		                    "fields" => function () {
+    		                        return [
+
+    		'currentPage' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCurrentPage(root: $__root, );
+    		                            },
+    		                        ],
+    		'maxPerPage' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveMaxPerPage(root: $__root, );
+    		                            },
+    		                        ],
+    		'nbPages' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveNbPages(root: $__root, );
+    		                            },
+    		                        ],
+    		'count' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCount(root: $__root, );
+    		                            },
+    		                        ],
+    		'results' => [
+    		                            "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()))),
+    		                            "description" => '',
+    		                            "resolve" => function($__root, array $__args = []) {
+    		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveResults(root: $__root, );
+    		                            },
+    		                        ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		             }
+
+    		             return $this->property_object_type_PagerCompany;
+    	}
+
+
+    	private function transform_object_type_PagerCompany($value)
     	{
     		return $value;
     	}
@@ -1531,7 +1666,7 @@ Generated/AbstractSchema.php: |
     		'searchCompanies' => [
     		                        "name" => 'searchCompanies',
     		                        "description" => 'Search companies',
-    		                        "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()))),
+    		                        "type" => $this->get_object_type_PagerCompany(),
     		                        "args" => [[
     		                                "name" => 'where',
     		                                "description" => '',
@@ -1710,6 +1845,7 @@ Generated/AbstractSchema.php: |
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType\CategoryIdType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ScalarType\CategoryIdType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Interface\WithIdType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Interface\WithIdType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\InterfaceType\WithNameType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\InterfaceType\WithNameType',
+    			'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType',

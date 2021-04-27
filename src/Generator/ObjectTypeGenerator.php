@@ -122,6 +122,9 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
         $namespace = $file->addNamespace(extractBaseNamespace($this->abstractFqcnClass($config)));
         $class = $namespace->addClass(extractShortName($this->abstractFqcnClass($config)))->setAbstract();
 
+        $psalmType = $this->type->getPsalmType();
+        $rootType = $this->type->getRootType();
+
         foreach ($this->type->getFields() as $field) {
             $resolveMethod = $class->addMethod('resolve'.\ucfirst($field->getName()));
             $psalmReturnType = getPsalmTypeOf(config: $config, type: Parser::parseType($field->getType()));
@@ -136,6 +139,10 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
                 $resolveMethod->addComment('@return '.$psalmReturnType);
             }
             $resolveMethod->setReturnType($phpReturnType);
+
+            if ($rootType !== $psalmType) {
+                $resolveMethod->addComment('@param '.$psalmType.' $root');
+            }
             $resolveMethod->addParameter('root')->setType($this->type->getRootType());
 
             foreach ($field->getArgs() as $arg) {

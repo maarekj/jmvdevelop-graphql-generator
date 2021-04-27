@@ -5,6 +5,7 @@ namespace JmvDevelop\GraphqlGenerator\Schema;
 use JmvDevelop\GraphqlGenerator\Generator\ObjectField\ObjectFieldGenerator;
 use JmvDevelop\GraphqlGenerator\Generator\ObjectTypeGenerator;
 use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
+use function JmvDevelop\GraphqlGenerator\Utils\strDef;
 
 final class ObjectType extends TypeDefinition implements OutputType
 {
@@ -17,12 +18,14 @@ final class ObjectType extends TypeDefinition implements OutputType
     public function __construct(
         string $name,
         private string $rootType,
+        private string $psalmType,
         string $ns,
         private array $fields = [],
         private array $interfaces = [],
         string $description = '',
     ) {
         $this->rootType = '\\'.\ltrim($this->rootType, '\\');
+        $this->psalmType = '\\'.\ltrim($this->psalmType, '\\');
         parent::__construct(name: $name, ns: $ns, description: $description);
     }
 
@@ -33,12 +36,13 @@ final class ObjectType extends TypeDefinition implements OutputType
     public static function create(
         string $name,
         string $rootType,
+        ?string $psalmType = null,
         string $ns = 'ObjectType',
         array $interfaces = [],
         string $description = '',
         array $fields = [],
     ): self {
-        return new self(name: $name, rootType: $rootType, ns: $ns, fields: $fields, interfaces: $interfaces, description: $description);
+        return new self(name: $name, rootType: $rootType, psalmType: strDef($psalmType, $rootType), ns: $ns, fields: $fields, interfaces: $interfaces, description: $description);
     }
 
     /** @param list<Argument> $args */
@@ -50,6 +54,11 @@ final class ObjectType extends TypeDefinition implements OutputType
     public function getRootType(): string
     {
         return $this->rootType;
+    }
+
+    public function getPsalmType(): string
+    {
+        return $this->psalmType;
     }
 
     /** @return list<ObjectField> */

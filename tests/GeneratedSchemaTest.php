@@ -69,7 +69,8 @@ test('searchCompanies with no arg', function () use ($assertMatchExecuteGraphqlS
     $assertMatchExecuteGraphqlSnapshot(
         'query SearchCompanies {
             searchCompanies {
-                id name
+                currentPage nbPages count maxPerPage
+                results { id name }
             }
         }
         '
@@ -79,7 +80,8 @@ test('searchCompanies with no arg', function () use ($assertMatchExecuteGraphqlS
 test('searchCompanies with id', function () use ($assertMatchExecuteGraphqlSnapshot) {
     $assertMatchExecuteGraphqlSnapshot('query SearchCompanies {
             searchCompanies(where: {id: {eq: 1}}) {
-                id name
+                currentPage nbPages count maxPerPage
+                results { id name }
             }
         }
         ');
@@ -89,7 +91,8 @@ test('searchCompanies with id neq', function () use ($assertMatchExecuteGraphqlS
     $assertMatchExecuteGraphqlSnapshot(
         'query SearchCompanies {
             searchCompanies(where: {id: {neq: 1}}) {
-                id name
+                currentPage nbPages count maxPerPage
+                results { id name }
             }
         }
         '
