@@ -5,9 +5,9 @@ namespace JmvDevelop\GraphqlGenerator\Schema;
 final class SchemaDefinition
 {
     /**
-     * @param list<QueryField>                                                   $queryFields
-     * @param list<MutationField>                                                $mutationFields
-     * @param list<EnumType|InputObjectType|InterfaceType|ObjectType|ScalarType> $types
+     * @param list<QueryField>                                                             $queryFields
+     * @param list<MutationField>                                                          $mutationFields
+     * @param list<EnumType|InputObjectType|InterfaceType|ObjectType|ScalarType|UnionType> $types
      */
     public function __construct(
         private array $queryFields = [],
@@ -37,13 +37,13 @@ final class SchemaDefinition
         return $this;
     }
 
-    /** @return list<EnumType|InputObjectType|InterfaceType|ObjectType|ScalarType> */
+    /** @return list<EnumType|InputObjectType|InterfaceType|ObjectType|ScalarType|UnionType> */
     public function getTypes(): array
     {
         return $this->types;
     }
 
-    /** @param list<EnumType|InputObjectType|InterfaceType|ObjectType|ScalarType> $types */
+    /** @param list<EnumType|InputObjectType|InterfaceType|ObjectType|ScalarType|UnionType> $types */
     public function setTypes(array $types): self
     {
         $this->types = $types;
@@ -51,7 +51,7 @@ final class SchemaDefinition
         return $this;
     }
 
-    public function addType(ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType $typeDefinition): self
+    public function addType(ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType | UnionType $typeDefinition): self
     {
         $this->types[] = $typeDefinition;
 

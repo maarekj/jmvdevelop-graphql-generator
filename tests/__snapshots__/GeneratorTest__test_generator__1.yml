@@ -398,6 +398,33 @@ Custom/Object/CompanyType.php: |
     final class CompanyType extends AbstractCompanyType
     {
     }
+Generated/UnionType/AbstractCompanyOrCategoryType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\UnionType;
+
+    use GraphQL\Type\Definition\Type;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
+    use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
+
+    abstract class AbstractCompanyOrCategoryType
+    {
+    	abstract public function resolveType(Company|Category $value): Type;
+    }
+UnionType/CompanyOrCategoryType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\UnionType;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\UnionType\AbstractCompanyOrCategoryType;
+
+    final class CompanyOrCategoryType extends AbstractCompanyOrCategoryType
+    {
+    }
 Generated/InputObjectType/StringExprInputType.php: |
     <?php
 
@@ -765,6 +792,32 @@ QueryField/StrictUserField.php: |
     final class StrictUserField extends AbstractStrictUserField
     {
     }
+Generated/QueryField/AbstractCompaniesAndCategoriesField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
+
+    abstract class AbstractCompaniesAndCategoriesField
+    {
+    	/**
+    	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Company|\JmvDevelop\GraphqlGenerator\Example\Entity\Category>
+    	 */
+    	abstract public function resolve(): array;
+    }
+QueryField/CompaniesAndCategoriesField.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractCompaniesAndCategoriesField;
+
+    final class CompaniesAndCategoriesField extends AbstractCompaniesAndCategoriesField
+    {
+    }
 Generated/Custom/Mutation/AbstractCreateUserMutation.php: |
     <?php
 
@@ -836,6 +889,7 @@ Generated/AbstractSchema.php: |
     use GraphQL\Type\Definition\InterfaceType;
     use GraphQL\Type\Definition\ObjectType;
     use GraphQL\Type\Definition\ScalarType;
+    use GraphQL\Type\Definition\UnionType;
     use Psr\Container\ContainerInterface;
     use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
@@ -853,6 +907,7 @@ Generated/AbstractSchema.php: |
     	private $property_object_type_User = null;
     	private $property_object_type_Category = null;
     	private $property_object_type_Company = null;
+    	private $property_union_type_CompanyOrCategory = null;
     	private $property_input_object_type_StringExprInput = null;
     	private $property_input_object_type_IntExprInput = null;
     	private $property_input_object_type_SearchCompanyWhereInput = null;
@@ -1443,6 +1498,33 @@ Generated/AbstractSchema.php: |
     	}
 
 
+    	public function get_union_type_CompanyOrCategory(): UnionType
+    	{
+    		if ($this->property_union_type_CompanyOrCategory === null) {
+    		                $this->property_union_type_CompanyOrCategory = new \GraphQL\Type\Definition\UnionType([
+    		                    "description" => '',
+    		                    "name" => 'CompanyOrCategory',
+    		                    "types" => [
+    		                        $this->get_object_type_Company(),
+    		$this->get_object_type_Category()
+    		                    ],
+    		                    "resolveType" => function($value) {
+    		                        return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\UnionType\CompanyOrCategoryType')->resolveType($value);
+    		                    },
+    		                ]);
+    		            }
+
+
+    		             return $this->property_union_type_CompanyOrCategory;
+    	}
+
+
+    	private function transform_union_type_CompanyOrCategory($value)
+    	{
+    		return $value;
+    	}
+
+
     	public function get_input_object_type_StringExprInput(): InputObjectType
     	{
     		if ($this->property_input_object_type_StringExprInput === null) {
@@ -1811,6 +1893,16 @@ Generated/AbstractSchema.php: |
     		            })(($__args)['id'] ?? null)));
     		                        },
     		                    ],
+    		'companiesAndCategories' => [
+    		                        "name" => 'companiesAndCategories',
+    		                        "description" => '',
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_union_type_CompanyOrCategory()))),
+    		                        "args" => [],
+    		                        "resolve" => function($__root = null, null|array $__args = null) {
+    		                            $__args = $__args === null ? [] : $__args;
+    		                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompaniesAndCategoriesField')->resolve();
+    		                        },
+    		                    ],
 
     		                        ];
     		                    },
@@ -1877,6 +1969,7 @@ Generated/AbstractSchema.php: |
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType',
+    			'JmvDevelop\GraphqlGenerator\Example\Graphql\UnionType\CompanyOrCategoryType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\UnionType\CompanyOrCategoryType',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField\SearchByNameField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField\SearchByNameField',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\SearchCompaniesField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\SearchCompaniesField',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompanyField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompanyField',
@@ -1886,6 +1979,7 @@ Generated/AbstractSchema.php: |
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UserField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UserField',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UsersField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UsersField',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictUserField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictUserField',
+    			'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompaniesAndCategoriesField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompaniesAndCategoriesField',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Mutation\CreateUserMutation' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Mutation\CreateUserMutation',
     			'JmvDevelop\GraphqlGenerator\Example\Graphql\MutationField\EditUserMutation' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\MutationField\EditUserMutation',
     		];

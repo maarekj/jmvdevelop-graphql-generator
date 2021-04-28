@@ -10,6 +10,7 @@ use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\InterfaceType;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ScalarType;
+use GraphQL\Type\Definition\UnionType;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
@@ -27,6 +28,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
     private $property_object_type_User;
     private $property_object_type_Category;
     private $property_object_type_Company;
+    private $property_union_type_CompanyOrCategory;
     private $property_input_object_type_StringExprInput;
     private $property_input_object_type_IntExprInput;
     private $property_input_object_type_SearchCompanyWhereInput;
@@ -481,6 +483,25 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
         return $this->property_object_type_Company;
     }
 
+    public function get_union_type_CompanyOrCategory(): UnionType
+    {
+        if (null === $this->property_union_type_CompanyOrCategory) {
+            $this->property_union_type_CompanyOrCategory = new \GraphQL\Type\Definition\UnionType([
+                'description' => '',
+                'name' => 'CompanyOrCategory',
+                'types' => [
+                    $this->get_object_type_Company(),
+                    $this->get_object_type_Category(),
+                ],
+                'resolveType' => function ($value) {
+                    return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\UnionType\CompanyOrCategoryType')->resolveType($value);
+                },
+            ]);
+        }
+
+        return $this->property_union_type_CompanyOrCategory;
+    }
+
     public function get_input_object_type_StringExprInput(): InputObjectType
     {
         if (null === $this->property_input_object_type_StringExprInput) {
@@ -798,6 +819,17 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             })(($__args)['id'] ?? null)));
                         },
                     ],
+                    'companiesAndCategories' => [
+                        'name' => 'companiesAndCategories',
+                        'description' => '',
+                        'type' => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_union_type_CompanyOrCategory()))),
+                        'args' => [],
+                        'resolve' => function ($__root = null, null | array $__args = null) {
+                            $__args = null === $__args ? [] : $__args;
+
+                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompaniesAndCategoriesField')->resolve();
+                        },
+                    ],
                 ];
             },
         ]);
@@ -861,6 +893,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
             'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType',
+            'JmvDevelop\GraphqlGenerator\Example\Graphql\UnionType\CompanyOrCategoryType' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\UnionType\CompanyOrCategoryType',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField\SearchByNameField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField\SearchByNameField',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\SearchCompaniesField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\SearchCompaniesField',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompanyField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompanyField',
@@ -870,6 +903,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
             'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UserField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UserField',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UsersField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UsersField',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictUserField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictUserField',
+            'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompaniesAndCategoriesField' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompaniesAndCategoriesField',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Mutation\CreateUserMutation' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Mutation\CreateUserMutation',
             'JmvDevelop\GraphqlGenerator\Example\Graphql\MutationField\EditUserMutation' => 'JmvDevelop\GraphqlGenerator\Example\Graphql\MutationField\EditUserMutation',
         ];
@@ -961,6 +995,11 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
     }
 
     private function transform_object_type_Company($value)
+    {
+        return $value;
+    }
+
+    private function transform_union_type_CompanyOrCategory($value)
     {
         return $value;
     }

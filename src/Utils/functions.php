@@ -15,6 +15,7 @@ use JmvDevelop\GraphqlGenerator\Schema\ObjectType;
 use JmvDevelop\GraphqlGenerator\Schema\ScalarType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaDefinition;
+use JmvDevelop\GraphqlGenerator\Schema\UnionType;
 use JmvDevelop\GraphqlGenerator\Schema\WithName;
 use JmvDevelop\GraphqlGenerator\Schema\WithType;
 use League\Flysystem\FilesystemOperator;
@@ -62,7 +63,7 @@ function typeIsInput(SchemaDefinition $schema, string $name): bool
     return false;
 }
 
-function getTypeDefinitionOfTypeName(SchemaDefinition $schema, string $name): null | ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType
+function getTypeDefinitionOfTypeName(SchemaDefinition $schema, string $name): null | ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType | UnionType
 {
     foreach ($schema->getTypes() as $typeDef) {
         if ($name === $typeDef->getName()) {
@@ -158,6 +159,12 @@ function graphqlToPhpType(SchemaConfig $config, string $name): string
         }, getTypesWhoseImplementInterface(config: $config, interface: $type->getName())), \SORT_REGULAR);
 
         return \join('|', $types);
+    } elseif ($type instanceof UnionType) {
+        $types = \array_unique(\array_map(function (string $name) use ($config): string {
+            return graphqlToPhpType(config: $config, name: $name);
+        }, $type->getTypes()), \SORT_REGULAR);
+
+        return \join('|', $types);
     }
 
     throw new \RuntimeException('impossible');
@@ -206,6 +213,12 @@ function graphqlToPsalmType(SchemaConfig $config, string $name): string
         }, getTypesWhoseImplementInterface(config: $config, interface: $type->getName())), \SORT_REGULAR);
 
         return \join('|', $types);
+    } elseif ($type instanceof UnionType) {
+        $types = \array_unique(\array_map(function (string $name) use ($config): string {
+            return graphqlToPsalmType(config: $config, name: $name);
+        }, $type->getTypes()), \SORT_REGULAR);
+
+        return \join('|', $types);
     }
 
     throw new \RuntimeException('impossible');
@@ -251,14 +264,14 @@ function callArgsFrom__args(SchemaConfig $config, array $args, string $arrayName
     return \join(', ', $results);
 }
 
-function callTransformType(SchemaConfig $config, ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType $type, string $value): string
+function callTransformType(SchemaConfig $config, ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType | UnionType $type, string $value): string
 {
     $transformMethod = $type->getGenerator()->transformTypeMethodName(config: $config);
 
     return \sprintf('$this->%s(%s)', $transformMethod, $value);
 }
 
-function transformType(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode $type, string $value): string
+function transformType(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode | UnionType $type, string $value): string
 {
     if ($type instanceof NamedTypeNode) {
         $typeDef = getTypeDefinitionOfTypeName(schema: $config->getSchema(), name: $type->name->value);

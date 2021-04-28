@@ -1,0 +1,61 @@
+{
+    "data": {
+        "companiesAndCategories": [
+            {
+                "id": "1",
+                "name": "A JMV 1",
+                "__typename": "Company"
+            },
+            {
+                "id": "2",
+                "name": "B JMV 2",
+                "__typename": "Company"
+            },
+            {
+                "id": "3",
+                "name": "C JMV 3",
+                "__typename": "Company"
+            },
+            {
+                "id": "4",
+                "name": "D JMV 4",
+                "__typename": "Company"
+            },
+            {
+                "id": "5",
+                "name": "E JMV 5",
+                "__typename": "Company"
+            },
+            {
+                "id": "6",
+                "name": "F JMV 6",
+                "__typename": "Company"
+            },
+            {
+                "id": "1",
+                "name": "A Cat\u00e9gorie 1",
+                "__typename": "Category"
+            },
+            {
+                "id": "2",
+                "name": "B Cat\u00e9gorie 2",
+                "__typename": "Category"
+            },
+            {
+                "id": "3",
+                "name": "C Cat\u00e9gorie 3",
+                "__typename": "Category"
+            },
+            {
+                "id": "4",
+                "name": "D Cat\u00e9gorie 4",
+                "__typename": "Category"
+            },
+            {
+                "id": "5",
+                "name": "E Cat\u00e9gorie 5",
+                "__typename": "Category"
+            }
+        ]
+    }
+}

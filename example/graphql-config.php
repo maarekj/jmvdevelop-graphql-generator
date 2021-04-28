@@ -15,6 +15,7 @@ use JmvDevelop\GraphqlGenerator\Schema\QueryField;
 use JmvDevelop\GraphqlGenerator\Schema\ScalarType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaDefinition;
+use JmvDevelop\GraphqlGenerator\Schema\UnionType;
 
 $abstractGenerator = new AbstractObjectFieldGenerator();
 
@@ -113,6 +114,11 @@ $schema->addType(ObjectType::create(
         ),
     ]
 ));
+
+$schema->addType(UnionType::create(name: 'CompanyOrCategory', types: [
+    'Company', 'Category',
+]));
+
 $schema->addType(InputObjectType::create(name: 'StringExprInput', fields: [
     InputObjectType::field(name: 'eq', type: 'String'),
     InputObjectType::field(name: 'neq', type: 'String'),
@@ -205,6 +211,11 @@ $schema->addQueryField(QueryField::create(
     description: 'Get a user with id',
     args: [Argument::create(name: 'id', type: 'UserId!')],
     autoResolveReturnArg: 'id',
+));
+
+$schema->addQueryField(QueryField::create(
+    name: 'companiesAndCategories',
+    type: '[CompanyOrCategory!]!',
 ));
 
 $schema->addType(InputObjectType::create(name: 'CreateUserInput', ns: 'Custom\\InputObject', fields: [

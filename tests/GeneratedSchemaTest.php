@@ -220,3 +220,21 @@ test('test company > searchCategory (argument in object field)', function () use
         '
     );
 });
+
+test('test companiesAndCategories (union)', function () use ($assertMatchExecuteGraphqlSnapshot) {
+    $assertMatchExecuteGraphqlSnapshot(
+        'query CompaniesAndCategories {
+            companiesAndCategories {
+                ... on Company {
+                    id name
+                    __typename
+                }
+                ... on Category {
+                    id name
+                    __typename
+                }
+            }
+        }
+        '
+    );
+});
