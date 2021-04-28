@@ -265,6 +265,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'currentPage' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCurrentPage(root: $__root, );
                             },
@@ -272,6 +273,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'maxPerPage' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveMaxPerPage(root: $__root, );
                             },
@@ -279,6 +281,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'nbPages' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveNbPages(root: $__root, );
                             },
@@ -286,6 +289,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'count' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCount(root: $__root, );
                             },
@@ -293,6 +297,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'results' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()))),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveResults(root: $__root, );
                             },
@@ -321,6 +326,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'id' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveId(root: $__root, );
                             },
@@ -328,6 +334,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'email' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveEmail(root: $__root, );
                             },
@@ -335,6 +342,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'lastname' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveLastname(root: $__root, );
                             },
@@ -342,6 +350,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'firstname' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveFirstname(root: $__root, );
                             },
@@ -371,6 +380,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'id' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveId(root: $__root, );
                             },
@@ -378,6 +388,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'name' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveName(root: $__root, );
                             },
@@ -407,6 +418,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'id' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveId(root: $__root, );
                             },
@@ -414,6 +426,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'name' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
                             'description' => '',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveName(root: $__root, );
                             },
@@ -421,6 +434,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'user' => [
                             'type' => $this->get_object_type_User(),
                             'description' => 'The manager of company',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveUser(root: $__root, );
                             },
@@ -428,6 +442,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'categories' => [
                             'type' => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Category()))),
                             'description' => 'All categories of company',
+                            'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveCategories(root: $__root, );
                             },
@@ -435,6 +450,19 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'searchCategories' => [
                             'type' => \GraphQL\Type\Definition\Type::listOf($this->get_object_type_Category()),
                             'description' => 'Search categories of company',
+                            'args' => [[
+                                'name' => 'name',
+                                'description' => '',
+                                'type' => $this->get_scalar_String(),
+                            ], [
+                                'name' => 'keywords',
+                                'description' => '',
+                                'type' => \GraphQL\Type\Definition\Type::listOf($this->get_scalar_String()),
+                            ], [
+                                'name' => 'orderBy',
+                                'description' => '',
+                                'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+                            ]],
                             'resolve' => function ($__root, array $__args = []) {
                                 return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveSearchCategories(root: $__root, name: ($this->transform_scalar_type_String(($__args)['name'] ?? null)), keywords: ((function ($__value) {
                                     return null === $__value ? null : \array_map(function ($__value) {

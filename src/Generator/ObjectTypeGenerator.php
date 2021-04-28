@@ -3,6 +3,7 @@
 namespace JmvDevelop\GraphqlGenerator\Generator;
 
 use GraphQL\Language\Parser;
+use JmvDevelop\GraphqlGenerator\Schema\Argument;
 use JmvDevelop\GraphqlGenerator\Schema\ObjectType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
 use function JmvDevelop\GraphqlGenerator\Utils\addArgumentInParameterOfMethod;
@@ -62,6 +63,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             $method->addBody(\strtr(':fieldName => [
                             "type" => :type,
                             "description" => :description,
+                            "args" => :defArgs,
                             "resolve" => function($__root, array $__args = []) {
                                 return $this->service(:serviceName)->:resolveMethod(root: $__root, :args);
                             },
@@ -72,6 +74,17 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
                 ':type' => getTypeFromRegistry($config, Parser::parseType($field->getType())),
                 ':description' => $dumper->dump($field->getDescription()),
                 ':args' => callArgsFrom__args(config: $config, args: $field->getArgs(), arrayName: '$__args'),
+                ':defArgs' => '['.\join(', ', \array_map(function (Argument $argument) use ($dumper, $config) {
+                    return \strtr('[
+                                "name" => :name,
+                                "description" => :description,
+                                "type" => :type,
+                            ]', [
+                        ':name' => $dumper->dump($argument->getName()),
+                        ':description' => $dumper->dump($argument->getDescription()),
+                        ':type' => getTypeFromRegistry(config: $config, type: Parser::parseType($argument->getType())),
+                    ]);
+                }, $field->getArgs())).']',
             ]));
         }
 

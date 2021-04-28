@@ -1192,6 +1192,7 @@ Generated/AbstractSchema.php: |
     		'currentPage' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCurrentPage(root: $__root, );
     		                            },
@@ -1199,6 +1200,7 @@ Generated/AbstractSchema.php: |
     		'maxPerPage' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveMaxPerPage(root: $__root, );
     		                            },
@@ -1206,6 +1208,7 @@ Generated/AbstractSchema.php: |
     		'nbPages' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveNbPages(root: $__root, );
     		                            },
@@ -1213,6 +1216,7 @@ Generated/AbstractSchema.php: |
     		'count' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCount(root: $__root, );
     		                            },
@@ -1220,6 +1224,7 @@ Generated/AbstractSchema.php: |
     		'results' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Company()))),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveResults(root: $__root, );
     		                            },
@@ -1257,6 +1262,7 @@ Generated/AbstractSchema.php: |
     		'id' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveId(root: $__root, );
     		                            },
@@ -1264,6 +1270,7 @@ Generated/AbstractSchema.php: |
     		'email' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveEmail(root: $__root, );
     		                            },
@@ -1271,6 +1278,7 @@ Generated/AbstractSchema.php: |
     		'lastname' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveLastname(root: $__root, );
     		                            },
@@ -1278,6 +1286,7 @@ Generated/AbstractSchema.php: |
     		'firstname' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveFirstname(root: $__root, );
     		                            },
@@ -1316,6 +1325,7 @@ Generated/AbstractSchema.php: |
     		'id' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveId(root: $__root, );
     		                            },
@@ -1323,6 +1333,7 @@ Generated/AbstractSchema.php: |
     		'name' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveName(root: $__root, );
     		                            },
@@ -1361,6 +1372,7 @@ Generated/AbstractSchema.php: |
     		'id' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveId(root: $__root, );
     		                            },
@@ -1368,6 +1380,7 @@ Generated/AbstractSchema.php: |
     		'name' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
     		                            "description" => '',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveName(root: $__root, );
     		                            },
@@ -1375,6 +1388,7 @@ Generated/AbstractSchema.php: |
     		'user' => [
     		                            "type" => $this->get_object_type_User(),
     		                            "description" => 'The manager of company',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveUser(root: $__root, );
     		                            },
@@ -1382,6 +1396,7 @@ Generated/AbstractSchema.php: |
     		'categories' => [
     		                            "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_object_type_Category()))),
     		                            "description" => 'All categories of company',
+    		                            "args" => [],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveCategories(root: $__root, );
     		                            },
@@ -1389,6 +1404,19 @@ Generated/AbstractSchema.php: |
     		'searchCategories' => [
     		                            "type" => \GraphQL\Type\Definition\Type::listOf($this->get_object_type_Category()),
     		                            "description" => 'Search categories of company',
+    		                            "args" => [[
+    		                                "name" => 'name',
+    		                                "description" => '',
+    		                                "type" => $this->get_scalar_String(),
+    		                            ], [
+    		                                "name" => 'keywords',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::listOf($this->get_scalar_String()),
+    		                            ], [
+    		                                "name" => 'orderBy',
+    		                                "description" => '',
+    		                                "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
+    		                            ]],
     		                            "resolve" => function($__root, array $__args = []) {
     		                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveSearchCategories(root: $__root, name: ($this->transform_scalar_type_String(($__args)['name'] ?? null)), keywords: ((function ($__value) {
     		                return $__value === null ? null : array_map(function ($__value) {

@@ -198,3 +198,19 @@ test('test searchByName (with interface)', function () use ($assertMatchExecuteG
         '
     );
 });
+
+test('test company > searchCategory (argument in object field)', function () use ($assertMatchExecuteGraphqlSnapshot) {
+    $assertMatchExecuteGraphqlSnapshot(
+        'query CompanySearchCategory {
+            company(id: 1) {
+                id
+                name
+                searchCategories(name: "name", orderBy: "id") {
+                    id
+                    name
+                }
+            }
+        }
+        '
+    );
+});
