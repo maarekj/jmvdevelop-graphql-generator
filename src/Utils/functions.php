@@ -230,7 +230,7 @@ function addArgumentInParameterOfMethod(SchemaConfig $config, Method $method, Ar
     $phpArgType = getPhpTypeOf($config, Parser::parseType($arg->getType()));
 
     if ($psalmArgType !== $phpArgType) {
-        $method->addComment('@param '.$psalmArgType.' $'.$arg->getName());
+        $method->addComment('@psalm-param '.$psalmArgType.' $'.$arg->getName());
     }
 
     if ($promoted) {

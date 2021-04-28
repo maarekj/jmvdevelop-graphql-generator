@@ -199,7 +199,7 @@ Generated/ObjectType/AbstractPagerCompanyType.php: |
     abstract class AbstractPagerCompanyType
     {
     	/**
-    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
     	 */
     	public function resolveCurrentPage(Pager $root): int
     	{
@@ -208,7 +208,7 @@ Generated/ObjectType/AbstractPagerCompanyType.php: |
 
 
     	/**
-    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
     	 */
     	public function resolveMaxPerPage(Pager $root): int
     	{
@@ -217,7 +217,7 @@ Generated/ObjectType/AbstractPagerCompanyType.php: |
 
 
     	/**
-    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
     	 */
     	public function resolveNbPages(Pager $root): int
     	{
@@ -226,7 +226,7 @@ Generated/ObjectType/AbstractPagerCompanyType.php: |
 
 
     	/**
-    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
     	 */
     	public function resolveCount(Pager $root): int
     	{
@@ -236,7 +236,7 @@ Generated/ObjectType/AbstractPagerCompanyType.php: |
 
     	/**
     	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
-    	 * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+    	 * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
     	 */
     	public function resolveResults(Pager $root): array
     	{
@@ -377,7 +377,7 @@ Generated/Custom/Object/AbstractCompanyType.php: |
     	 * Search categories of company
     	 *
     	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Category|null>|null
-    	 * @param list<string|null>|null $keywords
+    	 * @psalm-param list<string|null>|null $keywords
     	 */
     	abstract public function resolveSearchCategories(
     		Company $root,
@@ -470,9 +470,9 @@ Generated/InputObjectType/SearchCompanyWhereInputType.php: |
     final class SearchCompanyWhereInputType
     {
     	/**
-    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_and
-    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_or
-    	 * @param 'YES'|'NO'|'DEFAULT'|null $withCategory
+    	 * @psalm-param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_and
+    	 * @psalm-param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_or
+    	 * @psalm-param 'YES'|'NO'|'DEFAULT'|null $withCategory
     	 */
     	public function __construct(
     		public array|null $_and,
@@ -531,7 +531,7 @@ Generated/Custom/QueryField/AbstractSearchByNameField.php: |
     	 * Search all entities with name
     	 *
     	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Category|\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
-    	 * @param 'ASC'|'DESC'|'DEFAULT'|null $orderByName
+    	 * @psalm-param 'ASC'|'DESC'|'DEFAULT'|null $orderByName
     	 */
     	abstract public function resolve(string|null $name, string|null $orderByName): array;
     }

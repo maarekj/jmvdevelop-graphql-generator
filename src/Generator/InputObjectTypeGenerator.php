@@ -115,7 +115,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
             $phpArgType = getPhpTypeOf(config: $config, type: Parser::parseType($field->getType()));
 
             if ($psalmArgType !== $phpArgType) {
-                $constructor->addComment('@param '.$psalmArgType.' $'.$field->getName());
+                $constructor->addComment('@psalm-param '.$psalmArgType.' $'.$field->getName());
             }
 
             $constructor

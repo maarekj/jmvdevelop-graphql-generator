@@ -154,7 +154,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             $resolveMethod->setReturnType($phpReturnType);
 
             if ($rootType !== $psalmType) {
-                $resolveMethod->addComment('@param '.$psalmType.' $root');
+                $resolveMethod->addComment('@psalm-param '.$psalmType.' $root');
             }
             $resolveMethod->addParameter('root')->setType($this->type->getRootType());
 

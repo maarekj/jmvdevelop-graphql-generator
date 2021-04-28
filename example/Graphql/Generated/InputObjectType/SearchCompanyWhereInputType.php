@@ -7,8 +7,9 @@ namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
 final class SearchCompanyWhereInputType
 {
     /**
-     * @param null|list<null|\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType> $_and
-     * @param null|list<null|\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType> $_or
+     * @psalm-param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_and
+     * @psalm-param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_or
+     * @psalm-param 'YES'|'NO'|'DEFAULT'|null $withCategory
      */
     public function __construct(
         public array | null $_and,
