@@ -216,7 +216,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                 'fields' => function () {
                     return [
                         'id' => [
-                            'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_Int()),
+                            'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_ID()),
                             'description' => '',
                         ],
                     ];

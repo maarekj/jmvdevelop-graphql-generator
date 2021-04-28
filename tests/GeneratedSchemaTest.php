@@ -7,6 +7,7 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\CategoryRepo;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 use JmvDevelop\GraphqlGenerator\Example\Entity\CompanyRepo;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\Schema;
+use function PHPUnit\Framework\assertNull;
 use function Spatie\Snapshots\assertMatchesJsonSnapshot;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -42,6 +43,11 @@ beforeEach(function () use (&$container) {
     $categoryRepo->add(new Category(id: $categoryRepo->nextId(), name: 'C Catégorie 3'));
     $categoryRepo->add(new Category(id: $categoryRepo->nextId(), name: 'D Catégorie 4'));
     $categoryRepo->add(new Category(id: $categoryRepo->nextId(), name: 'E Catégorie 5'));
+});
+
+test('schema is validate', function () use (&$container) {
+    $schema = $container->get(Schema::class)->schema();
+    assertNull($schema->assertValid());
 });
 
 test('company query', function () use ($assertMatchExecuteGraphqlSnapshot) {

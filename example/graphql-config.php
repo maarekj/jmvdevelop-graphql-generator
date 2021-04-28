@@ -42,7 +42,7 @@ $schema->addType(EnumType::create(name: 'OrderDirection', values: [
 ]));
 
 $schema->addType(InterfaceType::create(name: 'WithId', description: 'Object with id', ns: 'Custom\\Interface', fields: [
-    InterfaceType::field(name: 'id', type: 'Int!'),
+    InterfaceType::field(name: 'id', type: 'ID!'),
 ]));
 $schema->addType(InterfaceType::create(name: 'WithName', description: 'Object with string name', fields: [
     InterfaceType::field(name: 'name', type: 'String!'),
