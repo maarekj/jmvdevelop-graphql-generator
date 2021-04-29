@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use GraphQL\Error\DebugFlag;
 use GraphQL\GraphQL;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
@@ -15,7 +17,7 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 $container = null;
 
-$assertMatchExecuteGraphqlSnapshot = function ($query, array $variables = []) use (&$container) {
+$assertMatchExecuteGraphqlSnapshot = function ($query, array $variables = []) use (&$container): void {
     $result = GraphQL::executeQuery(
         schema: $container->get(Schema::class)->schema(),
         source: $query,
@@ -24,7 +26,7 @@ $assertMatchExecuteGraphqlSnapshot = function ($query, array $variables = []) us
     assertMatchesJsonSnapshot(\json_encode($result->toArray(DebugFlag::INCLUDE_TRACE | DebugFlag::INCLUDE_DEBUG_MESSAGE)));
 };
 
-beforeEach(function () use (&$container) {
+beforeEach(function () use (&$container): void {
     $container = new ContainerBuilder();
     $loader = new PhpFileLoader($container, new FileLocator(__DIR__));
     $loader->load(__DIR__.'/services/schema.php');
@@ -46,12 +48,12 @@ beforeEach(function () use (&$container) {
     $categoryRepo->add(new Category(id: $categoryRepo->nextId(), name: 'E Catégorie 5'));
 });
 
-test('schema is validate', function () use (&$container) {
+test('schema is validate', function () use (&$container): void {
     $schema = $container->get(Schema::class)->schema();
     assertNull($schema->assertValid());
 });
 
-test('company query', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('company query', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'query Company1And2Query {
             jmv1: company(id: 1) {
@@ -61,7 +63,7 @@ test('company query', function () use ($assertMatchExecuteGraphqlSnapshot) {
                 ...Company
             }
         }
-        
+
         fragment Company on Company {
             id name
             categories {
@@ -72,7 +74,7 @@ test('company query', function () use ($assertMatchExecuteGraphqlSnapshot) {
     );
 });
 
-test('searchCompanies with no arg', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('searchCompanies with no arg', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'query SearchCompanies {
             searchCompanies {
@@ -84,7 +86,7 @@ test('searchCompanies with no arg', function () use ($assertMatchExecuteGraphqlS
     );
 });
 
-test('searchCompanies with id', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('searchCompanies with id', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot('query SearchCompanies {
             searchCompanies(where: {id: {eq: 1}}) {
                 currentPage nbPages count maxPerPage
@@ -94,7 +96,7 @@ test('searchCompanies with id', function () use ($assertMatchExecuteGraphqlSnaps
         ');
 });
 
-test('searchCompanies with id neq', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('searchCompanies with id neq', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'query SearchCompanies {
             searchCompanies(where: {id: {neq: 1}}) {
@@ -106,7 +108,7 @@ test('searchCompanies with id neq', function () use ($assertMatchExecuteGraphqlS
     );
 });
 
-test('user', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('user', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'query UserQuery {
             users {
@@ -153,7 +155,7 @@ test('user', function () use ($assertMatchExecuteGraphqlSnapshot) {
     );
 });
 
-test('test searchByName (with interface)', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('test searchByName (with interface)', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'query SearchByName {
             searchByName {
@@ -206,7 +208,7 @@ test('test searchByName (with interface)', function () use ($assertMatchExecuteG
     );
 });
 
-test('test company > searchCategory (argument in object field)', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('test company > searchCategory (argument in object field)', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'query CompanySearchCategory {
             company(id: 1) {
@@ -222,7 +224,7 @@ test('test company > searchCategory (argument in object field)', function () use
     );
 });
 
-test('test companiesAndCategories (union)', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('test companiesAndCategories (union)', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'query CompaniesAndCategories {
             companiesAndCategories {
@@ -240,7 +242,7 @@ test('test companiesAndCategories (union)', function () use ($assertMatchExecute
     );
 });
 
-test('test with nullable input field', function () use ($assertMatchExecuteGraphqlSnapshot) {
+test('test with nullable input field', function () use ($assertMatchExecuteGraphqlSnapshot): void {
     $assertMatchExecuteGraphqlSnapshot(
         'mutation TestWithNullableInputFieldMutation($data: TestWithNullableInputField) {
             testWithNullableInputField(data: $data)

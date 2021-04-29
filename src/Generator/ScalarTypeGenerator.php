@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Generator;
 
 use JmvDevelop\GraphqlGenerator\Schema\ScalarType;
@@ -34,7 +36,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
                 '
                 if ($this->:property === null) {
                     $this->:property = new \GraphQL\Type\Definition\CustomScalarType([
-                        "description" => :description,  
+                        "description" => :description,
                         "name" => :name,
                         "serialize" => function ($value) {
                             return $this->service(:serviceName)->serialize($value);

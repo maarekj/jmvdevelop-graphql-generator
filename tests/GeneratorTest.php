@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 use function Spatie\Snapshots\assertMatchesSnapshot;
 
-test('test generator', function () {
+test('test generator', function (): void {
     $config = require __DIR__.'/../example/graphql-config.php';
     $generator = new JmvDevelop\GraphqlGenerator\Generator($config);
     $fs = new Filesystem(new InMemoryFilesystemAdapter());

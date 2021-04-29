@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Utils;
 
 use GraphQL\Language\AST\ListTypeNode;
@@ -152,19 +154,19 @@ function graphqlToPhpType(SchemaConfig $config, string $name): string
             return 'mixed';
         }
 
-        return \join('|', $types);
+        return \implode('|', $types);
     } elseif ($type instanceof InterfaceType) {
         $types = \array_unique(\array_map(function (ObjectType $objectType) use ($config): string {
             return graphqlToPhpType(config: $config, name: $objectType->getName());
         }, getTypesWhoseImplementInterface(config: $config, interface: $type->getName())), \SORT_REGULAR);
 
-        return \join('|', $types);
+        return \implode('|', $types);
     } elseif ($type instanceof UnionType) {
         $types = \array_unique(\array_map(function (string $name) use ($config): string {
             return graphqlToPhpType(config: $config, name: $name);
         }, $type->getTypes()), \SORT_REGULAR);
 
-        return \join('|', $types);
+        return \implode('|', $types);
     }
 
     throw new \RuntimeException('impossible');
@@ -206,19 +208,19 @@ function graphqlToPsalmType(SchemaConfig $config, string $name): string
             return 'mixed';
         }
 
-        return \join('|', $types);
+        return \implode('|', $types);
     } elseif ($type instanceof InterfaceType) {
         $types = \array_unique(\array_map(function (ObjectType $objectType) use ($config): string {
             return graphqlToPsalmType(config: $config, name: $objectType->getName());
         }, getTypesWhoseImplementInterface(config: $config, interface: $type->getName())), \SORT_REGULAR);
 
-        return \join('|', $types);
+        return \implode('|', $types);
     } elseif ($type instanceof UnionType) {
         $types = \array_unique(\array_map(function (string $name) use ($config): string {
             return graphqlToPsalmType(config: $config, name: $name);
         }, $type->getTypes()), \SORT_REGULAR);
 
-        return \join('|', $types);
+        return \implode('|', $types);
     }
 
     throw new \RuntimeException('impossible');
@@ -261,7 +263,7 @@ function callArgsFrom__args(SchemaConfig $config, array $args, string $arrayName
         ]);
     }
 
-    return \join(', ', $results);
+    return \implode(', ', $results);
 }
 
 function callTransformType(SchemaConfig $config, ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType | UnionType $type, string $value): string
@@ -309,7 +311,7 @@ function fqcn(SchemaConfig $config, array $parts = []): string
 
     $parts = \array_filter($parts);
 
-    return \join('\\', $parts);
+    return \implode('\\', $parts);
 }
 
 function extractShortName(string $name): string
@@ -326,7 +328,7 @@ function extractBaseNamespace(string $fqcn): string
         return '';
     }
 
-    return \join('\\', \array_slice($parts, 0, -1));
+    return \implode('\\', \array_slice($parts, 0, -1));
 }
 
 /**

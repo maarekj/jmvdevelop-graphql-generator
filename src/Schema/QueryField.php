@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
 final class QueryField extends Field implements WithSuffixNamespace

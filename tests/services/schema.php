@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use JmvDevelop\GraphqlGenerator\Example\Entity\CategoryRepo;
 use JmvDevelop\GraphqlGenerator\Example\Entity\CompanyRepo;
 use JmvDevelop\GraphqlGenerator\Example\Entity\UserRepo;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\Schema;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return function (ContainerConfigurator $configurator) {
+return function (ContainerConfigurator $configurator): void {
     $services = $configurator
         ->services()
         ->defaults()

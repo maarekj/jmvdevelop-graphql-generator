@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator;
 
 use GraphQL\Language\Parser;
@@ -102,7 +104,7 @@ final class Generator
                     $queryMethod->addBody(\strtr(':fieldName => [
                         "name" => :fieldName,
                         "description" => :description,
-                        "type" => :type,  
+                        "type" => :type,
                         "args" => :defArgs,
                         "resolve" => function($__root = null, null|array $__args = null) {
                             $__args = $__args === null ? [] : $__args;
@@ -114,7 +116,7 @@ final class Generator
                         ':description' => $dumper->dump($field->getDescription()),
                         ':type' => getTypeFromRegistry(config: $this->config, type: Parser::parseType($field->getType())),
                         ':callArgs' => callArgsFrom__args(config: $this->config, args: $field->getArgs(), arrayName: '$__args'),
-                        ':defArgs' => '['.\join(', ', \array_map(function (Argument $argument) use ($dumper) {
+                        ':defArgs' => '['.\implode(', ', \array_map(function (Argument $argument) use ($dumper) {
                             return \strtr('[
                                 "name" => :name,
                                 "description" => :description,

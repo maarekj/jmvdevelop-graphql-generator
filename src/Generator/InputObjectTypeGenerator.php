@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Generator;
 
 use GraphQL\Language\Parser;
@@ -38,7 +40,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         $method->addBody(\strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\InputObjectType([
-                    "description" => :description, 
+                    "description" => :description,
                     "name" => :name,
                     "fields" => function () {
                         return [
@@ -64,7 +66,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
                     },
                 ]);
             }
-            
+
             return $this->:property;', [
             ':property' => $propertyName,
         ]));

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Generator;
 
 use GraphQL\Language\Parser;
@@ -41,7 +43,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
         $method->addBody(\strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\ObjectType([
-                    "description" => :description, 
+                    "description" => :description,
                     "name" => :name,
                     "interfaces" => function () {
                         return [
@@ -54,7 +56,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             ':name' => $dumper->dump($this->type->getName()),
             ':description' => $dumper->dump($this->type->getDescription()),
             ':property' => $propertyName,
-            ':interfaces' => \join(",\n", \array_map(function (string $interface) use ($config): string {
+            ':interfaces' => \implode(",\n", \array_map(function (string $interface) use ($config): string {
                 return getTypeFromRegistry($config, Parser::parseType($interface));
             }, $this->type->getInterfaces())),
         ]));
@@ -74,7 +76,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
                 ':type' => getTypeFromRegistry($config, Parser::parseType($field->getType())),
                 ':description' => $dumper->dump($field->getDescription()),
                 ':args' => callArgsFrom__args(config: $config, args: $field->getArgs(), arrayName: '$__args'),
-                ':defArgs' => '['.\join(', ', \array_map(function (Argument $argument) use ($dumper, $config) {
+                ':defArgs' => '['.\implode(', ', \array_map(function (Argument $argument) use ($dumper, $config) {
                     return \strtr('[
                                 "name" => :name,
                                 "description" => :description,
@@ -93,7 +95,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
                     },
                 ]);
              }
-             
+
              return $this->:property;', [
             ':property' => $propertyName,
         ]));

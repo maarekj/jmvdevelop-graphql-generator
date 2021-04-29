@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Generator;
 
 use GraphQL\Language\Parser;
@@ -38,7 +40,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
         $method->addBody(\strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\InterfaceType([
-                    "description" => :description, 
+                    "description" => :description,
                     "name" => :name,
                     "resolveType" => function($value) {
                         return $this->service(:serviceName)->resolveType($value);
@@ -68,7 +70,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
                     },
                 ]);
              }
-             
+
              return $this->:property;', [
             ':property' => $propertyName,
         ]));

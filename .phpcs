@@ -7,11 +7,16 @@ $finder = PhpCsFixer\Finder::create()
 
 $config = new PhpCsFixer\Config();
 
-return $config->setRules([
-    '@PhpCsFixer' => true,
-    'no_superfluous_elseif' => false,
-    'phpdoc_add_missing_param_annotation' => false,
-    'native_function_invocation' => true,
-    'native_constant_invocation' => true,
-])
+return $config
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@PhpCsFixer' => true,
+        '@PHP80Migration' => true,
+        '@PHP80Migration:risky' => true,
+        'use_arrow_functions' => false,
+        'no_superfluous_elseif' => false,
+        'phpdoc_add_missing_param_annotation' => false,
+        'native_function_invocation' => true,
+        'native_constant_invocation' => true,
+    ])
     ->setFinder($finder);

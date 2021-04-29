@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
 final class MutationField extends Field implements WithSuffixNamespace

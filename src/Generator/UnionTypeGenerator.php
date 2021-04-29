@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JmvDevelop\GraphqlGenerator\Generator;
 
 use GraphQL\Language\Parser;
@@ -38,7 +40,7 @@ class UnionTypeGenerator implements TypeGeneratorInterface
         $method->addBody(\strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\UnionType([
-                    "description" => :description, 
+                    "description" => :description,
                     "name" => :name,
                     "types" => [
                         :types
@@ -53,12 +55,12 @@ class UnionTypeGenerator implements TypeGeneratorInterface
             ':name' => $dumper->dump($this->type->getName()),
             ':description' => $dumper->dump($this->type->getDescription()),
             ':property' => $propertyName,
-            ':types' => \join(",\n", \array_map(function (string $type) use ($config) {
+            ':types' => \implode(",\n", \array_map(function (string $type) use ($config) {
                 return getTypeFromRegistry($config, Parser::parseType($type));
             }, $this->type->getTypes())),
         ]));
 
-        $method->addBody(\strtr('             
+        $method->addBody(\strtr('
              return $this->:property;', [
             ':property' => $propertyName,
         ]));

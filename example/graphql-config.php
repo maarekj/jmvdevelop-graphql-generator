@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Pager;
