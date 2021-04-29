@@ -239,6 +239,19 @@ $schema->addMutationField(MutationField::create(name: 'editUser', description: '
     Argument::create(name: 'data', type: 'EditUserInput!'),
 ]));
 
+$schema->addType(InputObjectType::create(name: 'TestInputWithStringField', ns: 'Test', fields: [
+    InputObjectType::field(name: 'name', type: 'String!'),
+]));
+
+$schema->addType(InputObjectType::create(name: 'TestWithNullableInputField', ns: 'Test', fields: [
+    InputObjectType::field(name: 'nullableField', type: 'TestInputWithStringField'),
+    InputObjectType::field(name: 'field', type: 'TestInputWithStringField!'),
+]));
+
+$schema->addMutationField(MutationField::create(name: 'testWithNullableInputField', ns: 'Test', type: 'Boolean!', args: [
+    Argument::create(name: 'data', type: 'TestWithNullableInputField'),
+]));
+
 return new SchemaConfig(
     out: __DIR__.'/Graphql',
     namespace: 'JmvDevelop\\GraphqlGenerator\\Example\\Graphql',

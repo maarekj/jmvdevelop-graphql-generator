@@ -15,12 +15,13 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 $container = null;
 
-$assertMatchExecuteGraphqlSnapshot = function ($query) use (&$container) {
+$assertMatchExecuteGraphqlSnapshot = function ($query, array $variables = []) use (&$container) {
     $result = GraphQL::executeQuery(
         schema: $container->get(Schema::class)->schema(),
         source: $query,
+        variableValues: $variables,
     );
-    assertMatchesJsonSnapshot(\json_encode($result->toArray(DebugFlag::INCLUDE_TRACE)));
+    assertMatchesJsonSnapshot(\json_encode($result->toArray(DebugFlag::INCLUDE_TRACE | DebugFlag::INCLUDE_DEBUG_MESSAGE)));
 };
 
 beforeEach(function () use (&$container) {
@@ -236,5 +237,20 @@ test('test companiesAndCategories (union)', function () use ($assertMatchExecute
             }
         }
         '
+    );
+});
+
+test('test with nullable input field', function () use ($assertMatchExecuteGraphqlSnapshot) {
+    $assertMatchExecuteGraphqlSnapshot(
+        'mutation TestWithNullableInputFieldMutation($data: TestWithNullableInputField) {
+            testWithNullableInputField(data: $data)
+        }
+        ',
+        [
+            'data' => [
+                'field' => ['name' => 'test'],
+                'nullableField' => null,
+            ],
+        ]
     );
 });

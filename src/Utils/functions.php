@@ -268,7 +268,7 @@ function callTransformType(SchemaConfig $config, ScalarType | InputObjectType | 
 {
     $transformMethod = $type->getGenerator()->transformTypeMethodName(config: $config);
 
-    return \sprintf('$this->%s(%s)', $transformMethod, $value);
+    return \sprintf('(null === (%s) ? null : $this->%s(%s))', $value, $transformMethod, $value);
 }
 
 function transformType(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode | UnionType $type, string $value): string
