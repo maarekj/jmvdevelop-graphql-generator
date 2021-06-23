@@ -35,7 +35,7 @@
     "league/flysystem": "^2.0",
     "league/flysystem-memory": "^2.0",
     "spatie/pest-plugin-snapshots": "^1.0",
-    "symfony/console": "^5.2",
+    "symfony/console": "^4.0.0|^5.2",
     "webmozart/assert": "^1.10",
     "webonyx/graphql-php": "^14.6"
   }
