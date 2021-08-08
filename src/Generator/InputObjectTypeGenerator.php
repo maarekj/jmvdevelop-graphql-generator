@@ -33,7 +33,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
     {
         $dumper = new Dumper();
 
-        $propertyName = 'property_input_object_type_'.$this->type->getName();
+        $propertyName = 'property_input_object_type_' . $this->type->getName();
         $class->addProperty($propertyName)->setValue(null)->setPrivate();
 
         $method = $class->addMethod($this->getTypeMethodName($config));
@@ -82,7 +82,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         $method->addParameter('value');
         $method->addBody(\sprintf(
             'return new %s(%s);',
-            '\\'.$this->fqcnClass($config),
+            '\\' . $this->fqcnClass($config),
             callArgsFrom__args(config: $config, args: $this->type->getFields(), arrayName: '$value'),
         ));
 
@@ -91,12 +91,12 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
 
     public function transformTypeMethodName(SchemaConfig $config): string
     {
-        return 'transform_input_object_type_'.$this->type->getName();
+        return 'transform_input_object_type_' . $this->type->getName();
     }
 
     public function getTypeMethodName(SchemaConfig $config): string
     {
-        return 'get_input_object_type_'.$this->type->getName();
+        return 'get_input_object_type_' . $this->type->getName();
     }
 
     public function subscribeService(SchemaConfig $config): array
@@ -133,7 +133,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         return fqcn(config: $config, parts: [
             'Generated',
             $this->type->getSuffixNamespace(),
-            \ucfirst($this->type->getName()).'Type',
+            \ucfirst($this->type->getName()) . 'Type',
         ]);
     }
 
@@ -143,13 +143,12 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         $phpArgType = getPhpTypeOf(config: $config, type: Parser::parseType($field->getType()));
 
         if ($psalmArgType !== $phpArgType) {
-            $constructor->addComment('@psalm-param '.$psalmArgType.' $'.$field->getName());
+            $constructor->addComment('@psalm-param ' . $psalmArgType . ' $' . $field->getName());
         }
 
         $parameter = $constructor
             ->addPromotedParameter($field->getName())->setType($phpArgType)
-            ->setPublic()
-        ;
+            ->setPublic();
 
         if (true === phpTypeIsNullable($phpArgType)) {
             $parameter->setDefaultValue(null);
@@ -158,20 +157,21 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
 
     private function addWithMethodForField(SchemaConfig $config, InputObjectField $field, ClassType $class): void
     {
-        $method = $class->addMethod('_with'.\ucfirst($field->getName()));
+        $method = $class->addMethod('_with' . \ucfirst($field->getName()));
         $method->addParameter($field->getName());
-        $method->setReturnType('static');
+        $method->setReturnType($this->fqcnClass(config: $config));
 
         $chain = [];
         foreach ($this->type->getFields() as $f) {
             if ($f === $field) {
-                $chain[] = $f->getName().': $'.$f->getName();
+                $chain[] = $f->getName() . ': $' . $f->getName();
             } else {
-                $chain[] = $f->getName().': $this->'.$f->getName();
+                $chain[] = $f->getName() . ': $this->' . $f->getName();
             }
         }
 
-        $method->addBody(\strtr('return new static(:chain);', [
+        $method->addBody(\strtr('return new :className(:chain);', [
+            ':className' => $this->fqcnClass(config: $config),
             ':chain' => \implode(', ', $chain),
         ]));
     }
