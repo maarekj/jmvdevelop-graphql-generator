@@ -171,7 +171,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         }
 
         $method->addBody(\strtr('return new :className(:chain);', [
-            ':className' => $this->fqcnClass(config: $config),
+            ':className' => "\\" . $this->fqcnClass(config: $config),
             ':chain' => \implode(', ', $chain),
         ]));
     }
