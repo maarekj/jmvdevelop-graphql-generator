@@ -432,13 +432,33 @@ Generated/InputObjectType/StringExprInputType.php: |
 
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
 
+    use static;
+
     final class StringExprInputType
     {
     	public function __construct(
-    		public string|null $eq,
-    		public string|null $neq,
-    		public string|null $like,
+    		public string|null $eq = null,
+    		public string|null $neq = null,
+    		public string|null $like = null,
     	) {
+    	}
+
+
+    	public function _withEq($eq): static
+    	{
+    		return new static(eq: $eq, neq: $this->neq, like: $this->like);
+    	}
+
+
+    	public function _withNeq($neq): static
+    	{
+    		return new static(eq: $this->eq, neq: $neq, like: $this->like);
+    	}
+
+
+    	public function _withLike($like): static
+    	{
+    		return new static(eq: $this->eq, neq: $this->neq, like: $like);
     	}
     }
 Generated/InputObjectType/IntExprInputType.php: |
@@ -448,16 +468,54 @@ Generated/InputObjectType/IntExprInputType.php: |
 
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
 
+    use static;
+
     final class IntExprInputType
     {
     	public function __construct(
-    		public int|null $eq,
-    		public int|null $neq,
-    		public int|null $gt,
-    		public int|null $gte,
-    		public int|null $lt,
-    		public int|null $lte,
+    		public int|null $eq = null,
+    		public int|null $neq = null,
+    		public int|null $gt = null,
+    		public int|null $gte = null,
+    		public int|null $lt = null,
+    		public int|null $lte = null,
     	) {
+    	}
+
+
+    	public function _withEq($eq): static
+    	{
+    		return new static(eq: $eq, neq: $this->neq, gt: $this->gt, gte: $this->gte, lt: $this->lt, lte: $this->lte);
+    	}
+
+
+    	public function _withNeq($neq): static
+    	{
+    		return new static(eq: $this->eq, neq: $neq, gt: $this->gt, gte: $this->gte, lt: $this->lt, lte: $this->lte);
+    	}
+
+
+    	public function _withGt($gt): static
+    	{
+    		return new static(eq: $this->eq, neq: $this->neq, gt: $gt, gte: $this->gte, lt: $this->lt, lte: $this->lte);
+    	}
+
+
+    	public function _withGte($gte): static
+    	{
+    		return new static(eq: $this->eq, neq: $this->neq, gt: $this->gt, gte: $gte, lt: $this->lt, lte: $this->lte);
+    	}
+
+
+    	public function _withLt($lt): static
+    	{
+    		return new static(eq: $this->eq, neq: $this->neq, gt: $this->gt, gte: $this->gte, lt: $lt, lte: $this->lte);
+    	}
+
+
+    	public function _withLte($lte): static
+    	{
+    		return new static(eq: $this->eq, neq: $this->neq, gt: $this->gt, gte: $this->gte, lt: $this->lt, lte: $lte);
     	}
     }
 Generated/InputObjectType/SearchCompanyWhereInputType.php: |
@@ -467,6 +525,8 @@ Generated/InputObjectType/SearchCompanyWhereInputType.php: |
 
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
 
+    use static;
+
     final class SearchCompanyWhereInputType
     {
     	/**
@@ -475,12 +535,42 @@ Generated/InputObjectType/SearchCompanyWhereInputType.php: |
     	 * @psalm-param 'YES'|'NO'|'DEFAULT'|null $withCategory
     	 */
     	public function __construct(
-    		public array|null $_and,
-    		public array|null $_or,
-    		public StringExprInputType|null $name,
-    		public IntExprInputType|null $id,
-    		public string|null $withCategory,
+    		public array|null $_and = null,
+    		public array|null $_or = null,
+    		public StringExprInputType|null $name = null,
+    		public IntExprInputType|null $id = null,
+    		public string|null $withCategory = null,
     	) {
+    	}
+
+
+    	public function _with_and($_and): static
+    	{
+    		return new static(_and: $_and, _or: $this->_or, name: $this->name, id: $this->id, withCategory: $this->withCategory);
+    	}
+
+
+    	public function _with_or($_or): static
+    	{
+    		return new static(_and: $this->_and, _or: $_or, name: $this->name, id: $this->id, withCategory: $this->withCategory);
+    	}
+
+
+    	public function _withName($name): static
+    	{
+    		return new static(_and: $this->_and, _or: $this->_or, name: $name, id: $this->id, withCategory: $this->withCategory);
+    	}
+
+
+    	public function _withId($id): static
+    	{
+    		return new static(_and: $this->_and, _or: $this->_or, name: $this->name, id: $id, withCategory: $this->withCategory);
+    	}
+
+
+    	public function _withWithCategory($withCategory): static
+    	{
+    		return new static(_and: $this->_and, _or: $this->_or, name: $this->name, id: $this->id, withCategory: $withCategory);
     	}
     }
 Generated/Custom/InputObject/CreateUserInputType.php: |
@@ -490,13 +580,33 @@ Generated/Custom/InputObject/CreateUserInputType.php: |
 
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject;
 
+    use static;
+
     final class CreateUserInputType
     {
     	public function __construct(
     		public string $email,
-    		public string|null $lastname,
-    		public string|null $firstname,
+    		public string|null $lastname = null,
+    		public string|null $firstname = null,
     	) {
+    	}
+
+
+    	public function _withEmail($email): static
+    	{
+    		return new static(email: $email, lastname: $this->lastname, firstname: $this->firstname);
+    	}
+
+
+    	public function _withLastname($lastname): static
+    	{
+    		return new static(email: $this->email, lastname: $lastname, firstname: $this->firstname);
+    	}
+
+
+    	public function _withFirstname($firstname): static
+    	{
+    		return new static(email: $this->email, lastname: $this->lastname, firstname: $firstname);
     	}
     }
 Generated/InputObjectType/EditUserInputType.php: |
@@ -507,15 +617,40 @@ Generated/InputObjectType/EditUserInputType.php: |
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
 
     use JmvDevelop\GraphqlGenerator\Example\Entity\User;
+    use static;
 
     final class EditUserInputType
     {
     	public function __construct(
     		public User $id,
     		public string $email,
-    		public string|null $lastname,
-    		public string|null $firstname,
+    		public string|null $lastname = null,
+    		public string|null $firstname = null,
     	) {
+    	}
+
+
+    	public function _withId($id): static
+    	{
+    		return new static(id: $id, email: $this->email, lastname: $this->lastname, firstname: $this->firstname);
+    	}
+
+
+    	public function _withEmail($email): static
+    	{
+    		return new static(id: $this->id, email: $email, lastname: $this->lastname, firstname: $this->firstname);
+    	}
+
+
+    	public function _withLastname($lastname): static
+    	{
+    		return new static(id: $this->id, email: $this->email, lastname: $lastname, firstname: $this->firstname);
+    	}
+
+
+    	public function _withFirstname($firstname): static
+    	{
+    		return new static(id: $this->id, email: $this->email, lastname: $this->lastname, firstname: $firstname);
     	}
     }
 Generated/Test/TestInputWithStringFieldType.php: |
@@ -525,10 +660,18 @@ Generated/Test/TestInputWithStringFieldType.php: |
 
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test;
 
+    use static;
+
     final class TestInputWithStringFieldType
     {
     	public function __construct(public string $name)
     	{
+    	}
+
+
+    	public function _withName($name): static
+    	{
+    		return new static(name: $name);
     	}
     }
 Generated/Test/TestWithNullableInputFieldType.php: |
@@ -538,12 +681,26 @@ Generated/Test/TestWithNullableInputFieldType.php: |
 
     namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test;
 
+    use static;
+
     final class TestWithNullableInputFieldType
     {
     	public function __construct(
-    		public TestInputWithStringFieldType|null $nullableField,
+    		public TestInputWithStringFieldType|null $nullableField = null,
     		public TestInputWithStringFieldType $field,
     	) {
+    	}
+
+
+    	public function _withNullableField($nullableField): static
+    	{
+    		return new static(nullableField: $nullableField, field: $this->field);
+    	}
+
+
+    	public function _withField($field): static
+    	{
+    		return new static(nullableField: $this->nullableField, field: $field);
     	}
     }
 Generated/Custom/QueryField/AbstractSearchByNameField.php: |

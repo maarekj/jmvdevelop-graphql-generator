@@ -91,6 +91,11 @@ function getTypesWhoseImplementInterface(SchemaConfig $config, string $interface
     return $results;
 }
 
+function phpTypeIsNullable(string $type): bool
+{
+    return 1 === \preg_match('/^(.+[|])?null([|].+)?$/', $type);
+}
+
 function getPhpTypeOf(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode $type, bool $canBeNull = true): string
 {
     $orNull = ($canBeNull ? '|null' : '');
