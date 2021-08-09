@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\InterfaceTypeGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\InterfaceTypeGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\TypeGeneratorInterface;
 
 final class InterfaceType extends TypeDefinition implements OutputType
 {

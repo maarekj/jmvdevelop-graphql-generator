@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
-use JmvDevelop\GraphqlGenerator\Generator\UnionTypeGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\TypeGeneratorInterface;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\UnionTypeGenerator;
 
 final class UnionType extends TypeDefinition implements OutputType
 {

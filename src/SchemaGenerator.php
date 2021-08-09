@@ -22,7 +22,7 @@ use League\Flysystem\FilesystemOperator;
 use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\PhpFile;
 
-final class Generator
+final class SchemaGenerator
 {
     private string $namespace;
 

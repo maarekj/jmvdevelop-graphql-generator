@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\ObjectField\ObjectFieldGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\ObjectTypeGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectField\ObjectFieldGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectTypeGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\TypeGeneratorInterface;
 use function JmvDevelop\GraphqlGenerator\Utils\strDef;
 
 final class ObjectType extends TypeDefinition implements OutputType

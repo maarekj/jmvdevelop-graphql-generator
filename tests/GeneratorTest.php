@@ -9,7 +9,7 @@ use function Spatie\Snapshots\assertMatchesSnapshot;
 
 test('test generator', function (): void {
     $config = require __DIR__.'/../example/graphql-config.php';
-    $generator = new JmvDevelop\GraphqlGenerator\Generator($config);
+    $generator = new JmvDevelop\GraphqlGenerator\SchemaGenerator($config);
     $fs = new Filesystem(new InMemoryFilesystemAdapter());
 
     $generator->generate($fs);

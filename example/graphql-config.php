@@ -6,7 +6,6 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Pager;
 use JmvDevelop\GraphqlGenerator\Example\Entity\User;
-use JmvDevelop\GraphqlGenerator\Generator\ObjectField\AbstractObjectFieldGenerator;
 use JmvDevelop\GraphqlGenerator\Schema\Argument;
 use JmvDevelop\GraphqlGenerator\Schema\EnumType;
 use JmvDevelop\GraphqlGenerator\Schema\InputObjectType;
@@ -18,6 +17,7 @@ use JmvDevelop\GraphqlGenerator\Schema\ScalarType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaDefinition;
 use JmvDevelop\GraphqlGenerator\Schema\UnionType;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectField\AbstractObjectFieldGenerator;
 
 $abstractGenerator = new AbstractObjectFieldGenerator();
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\EnumTypeGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\EnumTypeGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\TypeGeneratorInterface;
 
 final class EnumType extends TypeDefinition implements OutputType, InputType
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\InputObjectTypeGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\InputObjectTypeGenerator;
 
 final class InputObjectType extends TypeDefinition implements OutputType
 {

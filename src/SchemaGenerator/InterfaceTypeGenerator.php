@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JmvDevelop\GraphqlGenerator\Generator;
+namespace JmvDevelop\GraphqlGenerator\SchemaGenerator;
 
 use GraphQL\Language\Parser;
+use JmvDevelop\GraphqlGenerator\Schema\InterfaceType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
-use JmvDevelop\GraphqlGenerator\Schema\UnionType;
 use function JmvDevelop\GraphqlGenerator\Utils\extractBaseNamespace;
 use function JmvDevelop\GraphqlGenerator\Utils\extractShortName;
 use function JmvDevelop\GraphqlGenerator\Utils\fqcn;
@@ -20,9 +20,9 @@ use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\Method;
 use Nette\PhpGenerator\PhpFile;
 
-class UnionTypeGenerator implements TypeGeneratorInterface
+class InterfaceTypeGenerator implements TypeGeneratorInterface
 {
-    public function __construct(private UnionType $type)
+    public function __construct(private InterfaceType $type)
     {
     }
 
@@ -32,35 +32,45 @@ class UnionTypeGenerator implements TypeGeneratorInterface
 
         $serviceName = $this->concretFqcnClass($config);
 
-        $propertyName = 'property_union_type_'.$this->type->getName();
+        $propertyName = 'property_interface_type_'.$this->type->getName();
         $class->addProperty($propertyName)->setValue(null)->setPrivate();
 
         $method = $class->addMethod($this->getTypeMethodName($config));
-        $method->setReturnType('\GraphQL\Type\Definition\UnionType');
+        $method->setReturnType('\GraphQL\Type\Definition\InterfaceType');
         $method->addBody(\strtr('
             if ($this->:property === null) {
-                $this->:property = new \GraphQL\Type\Definition\UnionType([
+                $this->:property = new \GraphQL\Type\Definition\InterfaceType([
                     "description" => :description,
                     "name" => :name,
-                    "types" => [
-                        :types
-                    ],
                     "resolveType" => function($value) {
                         return $this->service(:serviceName)->resolveType($value);
                     },
-                ]);
-            }
+                    "fields" => function () {
+                        return [
             ', [
             ':serviceName' => $dumper->dump($serviceName),
             ':name' => $dumper->dump($this->type->getName()),
             ':description' => $dumper->dump($this->type->getDescription()),
             ':property' => $propertyName,
-            ':types' => \implode(",\n", \array_map(function (string $type) use ($config) {
-                return getTypeFromRegistry($config, Parser::parseType($type));
-            }, $this->type->getTypes())),
         ]));
 
+        foreach ($this->type->getFields() as $field) {
+            $method->addBody(\strtr(':fieldName => [
+                            "type" => :type,
+                            "description" => :description,
+                        ],', [
+                ':fieldName' => $dumper->dump($field->getName()),
+                ':type' => getTypeFromRegistry($config, Parser::parseType($field->getType())),
+                ':description' => $dumper->dump($field->getDescription()),
+            ]));
+        }
+
         $method->addBody(\strtr('
+                        ];
+                    },
+                ]);
+             }
+
              return $this->:property;', [
             ':property' => $propertyName,
         ]));
@@ -79,12 +89,12 @@ class UnionTypeGenerator implements TypeGeneratorInterface
 
     public function transformTypeMethodName(SchemaConfig $config): string
     {
-        return 'transform_union_type_'.$this->type->getName();
+        return 'transform_interface_type_'.$this->type->getName();
     }
 
     public function getTypeMethodName(SchemaConfig $config): string
     {
-        return 'get_union_type_'.$this->type->getName();
+        return 'get_interface_type_'.$this->type->getName();
     }
 
     public function subscribeService(SchemaConfig $config): array

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\NativeScalarTypeGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\ScalarTypeGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\NativeScalarTypeGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\ScalarTypeGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\TypeGeneratorInterface;
 
 final class ScalarType extends TypeDefinition implements OutputType, InputType
 {

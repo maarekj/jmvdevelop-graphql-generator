@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JmvDevelop\GraphqlGenerator\Generator\ObjectField;
+namespace JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectField;
 
 use JmvDevelop\GraphqlGenerator\Schema\ObjectField;
 use JmvDevelop\GraphqlGenerator\Schema\ObjectType;

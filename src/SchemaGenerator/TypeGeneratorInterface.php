@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JmvDevelop\GraphqlGenerator\Generator;
+namespace JmvDevelop\GraphqlGenerator\SchemaGenerator;
 
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
 use League\Flysystem\FilesystemOperator;

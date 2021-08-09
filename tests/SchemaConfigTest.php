@@ -13,5 +13,5 @@ test('pathForFQCN', function (): void {
         schema: new SchemaDefinition(),
     );
 
-    assertEquals('/Generator/ObjectType/MyObjectType.php', $config->pathForFQCN('MyAcme\\App\\GraphQL\\Generator\\ObjectType\\MyObjectType'));
+    assertEquals('/SchemaGenerator/ObjectType/MyObjectType.php', $config->pathForFQCN('MyAcme\\App\\GraphQL\\SchemaGenerator\\ObjectType\\MyObjectType'));
 });

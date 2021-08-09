@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Cli;
 
-use JmvDevelop\GraphqlGenerator\Generator;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use Symfony\Component\Console\Command\Command;
@@ -15,8 +15,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Webmozart\Assert\Assert;
 
-final class GenerateCommand extends Command
+final class GenerateSchemaCommand extends Command
 {
+    public function __construct(string $name = null, private string $defaultConfig = './graphql-config.php')
+    {
+        parent::__construct($name);
+    }
+
     protected function configure(): void
     {
         $this->addOption(
@@ -24,7 +29,7 @@ final class GenerateCommand extends Command
             'c',
             InputOption::VALUE_REQUIRED,
             'The config file',
-            './graphql-config.php',
+            $this->defaultConfig,
         );
     }
 
@@ -55,7 +60,7 @@ final class GenerateCommand extends Command
         })();
 
         $fs = new Filesystem(new LocalFilesystemAdapter($config->getOut()));
-        $generator = new Generator(config: $config);
+        $generator = new SchemaGenerator(config: $config);
         $generator->generate($fs);
 
         $style->success('Success');

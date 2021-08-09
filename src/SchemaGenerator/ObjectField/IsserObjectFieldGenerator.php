@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace JmvDevelop\GraphqlGenerator\Generator\ObjectField;
+namespace JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectField;
 
 use JmvDevelop\GraphqlGenerator\Schema\ObjectField;
 use JmvDevelop\GraphqlGenerator\Schema\ObjectType;
 use Nette\PhpGenerator\Method;
 
-final class AbstractObjectFieldGenerator implements ObjectFieldGenerator
+final class IsserObjectFieldGenerator implements ObjectFieldGenerator
 {
     public function generateBodyMethod(ObjectType $type, ObjectField $field, Method $method): void
     {
-        $method->setAbstract();
+        $method->addBody(\sprintf('return $root->is%s();', \ucfirst($field->getName())));
     }
 }

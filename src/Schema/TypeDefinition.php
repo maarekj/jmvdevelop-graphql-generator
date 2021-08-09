@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\TypeGeneratorInterface;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\TypeGeneratorInterface;
 
 abstract class TypeDefinition implements WithName, WithDescription, WithTypeGenerator, WithSuffixNamespace
 {

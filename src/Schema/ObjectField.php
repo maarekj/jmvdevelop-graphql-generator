@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace JmvDevelop\GraphqlGenerator\Schema;
 
-use JmvDevelop\GraphqlGenerator\Generator\ObjectField\AbstractObjectFieldGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\ObjectField\GetterObjectFieldGenerator;
-use JmvDevelop\GraphqlGenerator\Generator\ObjectField\ObjectFieldGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectField\AbstractObjectFieldGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectField\GetterObjectFieldGenerator;
+use JmvDevelop\GraphqlGenerator\SchemaGenerator\ObjectField\ObjectFieldGenerator;
 
 final class ObjectField extends Field
 {

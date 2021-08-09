@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JmvDevelop\GraphqlGenerator\Generator;
+namespace JmvDevelop\GraphqlGenerator\SchemaGenerator;
 
 use GraphQL\Language\Parser;
-use JmvDevelop\GraphqlGenerator\Schema\InterfaceType;
+use JmvDevelop\GraphqlGenerator\Schema\Argument;
+use JmvDevelop\GraphqlGenerator\Schema\ObjectType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
+use function JmvDevelop\GraphqlGenerator\Utils\addArgumentInParameterOfMethod;
+use function JmvDevelop\GraphqlGenerator\Utils\callArgsFrom__args;
 use function JmvDevelop\GraphqlGenerator\Utils\extractBaseNamespace;
 use function JmvDevelop\GraphqlGenerator\Utils\extractShortName;
 use function JmvDevelop\GraphqlGenerator\Utils\fqcn;
@@ -20,9 +23,9 @@ use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\Method;
 use Nette\PhpGenerator\PhpFile;
 
-class InterfaceTypeGenerator implements TypeGeneratorInterface
+class ObjectTypeGenerator implements TypeGeneratorInterface
 {
-    public function __construct(private InterfaceType $type)
+    public function __construct(private ObjectType $type)
     {
     }
 
@@ -32,36 +35,58 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
 
         $serviceName = $this->concretFqcnClass($config);
 
-        $propertyName = 'property_interface_type_'.$this->type->getName();
+        $propertyName = 'property_object_type_'.$this->type->getName();
         $class->addProperty($propertyName)->setValue(null)->setPrivate();
 
         $method = $class->addMethod($this->getTypeMethodName($config));
-        $method->setReturnType('\GraphQL\Type\Definition\InterfaceType');
+        $method->setReturnType('\GraphQL\Type\Definition\ObjectType');
         $method->addBody(\strtr('
             if ($this->:property === null) {
-                $this->:property = new \GraphQL\Type\Definition\InterfaceType([
+                $this->:property = new \GraphQL\Type\Definition\ObjectType([
                     "description" => :description,
                     "name" => :name,
-                    "resolveType" => function($value) {
-                        return $this->service(:serviceName)->resolveType($value);
+                    "interfaces" => function () {
+                        return [
+                            :interfaces
+                        ];
                     },
                     "fields" => function () {
                         return [
             ', [
-            ':serviceName' => $dumper->dump($serviceName),
             ':name' => $dumper->dump($this->type->getName()),
             ':description' => $dumper->dump($this->type->getDescription()),
             ':property' => $propertyName,
+            ':interfaces' => \implode(",\n", \array_map(function (string $interface) use ($config): string {
+                return getTypeFromRegistry($config, Parser::parseType($interface));
+            }, $this->type->getInterfaces())),
         ]));
 
         foreach ($this->type->getFields() as $field) {
             $method->addBody(\strtr(':fieldName => [
                             "type" => :type,
                             "description" => :description,
+                            "args" => :defArgs,
+                            "resolve" => function($__root, array $__args = []) {
+                                return $this->service(:serviceName)->:resolveMethod(root: $__root, :args);
+                            },
                         ],', [
                 ':fieldName' => $dumper->dump($field->getName()),
+                ':resolveMethod' => 'resolve'.\ucfirst($field->getName()),
+                ':serviceName' => $dumper->dump($serviceName),
                 ':type' => getTypeFromRegistry($config, Parser::parseType($field->getType())),
                 ':description' => $dumper->dump($field->getDescription()),
+                ':args' => callArgsFrom__args(config: $config, args: $field->getArgs(), arrayName: '$__args'),
+                ':defArgs' => '['.\implode(', ', \array_map(function (Argument $argument) use ($dumper, $config) {
+                    return \strtr('[
+                                "name" => :name,
+                                "description" => :description,
+                                "type" => :type,
+                            ]', [
+                        ':name' => $dumper->dump($argument->getName()),
+                        ':description' => $dumper->dump($argument->getDescription()),
+                        ':type' => getTypeFromRegistry(config: $config, type: Parser::parseType($argument->getType())),
+                    ]);
+                }, $field->getArgs())).']',
             ]));
         }
 
@@ -89,17 +114,19 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
 
     public function transformTypeMethodName(SchemaConfig $config): string
     {
-        return 'transform_interface_type_'.$this->type->getName();
+        return 'transform_object_type_'.$this->type->getName();
     }
 
     public function getTypeMethodName(SchemaConfig $config): string
     {
-        return 'get_interface_type_'.$this->type->getName();
+        return 'get_object_type_'.$this->type->getName();
     }
 
     public function subscribeService(SchemaConfig $config): array
     {
-        return [$this->concretFqcnClass($config) => $this->concretFqcnClass($config)];
+        return [
+            $this->concretFqcnClass($config) => $this->concretFqcnClass($config),
+        ];
     }
 
     public function generateGeneratedClass(FilesystemOperator $fs, SchemaConfig $config): void
@@ -110,23 +137,35 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
         $namespace = $file->addNamespace(extractBaseNamespace($this->abstractFqcnClass($config)));
         $class = $namespace->addClass(extractShortName($this->abstractFqcnClass($config)))->setAbstract();
 
-        $resolveMethod = $class->addMethod('resolveType');
-        $psalmType = getPsalmTypeOf(config: $config, type: Parser::parseType($this->type->getName()), canBeNull: false);
-        $phpType = getPhpTypeOf(config: $config, type: Parser::parseType($this->type->getName()), canBeNull: false);
+        $psalmType = $this->type->getPsalmType();
+        $rootType = $this->type->getRootType();
 
-        if ('' !== $this->type->getDescription()) {
-            $resolveMethod->addComment($this->type->getDescription());
-            $resolveMethod->addComment('');
+        foreach ($this->type->getFields() as $field) {
+            $resolveMethod = $class->addMethod('resolve'.\ucfirst($field->getName()));
+            $psalmReturnType = getPsalmTypeOf(config: $config, type: Parser::parseType($field->getType()));
+            $phpReturnType = getPhpTypeOf(config: $config, type: Parser::parseType($field->getType()));
+
+            if ('' !== $field->getDescription()) {
+                $resolveMethod->addComment($field->getDescription());
+                $resolveMethod->addComment('');
+            }
+
+            if ($psalmReturnType !== $phpReturnType) {
+                $resolveMethod->addComment('@return '.$psalmReturnType);
+            }
+            $resolveMethod->setReturnType($phpReturnType);
+
+            if ($rootType !== $psalmType) {
+                $resolveMethod->addComment('@psalm-param '.$psalmType.' $root');
+            }
+            $resolveMethod->addParameter('root')->setType($this->type->getRootType());
+
+            foreach ($field->getArgs() as $arg) {
+                addArgumentInParameterOfMethod(config: $config, method: $resolveMethod, arg: $arg);
+            }
+
+            $field->getGenerator()->generateBodyMethod(type: $this->type, field: $field, method: $resolveMethod);
         }
-
-        $resolveMethod->setReturnType('\\GraphQL\\Type\\Definition\\Type');
-        $resolveMethod->addParameter('value')->setType($phpType);
-
-        if ($psalmType !== $phpType) {
-            $resolveMethod->addComment('@var '.$psalmType.' $value');
-        }
-
-        $resolveMethod->setAbstract();
 
         writeFile(fs: $fs, config: $config, file: $file, overwrite: true);
     }
