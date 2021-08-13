@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+use JmvDevelop\GraphqlGenerator\Cli\GenerateClientCommand;
 use JmvDevelop\GraphqlGenerator\Cli\GenerateSchemaCommand;
 use Symfony\Component\Console\Application;
 
@@ -19,6 +20,7 @@ foreach ($autoloadFiles as $autoloadFile) {
 
 $application = new Application();
 
-$application->add(new GenerateSchemaCommand("graphql-generator:generate"));
+$application->add(new GenerateSchemaCommand("generate-schema"));
+$application->add(new GenerateClientCommand("generate-client"));
 
 $application->run();

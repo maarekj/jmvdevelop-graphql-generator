@@ -11,6 +11,8 @@
         <directory name="example"/>
         <ignoreFiles>
             <file name="example/Graphql/Generated/AbstractSchema.php"/>
+            <directory name="example/Graphql/ClientGenerated"/>
+            <file name="example/Graphql/Mapper.php"/>
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>

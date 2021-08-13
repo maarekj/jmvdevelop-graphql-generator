@@ -1,0 +1,40 @@
+{
+    "searchCompanies": {
+        "currentPage": 1,
+        "nbPages": 1,
+        "count": 6,
+        "maxPerPage": 20,
+        "results": [
+            {
+                "id": "1",
+                "name": "A JMV 1",
+                "categories": []
+            },
+            {
+                "id": "2",
+                "name": "B JMV 2",
+                "categories": []
+            },
+            {
+                "id": "3",
+                "name": "C JMV 3",
+                "categories": []
+            },
+            {
+                "id": "4",
+                "name": "D JMV 4",
+                "categories": []
+            },
+            {
+                "id": "5",
+                "name": "E JMV 5",
+                "categories": []
+            },
+            {
+                "id": "6",
+                "name": "F JMV 6",
+                "categories": []
+            }
+        ]
+    }
+}

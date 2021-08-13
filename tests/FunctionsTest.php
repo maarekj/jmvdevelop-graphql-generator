@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use function JmvDevelop\GraphqlGenerator\Utils\extractBaseNamespace;
 use function JmvDevelop\GraphqlGenerator\Utils\extractShortName;
+use function JmvDevelop\GraphqlGenerator\Utils\pathForFQCN;
 use function JmvDevelop\GraphqlGenerator\Utils\phpTypeIsNullable;
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertFalse;
@@ -52,4 +53,10 @@ test('phpTypeIsNullable', function (): void {
     assertTrue(phpTypeIsNullable('null|string|int'));
     assertTrue(phpTypeIsNullable('string|null|null'));
     assertFalse(phpTypeIsNullable('string|NullObject'));
+});
+
+test('pathForFQCN', function (): void {
+    $baseNs = 'MyAcme\\App\\GraphQL';
+
+    assertEquals('/SchemaGenerator/ObjectType/MyObjectType.php', pathForFQCN(baseNs: $baseNs, fqcn: 'MyAcme\\App\\GraphQL\\SchemaGenerator\\ObjectType\\MyObjectType'));
 });

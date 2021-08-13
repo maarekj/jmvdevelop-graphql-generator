@@ -60,6 +60,7 @@ final class AddUseInFile
         $type = null === $type ? '' : \trim($type);
         $types = \array_map(fn ($t) => \trim($t), \explode('|', $type));
         $types = \array_filter($types, fn ($t) => match ($t) {
+            'self', 'static',
             'string', 'float', 'int', 'bool', 'mixed', 'array', 'iterable', 'object', 'scalar', 'null',
             '\\string', '\\float', '\\int', '\\bool', '\\mixed', '\\array', '\\iterable', '\\object', '\\scalar', '\\null' => false,
             default => true,

@@ -1,0 +1,13 @@
+query searchCompanies($where: SearchCompanyWhereInput = null) {
+    searchCompanies(where: $where) {
+        currentPage nbPages count maxPerPage
+        results {
+            id
+            name
+            categories {
+                id
+                name
+            }
+        }
+    }
+}

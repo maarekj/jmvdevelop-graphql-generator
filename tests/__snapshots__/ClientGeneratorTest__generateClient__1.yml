@@ -1,0 +1,432 @@
+ClientGenerated/AbstractClient.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere;
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\Mapper;
+
+    abstract class AbstractClient
+    {
+    	public function __construct(protected Mapper $mapper)
+    	{
+    	}
+
+
+    	abstract public function execute(string $query, array $variables = []): array;
+
+
+    	public function gql_user(): string
+    	{
+    		return "query user(\$id: Int!) {\n  user_by_id(id: \$id) {\n    id\n    email\n    groups {\n      id\n      name\n      roles\n    }\n  }\n}";
+    	}
+
+
+    	/**
+    	 * @return array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>, }>, }, }
+    	 */
+    	public function parse_user(array $data)
+    	{
+    		return ([
+    		        'user_by_id' => ($data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : [
+    		        'id' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
+    		        })(($___data)['id']),'email' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
+    		        })(($___data)['email']),'groups' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : array_map(function($___data) {
+    		                return [
+    		        'id' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
+    		        })(($___data)['id']),'name' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
+    		        })(($___data)['name']),'roles' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : array_map(function($___data) {
+    		                return $this->mapper->graphql_to_php_String($___data);
+    		            }, $___data);
+    		        })(($___data)['roles']),
+    		        ];
+    		            }, $___data);
+    		        })(($___data)['groups']),
+    		        ];
+    		        })(($data)['user_by_id']),
+    		        ]);
+    	}
+
+
+    	/**
+    	 * @return array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>, }>, }, }
+    	 */
+    	public function execute_user(int $id)
+    	{
+    		$___result = $this->execute($this->gql_user(), ["id" => $this->mapper->php_to_graphql_Int($id)]);
+    		return $this->parse_user($___result);
+    	}
+
+
+    	public function gql_users(): string
+    	{
+    		return "query users(\$limit: Int! = 10, \$offset: Int, \$roles: [String!] = [\"user\", \"admin\"], \$where: UserWhere) {\n  users(limit: \$limit, offset: \$offset, roles: \$roles, where: \$where) {\n    id\n    email\n    groups {\n      id\n      name\n      roles\n    }\n  }\n}";
+    	}
+
+
+    	/**
+    	 * @return array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>, }>, }>, }
+    	 */
+    	public function parse_users(array $data)
+    	{
+    		return ([
+    		        'users' => ($data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : array_map(function($___data) {
+    		                return [
+    		        'id' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
+    		        })(($___data)['id']),'email' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
+    		        })(($___data)['email']),'groups' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : array_map(function($___data) {
+    		                return [
+    		        'id' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
+    		        })(($___data)['id']),'name' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
+    		        })(($___data)['name']),'roles' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : array_map(function($___data) {
+    		                return $this->mapper->graphql_to_php_String($___data);
+    		            }, $___data);
+    		        })(($___data)['roles']),
+    		        ];
+    		            }, $___data);
+    		        })(($___data)['groups']),
+    		        ];
+    		            }, $___data);
+    		        })(($data)['users']),
+    		        ]);
+    	}
+
+
+    	/**
+    	 * @return array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>, }>, }>, }
+    	 * @param list<string>|null $roles
+    	 */
+    	public function execute_users(int|null $limit, int|null $offset, array|null $roles, UserWhere|null $where)
+    	{
+    		$___result = $this->execute($this->gql_users(), ["limit" => $this->mapper->php_to_graphql_Int($limit),
+    		"offset" => ($offset) === null ? null : $this->mapper->php_to_graphql_Int($offset),
+    		"roles" => ($roles) === null ? null :  array_map(fn($_value) =>
+    		                            return ($this->mapper->php_to_graphql_String($_value));
+    		            }, ($roles)),
+    		"where" => ($where) === null ? null : $this->mapper->php_to_graphql_UserWhere($where)]);
+    		return $this->parse_users($___result);
+    	}
+    }
+Client.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\AbstractClient;
+
+    final class Client extends AbstractClient
+    {
+    }
+ClientGenerated/AbstractMapper.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated;
+
+    use DateTimeImmutable;
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprDatetime;
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprString;
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere;
+
+    abstract class AbstractMapper
+    {
+    	public function php_to_graphql_Int(int $data)
+    	{
+    		return $data;
+    	}
+
+
+    	public function graphql_to_php_Int($data): int
+    	{
+    		return $data;
+    	}
+
+
+    	public function php_to_graphql_String(string $data)
+    	{
+    		return $data;
+    	}
+
+
+    	public function graphql_to_php_String($data): string
+    	{
+    		return $data;
+    	}
+
+
+    	abstract public function php_to_graphql_DateTimeTz(DateTimeImmutable $data);
+
+
+    	abstract public function graphql_to_php_DateTimeTz($data): DateTimeImmutable;
+
+
+    	public function php_to_graphql_UserWhere(UserWhere $data): array
+    	{
+    		return [
+
+    		'pseudo' => (($data)->pseudo) === null ? null : $this->php_to_graphql_ExprString(($data)->pseudo)
+    		,
+    		'email' => (($data)->email) === null ? null : $this->php_to_graphql_ExprString(($data)->email)
+    		,
+    		'birthdate' => (($data)->birthdate) === null ? null : $this->php_to_graphql_ExprDatetime(($data)->birthdate)
+    		,
+    		'_and' => (($data)->_and) === null ? null :  array_map(fn ($_value) => ($this->php_to_graphql_UserWhere($_value)), (($data)->_and))
+    		,
+    		'_or' => (($data)->_or) === null ? null :  array_map(fn ($_value) => ($this->php_to_graphql_UserWhere($_value)), (($data)->_or))
+    		,
+    		];
+    	}
+
+
+    	public function php_to_graphql_ExprString(ExprString $data): array
+    	{
+    		return [
+
+    		'eq' => (($data)->eq) === null ? null : $this->php_to_graphql_String(($data)->eq)
+    		,
+    		'neq' => (($data)->neq) === null ? null : $this->php_to_graphql_String(($data)->neq)
+    		,
+    		'isNull' => (($data)->isNull) === null ? null : $this->php_to_graphql_Boolean(($data)->isNull)
+    		,
+    		'isNotNull' => (($data)->isNotNull) === null ? null : $this->php_to_graphql_Boolean(($data)->isNotNull)
+    		,
+    		];
+    	}
+
+
+    	public function php_to_graphql_Boolean(bool $data)
+    	{
+    		return $data;
+    	}
+
+
+    	public function graphql_to_php_Boolean($data): bool
+    	{
+    		return $data;
+    	}
+
+
+    	public function php_to_graphql_ExprDatetime(ExprDatetime $data): array
+    	{
+    		return [
+
+    		'eq' => (($data)->eq) === null ? null : $this->php_to_graphql_DateTimeTz(($data)->eq)
+    		,
+    		'neq' => (($data)->neq) === null ? null : $this->php_to_graphql_DateTimeTz(($data)->neq)
+    		,
+    		'isNull' => (($data)->isNull) === null ? null : $this->php_to_graphql_Boolean(($data)->isNull)
+    		,
+    		'isNotNull' => (($data)->isNotNull) === null ? null : $this->php_to_graphql_Boolean(($data)->isNotNull)
+    		,
+    		];
+    	}
+
+
+    	public function php_to_graphql_ID(string $data)
+    	{
+    		return $data;
+    	}
+
+
+    	public function graphql_to_php_ID($data): string
+    	{
+    		return $data;
+    	}
+
+
+    	public function php_to_graphql_Float(float $data)
+    	{
+    		return $data;
+    	}
+
+
+    	public function graphql_to_php_Float($data): float
+    	{
+    		return $data;
+    	}
+
+
+    	abstract public function php_to_graphql___TypeKind($data);
+
+
+    	abstract public function graphql_to_php___TypeKind($data);
+
+
+    	abstract public function php_to_graphql___DirectiveLocation($data);
+
+
+    	abstract public function graphql_to_php___DirectiveLocation($data);
+    }
+Mapper.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql;
+
+    use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\AbstractMapper;
+
+    final class Mapper extends AbstractMapper
+    {
+    }
+ClientGenerated/InputObject/UserWhere.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject;
+
+    final class UserWhere
+    {
+    	/**
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere>|null $_and
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere>|null $_or
+    	 */
+    	public function __construct(
+    		public ExprString|null $pseudo = null,
+    		public ExprString|null $email = null,
+    		public ExprDatetime|null $birthdate = null,
+    		public array|null $_and = null,
+    		public array|null $_or = null,
+    	) {
+    	}
+
+
+    	public function _withPseudo(ExprString|null $pseudo): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere(pseudo: $pseudo, email: $this->email, birthdate: $this->birthdate, _and: $this->_and, _or: $this->_or);
+    	}
+
+
+    	public function _withEmail(ExprString|null $email): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere(pseudo: $this->pseudo, email: $email, birthdate: $this->birthdate, _and: $this->_and, _or: $this->_or);
+    	}
+
+
+    	public function _withBirthdate(ExprDatetime|null $birthdate): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere(pseudo: $this->pseudo, email: $this->email, birthdate: $birthdate, _and: $this->_and, _or: $this->_or);
+    	}
+
+
+    	/**
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere>|null $_and
+    	 */
+    	public function _with_and(array|null $_and): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere(pseudo: $this->pseudo, email: $this->email, birthdate: $this->birthdate, _and: $_and, _or: $this->_or);
+    	}
+
+
+    	/**
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere>|null $_or
+    	 */
+    	public function _with_or(array|null $_or): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere(pseudo: $this->pseudo, email: $this->email, birthdate: $this->birthdate, _and: $this->_and, _or: $_or);
+    	}
+    }
+ClientGenerated/InputObject/ExprString.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject;
+
+    final class ExprString
+    {
+    	public function __construct(
+    		public string|null $eq = null,
+    		public string|null $neq = null,
+    		public bool|null $isNull = null,
+    		public bool|null $isNotNull = null,
+    	) {
+    	}
+
+
+    	public function _withEq(string|null $eq): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprString(eq: $eq, neq: $this->neq, isNull: $this->isNull, isNotNull: $this->isNotNull);
+    	}
+
+
+    	public function _withNeq(string|null $neq): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprString(eq: $this->eq, neq: $neq, isNull: $this->isNull, isNotNull: $this->isNotNull);
+    	}
+
+
+    	public function _withIsNull(bool|null $isNull): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprString(eq: $this->eq, neq: $this->neq, isNull: $isNull, isNotNull: $this->isNotNull);
+    	}
+
+
+    	public function _withIsNotNull(bool|null $isNotNull): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprString(eq: $this->eq, neq: $this->neq, isNull: $this->isNull, isNotNull: $isNotNull);
+    	}
+    }
+ClientGenerated/InputObject/ExprDatetime.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject;
+
+    use DateTimeImmutable;
+
+    final class ExprDatetime
+    {
+    	public function __construct(
+    		public DateTimeImmutable|null $eq = null,
+    		public DateTimeImmutable|null $neq = null,
+    		public bool|null $isNull = null,
+    		public bool|null $isNotNull = null,
+    	) {
+    	}
+
+
+    	public function _withEq(DateTimeImmutable|null $eq): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprDatetime(eq: $eq, neq: $this->neq, isNull: $this->isNull, isNotNull: $this->isNotNull);
+    	}
+
+
+    	public function _withNeq(DateTimeImmutable|null $neq): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprDatetime(eq: $this->eq, neq: $neq, isNull: $this->isNull, isNotNull: $this->isNotNull);
+    	}
+
+
+    	public function _withIsNull(bool|null $isNull): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprDatetime(eq: $this->eq, neq: $this->neq, isNull: $isNull, isNotNull: $this->isNotNull);
+    	}
+
+
+    	public function _withIsNotNull(bool|null $isNotNull): self
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\ExprDatetime(eq: $this->eq, neq: $this->neq, isNull: $this->isNull, isNotNull: $isNotNull);
+    	}
+    }

@@ -16,7 +16,7 @@ final class DateTimeTzType extends AbstractDateTimeTzType
         return $value->format(\DateTimeInterface::RFC3339_EXTENDED);
     }
 
-    public function parseValue(float | int | string | null | bool $value): \DateTimeImmutable
+    public static function staticParseValue(float | int | string | null | bool $value): \DateTimeImmutable
     {
         if (null !== $value && \is_string($value)) {
             $date = \DateTimeImmutable::createFromFormat(\DateTimeInterface::RFC3339_EXTENDED, $value);
@@ -26,6 +26,11 @@ final class DateTimeTzType extends AbstractDateTimeTzType
         }
 
         throw new Error('Invalid date');
+    }
+
+    public function parseValue(float | int | string | null | bool $value): \DateTimeImmutable
+    {
+        return self::staticParseValue($value);
     }
 
     public function parseLiteral(Node $valueNode, ?array $variables): \DateTimeImmutable

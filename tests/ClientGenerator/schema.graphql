@@ -1,0 +1,52 @@
+schema {
+    query: Query
+}
+
+scalar Int
+scalar String
+scalar Boolean
+scalar Float
+scalar DateTimeTz
+
+input UserWhere {
+    pseudo: ExprString,
+    email: ExprString,
+    birthdate: ExprDatetime,
+    _and: [UserWhere!]
+    _or: [UserWhere!]
+}
+
+input ExprString {
+    eq: String
+    neq: String
+    isNull: Boolean
+    isNotNull: Boolean
+}
+
+input ExprDatetime {
+    eq: DateTimeTz
+    neq: DateTimeTz
+    isNull: Boolean
+    isNotNull: Boolean
+}
+
+type Query {
+    user_by_id(id: Int!): User
+    user_by_email(email: String!): User
+    users(limit: Int, offset: Int, roles: [String!], where: UserWhere): [User!]!
+}
+
+type User {
+    id: Int!
+    username: String!
+    email: String!
+    bio: String
+    groups: [Group!]!
+    birthdate: DateTimeTz,
+}
+
+type Group {
+    id: Int!
+    name: String!
+    roles: [String!]!
+}

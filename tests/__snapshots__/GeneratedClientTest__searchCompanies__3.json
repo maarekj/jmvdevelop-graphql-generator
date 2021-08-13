@@ -1,0 +1,15 @@
+{
+    "searchCompanies": {
+        "currentPage": 1,
+        "nbPages": 1,
+        "count": 1,
+        "maxPerPage": 20,
+        "results": [
+            {
+                "id": "1",
+                "name": "A JMV 1",
+                "categories": []
+            }
+        ]
+    }
+}

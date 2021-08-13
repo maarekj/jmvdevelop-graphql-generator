@@ -113,7 +113,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
         $parseLiteral->addParameter('variables')->setType('array')->setNullable(true);
         $parseLiteral->setReturnType($this->type->getRootType());
 
-        writeFile(fs: $fs, config: $config, file: $file, overwrite: true);
+        writeFile(fs: $fs, baseNs: $config->getNamespace(), file: $file, overwrite: true);
     }
 
     public function generateUserClass(FilesystemOperator $fs, SchemaConfig $config): void
@@ -127,7 +127,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
             ->addExtend('\\'.$this->abstractFqcnClass($config))
         ;
 
-        writeFile(fs: $fs, config: $config, file: $file, overwrite: false);
+        writeFile(fs: $fs, baseNs: $config->getNamespace(), file: $file, overwrite: false);
     }
 
     public function concretFqcnClass(SchemaConfig $config): string

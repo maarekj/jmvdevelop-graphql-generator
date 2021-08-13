@@ -162,8 +162,9 @@ final class SchemaGenerator
         $userClass = $userNamespace->addClass('Schema');
         $userClass->setFinal()->addExtend('\\'.$this->namespace.'\\Generated\\AbstractSchema');
 
-        writeFile(fs: $fs, config: $this->config, file: $file, overwrite: true);
-        writeFile(fs: $fs, config: $this->config, file: $userFile, overwrite: false);
+        $baseNs = $this->config->getNamespace();
+        writeFile(fs: $fs, baseNs: $baseNs, file: $file, overwrite: true);
+        writeFile(fs: $fs, baseNs: $baseNs, file: $userFile, overwrite: false);
     }
 
     private function generateQueryOrMutationField(FilesystemOperator $fs, QueryField | MutationField $field): void
@@ -223,7 +224,8 @@ final class SchemaGenerator
         $userClass = $userNamespace->addClass(extractShortName($concretClass));
         $userClass->setFinal()->addExtend('\\'.$abstractClass);
 
-        writeFile(fs: $fs, config: $this->config, file: $file, overwrite: true);
-        writeFile(fs: $fs, config: $this->config, file: $userFile, overwrite: false);
+        $baseNs = $this->config->getNamespace();
+        writeFile(fs: $fs, baseNs: $baseNs, file: $file, overwrite: true);
+        writeFile(fs: $fs, baseNs: $baseNs, file: $userFile, overwrite: false);
     }
 }

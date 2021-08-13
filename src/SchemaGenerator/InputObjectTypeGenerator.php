@@ -121,7 +121,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
             $this->addWithMethodForField(config: $config, field: $field, class: $class);
         }
 
-        writeFile(fs: $fs, config: $config, file: $file, overwrite: true);
+        writeFile(fs: $fs, baseNs: $config->getNamespace(), file: $file, overwrite: true);
     }
 
     public function generateUserClass(FilesystemOperator $fs, SchemaConfig $config): void
@@ -143,7 +143,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         $phpArgType = getPhpTypeOf(config: $config, type: Parser::parseType($field->getType()));
 
         if ($psalmArgType !== $phpArgType) {
-            $constructor->addComment('@psalm-param '.$psalmArgType.' $'.$field->getName());
+            $constructor->addComment('@param '.$psalmArgType.' $'.$field->getName());
         }
 
         $parameter = $constructor
@@ -158,9 +158,16 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
 
     private function addWithMethodForField(SchemaConfig $config, InputObjectField $field, ClassType $class): void
     {
+        $psalmArgType = getPsalmTypeOf(config: $config, type: Parser::parseType($field->getType()));
+        $phpArgType = getPhpTypeOf(config: $config, type: Parser::parseType($field->getType()));
+
         $method = $class->addMethod('_with'.\ucfirst($field->getName()));
-        $method->addParameter($field->getName());
+        $method->addParameter($field->getName())->setType($phpArgType);
         $method->setReturnType($this->fqcnClass(config: $config));
+
+        if ($psalmArgType !== $phpArgType) {
+            $method->setComment('@param '.$psalmArgType.' $'.$field->getName());
+        }
 
         $chain = [];
         foreach ($this->type->getFields() as $f) {

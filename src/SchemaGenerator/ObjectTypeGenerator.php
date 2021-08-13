@@ -167,7 +167,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             $field->getGenerator()->generateBodyMethod(type: $this->type, field: $field, method: $resolveMethod);
         }
 
-        writeFile(fs: $fs, config: $config, file: $file, overwrite: true);
+        writeFile(fs: $fs, baseNs: $config->getNamespace(), file: $file, overwrite: true);
     }
 
     public function generateUserClass(FilesystemOperator $fs, SchemaConfig $config): void
@@ -181,7 +181,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             ->addExtend('\\'.$this->abstractFqcnClass($config))
         ;
 
-        writeFile(fs: $fs, config: $config, file: $file, overwrite: false);
+        writeFile(fs: $fs, baseNs: $config->getNamespace(), file: $file, overwrite: false);
     }
 
     public function concretFqcnClass(SchemaConfig $config): string

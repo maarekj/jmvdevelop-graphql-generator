@@ -1,0 +1,11 @@
+query user($id: Int!) {
+    user_by_id(id: $id) {
+        id
+        email
+        groups {
+            id
+            name
+            roles
+        }
+    }
+}

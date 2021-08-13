@@ -369,7 +369,15 @@ function array_flat_map(callable $callback, array $array): array
     return array_flatten(\array_map($callback, $array));
 }
 
-function writeFile(FilesystemOperator $fs, SchemaConfig $config, PhpFile $file, bool $overwrite): void
+function pathForFQCN(string $baseNs, string $fqcn): string
+{
+    return '/'.\strtr(
+            \preg_replace('/^'.\preg_quote($baseNs).'\\\\(.*)$/', '$1', $fqcn),
+            ['\\' => '/']
+        ).'.php';
+}
+
+function writeFile(FilesystemOperator $fs, string $baseNs, PhpFile $file, bool $overwrite): void
 {
     AddUseInFile::visitFile($file);
 
@@ -382,7 +390,7 @@ function writeFile(FilesystemOperator $fs, SchemaConfig $config, PhpFile $file, 
     }
     $class = $classes[0];
 
-    $path = $config->pathForFQCN($class);
+    $path = pathForFQCN(baseNs: $baseNs, fqcn: $class);
 
     if (true === $overwrite || false === $fs->fileExists($path)) {
         $fs->write($path, $file->__toString());

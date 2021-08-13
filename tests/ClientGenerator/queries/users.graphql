@@ -1,0 +1,11 @@
+query users($limit: Int! = 10, $offset: Int, $roles: [String!] = ["user", "admin"], $where: UserWhere) {
+    users(limit: $limit, offset: $offset, roles: $roles, where: $where) {
+        id
+        email
+        groups {
+            id
+            name
+            roles
+        }
+    }
+}

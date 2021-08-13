@@ -1,0 +1,6 @@
+query searchCompaniesWithId($id: Int!) {
+    searchCompanies(where: {id: {eq: $id}}) {
+        currentPage nbPages count maxPerPage
+        results { id name }
+    }
+}

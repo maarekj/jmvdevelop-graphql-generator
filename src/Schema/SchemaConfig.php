@@ -48,12 +48,4 @@ final class SchemaConfig
 
         return $this;
     }
-
-    public function pathForFQCN(string $fqcn): string
-    {
-        return '/'.\strtr(
-            \preg_replace('/^'.\preg_quote($this->namespace).'\\\\(.*)$/', '$1', $fqcn),
-            ['\\' => '/']
-        ).'.php';
-    }
 }

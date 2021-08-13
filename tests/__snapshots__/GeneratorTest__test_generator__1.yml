@@ -442,19 +442,19 @@ Generated/InputObjectType/StringExprInputType.php: |
     	}
 
 
-    	public function _withEq($eq): StringExprInputType
+    	public function _withEq(string|null $eq): StringExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\StringExprInputType(eq: $eq, neq: $this->neq, like: $this->like);
     	}
 
 
-    	public function _withNeq($neq): StringExprInputType
+    	public function _withNeq(string|null $neq): StringExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\StringExprInputType(eq: $this->eq, neq: $neq, like: $this->like);
     	}
 
 
-    	public function _withLike($like): StringExprInputType
+    	public function _withLike(string|null $like): StringExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\StringExprInputType(eq: $this->eq, neq: $this->neq, like: $like);
     	}
@@ -479,37 +479,37 @@ Generated/InputObjectType/IntExprInputType.php: |
     	}
 
 
-    	public function _withEq($eq): IntExprInputType
+    	public function _withEq(int|null $eq): IntExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: $eq, neq: $this->neq, gt: $this->gt, gte: $this->gte, lt: $this->lt, lte: $this->lte);
     	}
 
 
-    	public function _withNeq($neq): IntExprInputType
+    	public function _withNeq(int|null $neq): IntExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: $this->eq, neq: $neq, gt: $this->gt, gte: $this->gte, lt: $this->lt, lte: $this->lte);
     	}
 
 
-    	public function _withGt($gt): IntExprInputType
+    	public function _withGt(int|null $gt): IntExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: $this->eq, neq: $this->neq, gt: $gt, gte: $this->gte, lt: $this->lt, lte: $this->lte);
     	}
 
 
-    	public function _withGte($gte): IntExprInputType
+    	public function _withGte(int|null $gte): IntExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: $this->eq, neq: $this->neq, gt: $this->gt, gte: $gte, lt: $this->lt, lte: $this->lte);
     	}
 
 
-    	public function _withLt($lt): IntExprInputType
+    	public function _withLt(int|null $lt): IntExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: $this->eq, neq: $this->neq, gt: $this->gt, gte: $this->gte, lt: $lt, lte: $this->lte);
     	}
 
 
-    	public function _withLte($lte): IntExprInputType
+    	public function _withLte(int|null $lte): IntExprInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: $this->eq, neq: $this->neq, gt: $this->gt, gte: $this->gte, lt: $this->lt, lte: $lte);
     	}
@@ -524,9 +524,9 @@ Generated/InputObjectType/SearchCompanyWhereInputType.php: |
     final class SearchCompanyWhereInputType
     {
     	/**
-    	 * @psalm-param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_and
-    	 * @psalm-param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_or
-    	 * @psalm-param 'YES'|'NO'|'DEFAULT'|null $withCategory
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_and
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_or
+    	 * @param 'YES'|'NO'|'DEFAULT'|null $withCategory
     	 */
     	public function __construct(
     		public array|null $_and = null,
@@ -538,31 +538,40 @@ Generated/InputObjectType/SearchCompanyWhereInputType.php: |
     	}
 
 
-    	public function _with_and($_and): SearchCompanyWhereInputType
+    	/**
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_and
+    	 */
+    	public function _with_and(array|null $_and): SearchCompanyWhereInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType(_and: $_and, _or: $this->_or, name: $this->name, id: $this->id, withCategory: $this->withCategory);
     	}
 
 
-    	public function _with_or($_or): SearchCompanyWhereInputType
+    	/**
+    	 * @param list<\JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType|null>|null $_or
+    	 */
+    	public function _with_or(array|null $_or): SearchCompanyWhereInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType(_and: $this->_and, _or: $_or, name: $this->name, id: $this->id, withCategory: $this->withCategory);
     	}
 
 
-    	public function _withName($name): SearchCompanyWhereInputType
+    	public function _withName(StringExprInputType|null $name): SearchCompanyWhereInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType(_and: $this->_and, _or: $this->_or, name: $name, id: $this->id, withCategory: $this->withCategory);
     	}
 
 
-    	public function _withId($id): SearchCompanyWhereInputType
+    	public function _withId(IntExprInputType|null $id): SearchCompanyWhereInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType(_and: $this->_and, _or: $this->_or, name: $this->name, id: $id, withCategory: $this->withCategory);
     	}
 
 
-    	public function _withWithCategory($withCategory): SearchCompanyWhereInputType
+    	/**
+    	 * @param 'YES'|'NO'|'DEFAULT'|null $withCategory
+    	 */
+    	public function _withWithCategory(string|null $withCategory): SearchCompanyWhereInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType(_and: $this->_and, _or: $this->_or, name: $this->name, id: $this->id, withCategory: $withCategory);
     	}
@@ -584,19 +593,19 @@ Generated/Custom/InputObject/CreateUserInputType.php: |
     	}
 
 
-    	public function _withEmail($email): CreateUserInputType
+    	public function _withEmail(string $email): CreateUserInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject\CreateUserInputType(email: $email, lastname: $this->lastname, firstname: $this->firstname);
     	}
 
 
-    	public function _withLastname($lastname): CreateUserInputType
+    	public function _withLastname(string|null $lastname): CreateUserInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject\CreateUserInputType(email: $this->email, lastname: $lastname, firstname: $this->firstname);
     	}
 
 
-    	public function _withFirstname($firstname): CreateUserInputType
+    	public function _withFirstname(string|null $firstname): CreateUserInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject\CreateUserInputType(email: $this->email, lastname: $this->lastname, firstname: $firstname);
     	}
@@ -621,25 +630,25 @@ Generated/InputObjectType/EditUserInputType.php: |
     	}
 
 
-    	public function _withId($id): EditUserInputType
+    	public function _withId(User $id): EditUserInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUserInputType(id: $id, email: $this->email, lastname: $this->lastname, firstname: $this->firstname);
     	}
 
 
-    	public function _withEmail($email): EditUserInputType
+    	public function _withEmail(string $email): EditUserInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUserInputType(id: $this->id, email: $email, lastname: $this->lastname, firstname: $this->firstname);
     	}
 
 
-    	public function _withLastname($lastname): EditUserInputType
+    	public function _withLastname(string|null $lastname): EditUserInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUserInputType(id: $this->id, email: $this->email, lastname: $lastname, firstname: $this->firstname);
     	}
 
 
-    	public function _withFirstname($firstname): EditUserInputType
+    	public function _withFirstname(string|null $firstname): EditUserInputType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUserInputType(id: $this->id, email: $this->email, lastname: $this->lastname, firstname: $firstname);
     	}
@@ -658,7 +667,7 @@ Generated/Test/TestInputWithStringFieldType.php: |
     	}
 
 
-    	public function _withName($name): TestInputWithStringFieldType
+    	public function _withName(string $name): TestInputWithStringFieldType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test\TestInputWithStringFieldType(name: $name);
     	}
@@ -679,13 +688,13 @@ Generated/Test/TestWithNullableInputFieldType.php: |
     	}
 
 
-    	public function _withNullableField($nullableField): TestWithNullableInputFieldType
+    	public function _withNullableField(TestInputWithStringFieldType|null $nullableField): TestWithNullableInputFieldType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test\TestWithNullableInputFieldType(nullableField: $nullableField, field: $this->field);
     	}
 
 
-    	public function _withField($field): TestWithNullableInputFieldType
+    	public function _withField(TestInputWithStringFieldType $field): TestWithNullableInputFieldType
     	{
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test\TestWithNullableInputFieldType(nullableField: $this->nullableField, field: $field);
     	}

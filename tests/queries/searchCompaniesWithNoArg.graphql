@@ -1,0 +1,6 @@
+query searchCompaniesWithNoArg {
+    searchCompanies {
+        currentPage nbPages count maxPerPage
+        results { id name }
+    }
+}

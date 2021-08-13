@@ -1,0 +1,16 @@
+query company1And2Query {
+    jmv1: company(id: 1) {
+        id name
+        categories {
+            id name __typename
+        }
+        __typename
+    }
+    jmv2: company(id: 2) {
+        id name
+        categories {
+            id name __typename
+        }
+        __typename
+    }
+}
