@@ -82,11 +82,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
         return 'get_scalar_'.$this->type->getName();
     }
 
-    /**
-     * @param ScalarType $type
-     *
-     * @return array<string, string>
-     */
+    /** @return array<string, string> */
     public function subscribeService(SchemaConfig $config): array
     {
         return [$this->concretFqcnClass($config) => $this->concretFqcnClass($config)];

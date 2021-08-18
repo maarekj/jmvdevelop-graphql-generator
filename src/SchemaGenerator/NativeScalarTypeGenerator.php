@@ -40,6 +40,7 @@ final class NativeScalarTypeGenerator extends ScalarTypeGenerator
         return $method;
     }
 
+    /** @return array<string, string> */
     public function subscribeService(SchemaConfig $config): array
     {
         return [];
