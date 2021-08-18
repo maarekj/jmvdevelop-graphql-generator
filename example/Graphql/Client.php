@@ -26,6 +26,6 @@ final class Client extends AbstractClient
             return $result->data;
         }
 
-        throw new \RuntimeException('Error with graphql : '.$result->jsonSerialize());
+        throw new \RuntimeException('Error with graphql : '.\json_encode($result->jsonSerialize()));
     }
 }
