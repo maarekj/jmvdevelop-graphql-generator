@@ -1134,7 +1134,7 @@ Generated/AbstractSchema.php: |
 
     	public function get_scalar_ID(): ScalarType
     	{
-    		return \GraphQL\Type\Definition\Type:id();
+    		return \GraphQL\Type\Definition\Type::id();
     	}
 
 
@@ -1146,7 +1146,7 @@ Generated/AbstractSchema.php: |
 
     	public function get_scalar_String(): ScalarType
     	{
-    		return \GraphQL\Type\Definition\Type:string();
+    		return \GraphQL\Type\Definition\Type::string();
     	}
 
 
@@ -1158,7 +1158,7 @@ Generated/AbstractSchema.php: |
 
     	public function get_scalar_Int(): ScalarType
     	{
-    		return \GraphQL\Type\Definition\Type:int();
+    		return \GraphQL\Type\Definition\Type::int();
     	}
 
 
@@ -1170,7 +1170,7 @@ Generated/AbstractSchema.php: |
 
     	public function get_scalar_Float(): ScalarType
     	{
-    		return \GraphQL\Type\Definition\Type:float();
+    		return \GraphQL\Type\Definition\Type::float();
     	}
 
 
@@ -1182,7 +1182,7 @@ Generated/AbstractSchema.php: |
 
     	public function get_scalar_Boolean(): ScalarType
     	{
-    		return \GraphQL\Type\Definition\Type:boolean();
+    		return \GraphQL\Type\Definition\Type::boolean();
     	}
 
 

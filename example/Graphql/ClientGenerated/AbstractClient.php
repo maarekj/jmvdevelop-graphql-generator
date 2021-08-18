@@ -21,7 +21,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string, }>, __typename: string, }, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string, }>, __typename: string, }, }
+     * @return array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}}
      */
     public function parse_company1And2Query(array $data)
     {
@@ -75,7 +75,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string, }>, __typename: string, }, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string, }>, __typename: string, }, }
+     * @return array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}}
      */
     public function execute_company1And2Query()
     {
@@ -90,7 +90,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, }>, }, }
+     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}}
      */
     public function parse_searchCompaniesWithId(array $data)
     {
@@ -122,7 +122,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, }>, }, }
+     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}}
      */
     public function execute_searchCompaniesWithId(int $id)
     {
@@ -137,7 +137,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string, }>, }>, }, }
+     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string}>}>}}
      */
     public function parse_searchCompanies(array $data)
     {
@@ -179,7 +179,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string, }>, }>, }, }
+     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string}>}>}}
      */
     public function execute_searchCompanies(SearchCompanyWhereInput | null $where)
     {
@@ -194,7 +194,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, }>, }, }
+     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}}
      */
     public function parse_searchCompaniesWithNoArg(array $data)
     {
@@ -226,7 +226,7 @@ abstract class AbstractClient
     }
 
     /**
-     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, }>, }, }
+     * @return array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}}
      */
     public function execute_searchCompaniesWithNoArg()
     {

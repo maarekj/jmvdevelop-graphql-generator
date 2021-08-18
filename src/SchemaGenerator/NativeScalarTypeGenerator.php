@@ -27,7 +27,7 @@ final class NativeScalarTypeGenerator extends ScalarTypeGenerator
         $method->addBody(
             \strtr(
                 '
-                return \GraphQL\Type\Definition\Type::nativeType();
+                return \GraphQL\Type\Definition\Type:::nativeType();
             ',
                 [
                     ':name' => $dumper->dump($this->type->getName()),
