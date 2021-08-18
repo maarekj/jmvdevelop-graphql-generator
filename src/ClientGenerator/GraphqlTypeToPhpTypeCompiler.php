@@ -117,15 +117,11 @@ final class GraphqlTypeToPhpTypeCompiler
 
     public function compileSelectionSetToPsalmType(SelectionSetNode $set, ObjectType $baseType): string
     {
-        $res = 'array{';
+        $res = \array_map(function (SelectionNode $selection) use ($baseType): string {
+            return $this->compileSelectionToPsalmType(selection: $selection, baseType: $baseType);
+        }, \iterator_to_array($set->selections));
 
-        foreach ($set->selections as $selection) {
-            $res .= $this->compileSelectionToPsalmType(selection: $selection, baseType: $baseType).', ';
-        }
-
-        $res .= '}';
-
-        return $res;
+        return 'array{'.\implode(', ', $res).'}';
     }
 
     public function compileSelectionToPsalmType(SelectionNode $selection, ObjectType $baseType): string
