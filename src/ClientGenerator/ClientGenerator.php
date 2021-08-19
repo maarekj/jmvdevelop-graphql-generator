@@ -107,6 +107,7 @@ final class ClientGenerator
         $class->addComment('@psalm-type T_'.$operationName.' = '.$graphqlTypeToPhpCompiler->compileSelectionSetToPsalmType(
                 set: $operation->selectionSet,
                 baseType: $queryType,
+                canBeNull: false,
             ));
 
         $parseMethod->addBody('return ('.$graphqlToPhpCompiler->compileSelectionSet(

@@ -9,7 +9,7 @@ ClientGenerated/AbstractClient.php: |
     use JmvDevelop\GraphqlGenerator\Example\Graphql\Mapper;
 
     /**
-     * @psalm-type T_user = array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}}
+     * @psalm-type T_user = array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}|null}
      * @psalm-type T_users = array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}>}
      */
     abstract class AbstractClient

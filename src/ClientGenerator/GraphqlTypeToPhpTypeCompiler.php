@@ -12,7 +12,6 @@ use GraphQL\Language\AST\SelectionNode;
 use GraphQL\Language\AST\SelectionSetNode;
 use GraphQL\Type\Definition\EnumType;
 use GraphQL\Type\Definition\EnumValueDefinition;
-use GraphQL\Type\Definition\InputObjectField;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
@@ -115,13 +114,15 @@ final class GraphqlTypeToPhpTypeCompiler
         return 'array'.$orNull;
     }
 
-    public function compileSelectionSetToPsalmType(SelectionSetNode $set, ObjectType $baseType): string
+    public function compileSelectionSetToPsalmType(SelectionSetNode $set, ObjectType $baseType, bool $canBeNull): string
     {
         $res = \array_map(function (SelectionNode $selection) use ($baseType): string {
             return $this->compileSelectionToPsalmType(selection: $selection, baseType: $baseType);
         }, \iterator_to_array($set->selections));
 
-        return 'array{'.\implode(', ', $res).'}';
+        $orNull = ($canBeNull ? '|null' : '');
+
+        return 'array{'.\implode(', ', $res).'}'.$orNull;
     }
 
     public function compileSelectionToPsalmType(SelectionNode $selection, ObjectType $baseType): string
@@ -156,14 +157,6 @@ final class GraphqlTypeToPhpTypeCompiler
         ]);
     }
 
-    private function compileInputObjectFieldToPsalmType(InputObjectField $field): string
-    {
-        return $field->name.': '.$this->compileTypeToPsalmType(
-                type: $field->getType(),
-                forceCanBeNull: false
-            );
-    }
-
     private function compileTypeWithFieldNodeToPsalmType(Type $type, FieldNode $field, bool $canBeNull = true): string
     {
         if ($type instanceof ScalarType) {
@@ -182,7 +175,7 @@ final class GraphqlTypeToPhpTypeCompiler
             $set = $field->selectionSet;
             Assert::notNull($set);
 
-            return $this->compileSelectionSetToPsalmType(set: $set, baseType: $type);
+            return $this->compileSelectionSetToPsalmType(set: $set, baseType: $type, canBeNull: $canBeNull);
         }
 
         throw new \RuntimeException('@TODO');

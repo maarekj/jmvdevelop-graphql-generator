@@ -8,10 +8,10 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\Sear
 use JmvDevelop\GraphqlGenerator\Example\Graphql\Mapper;
 
 /**
- * @psalm-type T_company1And2Query = array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}}
- * @psalm-type T_searchCompaniesWithId = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}}
- * @psalm-type T_searchCompanies = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string}>}>}}
- * @psalm-type T_searchCompaniesWithNoArg = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}}
+ * @psalm-type T_company1And2Query = array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}|null, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}|null}
+ * @psalm-type T_searchCompaniesWithId = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}|null}
+ * @psalm-type T_searchCompanies = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string}>}>}|null}
+ * @psalm-type T_searchCompaniesWithNoArg = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}|null}
  */
 abstract class AbstractClient
 {
