@@ -104,27 +104,24 @@ final class ClientGenerator
         Assert::notNull($queryType);
         Assert::isInstanceOf($queryType, ObjectType::class);
 
+        $class->addComment('@psalm-type T_'.$operationName.' = '.$graphqlTypeToPhpCompiler->compileSelectionSetToPsalmType(
+                set: $operation->selectionSet,
+                baseType: $queryType,
+            ));
+
         $parseMethod->addBody('return ('.$graphqlToPhpCompiler->compileSelectionSet(
                 variable: '$data',
                 set: $operation->selectionSet,
                 baseType: $queryType
             ).');');
 
-        $parseMethod->addComment('@return '.$graphqlTypeToPhpCompiler->compileSelectionSetToPsalmType(
-                set: $operation->selectionSet,
-                baseType: $queryType,
-            )
-        );
+        $parseMethod->addComment('@psalm-return T_'.$operationName);
 
         $variables = [];
 
         $executeMethod = $class->addMethod('execute_'.$operationName);
 
-        $executeMethod->addComment('@return '.$graphqlTypeToPhpCompiler->compileSelectionSetToPsalmType(
-                set: $operation->selectionSet,
-                baseType: $queryType,
-            )
-        );
+        $executeMethod->addComment('@psalm-return T_'.$operationName);
 
         foreach ($operation->variableDefinitions as $variableDefinition) {
             $forceCanBeNull = null !== $variableDefinition->defaultValue;

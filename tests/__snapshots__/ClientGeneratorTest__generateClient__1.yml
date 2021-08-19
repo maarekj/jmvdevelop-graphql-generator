@@ -8,6 +8,10 @@ ClientGenerated/AbstractClient.php: |
     use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\UserWhere;
     use JmvDevelop\GraphqlGenerator\Example\Graphql\Mapper;
 
+    /**
+     * @psalm-type T_user = array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}}
+     * @psalm-type T_users = array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}>}
+     */
     abstract class AbstractClient
     {
     	public function __construct(protected Mapper $mapper)
@@ -25,7 +29,7 @@ ClientGenerated/AbstractClient.php: |
 
 
     	/**
-    	 * @return array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}}
+    	 * @psalm-return T_user
     	 */
     	public function parse_user(array $data)
     	{
@@ -58,7 +62,7 @@ ClientGenerated/AbstractClient.php: |
 
 
     	/**
-    	 * @return array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}}
+    	 * @psalm-return T_user
     	 */
     	public function execute_user(int $id)
     	{
@@ -74,7 +78,7 @@ ClientGenerated/AbstractClient.php: |
 
 
     	/**
-    	 * @return array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}>}
+    	 * @psalm-return T_users
     	 */
     	public function parse_users(array $data)
     	{
@@ -109,7 +113,7 @@ ClientGenerated/AbstractClient.php: |
 
 
     	/**
-    	 * @return array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}>}
+    	 * @psalm-return T_users
     	 * @param list<string>|null $roles
     	 */
     	public function execute_users(int|null $limit, int|null $offset, array|null $roles, UserWhere|null $where)
