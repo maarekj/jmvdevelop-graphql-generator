@@ -29,13 +29,13 @@
     "vimeo/psalm": "^4.7",
     "symfony/dependency-injection": "^5.2",
     "symfony/config": "^5.2",
-    "symfony/finder": "^5.2"
+    "symfony/finder": "^5.2",
+    "spatie/pest-plugin-snapshots": "^1.1"
   },
   "require": {
     "nette/php-generator": "^3.5",
     "league/flysystem": "^2.0",
     "league/flysystem-memory": "^2.0",
-    "spatie/pest-plugin-snapshots": "^1.0",
     "symfony/console": "^4.0.0|^5.2",
     "webmozart/assert": "^1.10",
     "webonyx/graphql-php": "^14.6"
