@@ -51,32 +51,32 @@ abstract class AbstractClient
                             ];
                         }, $___data);
                     })(($___data)['categories']), '__typename' => ($___data) === null ? null : (function ($___data) {
-                                return null === $___data ? null : $___data;
-                            })(($___data)['__typename']),
+                        return null === $___data ? null : $___data;
+                    })(($___data)['__typename']),
                 ];
             })(($data)['jmv1']), 'jmv2' => ($data) === null ? null : (function ($___data) {
-                    return null === $___data ? null : [
-                        'id' => ($___data) === null ? null : (function ($___data) {
-                            return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                        })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
-                            return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                        })(($___data)['name']), 'categories' => ($___data) === null ? null : (function ($___data) {
-                            return null === $___data ? null : \array_map(function ($___data) {
-                                return [
-                                    'id' => ($___data) === null ? null : (function ($___data) {
-                                        return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                                    })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
-                                        return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                                    })(($___data)['name']), '__typename' => ($___data) === null ? null : (function ($___data) {
-                                        return null === $___data ? null : $___data;
-                                    })(($___data)['__typename']),
-                                ];
-                            }, $___data);
-                        })(($___data)['categories']), '__typename' => ($___data) === null ? null : (function ($___data) {
+                return null === $___data ? null : [
+                    'id' => ($___data) === null ? null : (function ($___data) {
+                        return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
+                    })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                        return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
+                    })(($___data)['name']), 'categories' => ($___data) === null ? null : (function ($___data) {
+                        return null === $___data ? null : \array_map(function ($___data) {
+                            return [
+                                'id' => ($___data) === null ? null : (function ($___data) {
+                                    return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
+                                })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                                    return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
+                                })(($___data)['name']), '__typename' => ($___data) === null ? null : (function ($___data) {
                                     return null === $___data ? null : $___data;
                                 })(($___data)['__typename']),
-                    ];
-                })(($data)['jmv2']),
+                            ];
+                        }, $___data);
+                    })(($___data)['categories']), '__typename' => ($___data) === null ? null : (function ($___data) {
+                            return null === $___data ? null : $___data;
+                        })(($___data)['__typename']),
+                ];
+            })(($data)['jmv2']),
         ];
     }
 

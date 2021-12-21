@@ -10,6 +10,7 @@ use Nette\PhpGenerator\Method;
 use Nette\PhpGenerator\Parameter;
 use Nette\PhpGenerator\PhpFile;
 use Nette\PhpGenerator\PhpNamespace;
+use Nette\Utils\Type;
 
 final class AddUseInFile
 {
@@ -55,9 +56,9 @@ final class AddUseInFile
         self::addUseFromType($namespace, $parameter->getType());
     }
 
-    private static function addUseFromType(PhpNamespace $namespace, null | string $type): void
+    private static function addUseFromType(PhpNamespace $namespace, null | string | Type $type): void
     {
-        $type = null === $type ? '' : \trim($type);
+        $type = null === $type ? '' : \trim((string) $type);
         $types = \array_map(fn ($t) => \trim($t), \explode('|', $type));
         $types = \array_filter($types, fn ($t) => match ($t) {
             'self', 'static',

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace JmvDevelop\GraphqlGenerator\ClientGenerator\QueryFinder;
 
 use GraphQL\Language\Source;
+use function Psl\Type\object;
+use function Psl\Type\vec;
 use Symfony\Component\Finder\Finder;
 
 final class SymfonyQueryFinder implements QueryFinder
@@ -16,7 +18,11 @@ final class SymfonyQueryFinder implements QueryFinder
     /** @return iterable<Source|string> */
     public function findQueries(): iterable
     {
-        foreach ($this->finder->getIterator() as $file) {
+        $files = vec(object(\SplFileInfo::class))
+            ->coerce($this->finder->getIterator())
+        ;
+
+        foreach ($files as $file) {
             $path = $file->getRealPath();
             if (false !== $path) {
                 $content = \file_get_contents($path);

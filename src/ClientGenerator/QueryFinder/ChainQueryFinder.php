@@ -25,7 +25,7 @@ final class ChainQueryFinder implements QueryFinder
     /** @return list<QueryFinder> */
     public function getFinders(): array
     {
-        return \array_values($this->finders);
+        return $this->finders;
     }
 
     /** @return iterable<Source|string> */
