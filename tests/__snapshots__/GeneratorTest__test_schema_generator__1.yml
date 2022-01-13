@@ -576,6 +576,76 @@ Generated/InputObjectType/SearchCompanyWhereInputType.php: |
     		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\SearchCompanyWhereInputType(_and: $this->_and, _or: $this->_or, name: $this->name, id: $this->id, withCategory: $withCategory);
     	}
     }
+Generated/InputObjectType/TestInputType.php: |
+    <?php
+
+    declare(strict_types=1);
+
+    namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType;
+
+    final class TestInputType
+    {
+    	/**
+    	 * @param 'YES'|'NO'|'DEFAULT'|null $enum
+    	 * @param 'YES'|'NO'|'DEFAULT' $requiredEnum
+    	 * @param list<'YES'|'NO'|'DEFAULT'|null>|null $listEnum
+    	 * @param list<'YES'|'NO'|'DEFAULT'|null> $requiredListEnum
+    	 * @param list<'YES'|'NO'|'DEFAULT'> $requiredListRequiredEnum
+    	 */
+    	public function __construct(
+    		public string|null $enum = null,
+    		public string $requiredEnum,
+    		public array|null $listEnum = null,
+    		public array $requiredListEnum,
+    		public array $requiredListRequiredEnum,
+    	) {
+    	}
+
+
+    	/**
+    	 * @param 'YES'|'NO'|'DEFAULT'|null $enum
+    	 */
+    	public function _withEnum(string|null $enum): TestInputType
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: $enum, requiredEnum: $this->requiredEnum, listEnum: $this->listEnum, requiredListEnum: $this->requiredListEnum, requiredListRequiredEnum: $this->requiredListRequiredEnum);
+    	}
+
+
+    	/**
+    	 * @param 'YES'|'NO'|'DEFAULT' $requiredEnum
+    	 */
+    	public function _withRequiredEnum(string $requiredEnum): TestInputType
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: $this->enum, requiredEnum: $requiredEnum, listEnum: $this->listEnum, requiredListEnum: $this->requiredListEnum, requiredListRequiredEnum: $this->requiredListRequiredEnum);
+    	}
+
+
+    	/**
+    	 * @param list<'YES'|'NO'|'DEFAULT'|null>|null $listEnum
+    	 */
+    	public function _withListEnum(array|null $listEnum): TestInputType
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: $this->enum, requiredEnum: $this->requiredEnum, listEnum: $listEnum, requiredListEnum: $this->requiredListEnum, requiredListRequiredEnum: $this->requiredListRequiredEnum);
+    	}
+
+
+    	/**
+    	 * @param list<'YES'|'NO'|'DEFAULT'|null> $requiredListEnum
+    	 */
+    	public function _withRequiredListEnum(array $requiredListEnum): TestInputType
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: $this->enum, requiredEnum: $this->requiredEnum, listEnum: $this->listEnum, requiredListEnum: $requiredListEnum, requiredListRequiredEnum: $this->requiredListRequiredEnum);
+    	}
+
+
+    	/**
+    	 * @param list<'YES'|'NO'|'DEFAULT'> $requiredListRequiredEnum
+    	 */
+    	public function _withRequiredListRequiredEnum(array $requiredListRequiredEnum): TestInputType
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: $this->enum, requiredEnum: $this->requiredEnum, listEnum: $this->listEnum, requiredListEnum: $this->requiredListEnum, requiredListRequiredEnum: $requiredListRequiredEnum);
+    	}
+    }
 Generated/Custom/InputObject/CreateUserInputType.php: |
     <?php
 
@@ -1115,6 +1185,7 @@ Generated/AbstractSchema.php: |
     	private $property_input_object_type_StringExprInput = null;
     	private $property_input_object_type_IntExprInput = null;
     	private $property_input_object_type_SearchCompanyWhereInput = null;
+    	private $property_input_object_type_TestInput = null;
     	private $property_input_object_type_CreateUserInput = null;
     	private $property_input_object_type_EditUserInput = null;
     	private $property_input_object_type_TestInputWithStringField = null;
@@ -1867,6 +1938,71 @@ Generated/AbstractSchema.php: |
     		                    return ((null === ($__value) ? null : $this->transform_input_object_type_SearchCompanyWhereInput($__value)));
     		                }, $__value);
     		            })(($value)['_or'] ?? null)), name: ((null === (($value)['name'] ?? null) ? null : $this->transform_input_object_type_StringExprInput(($value)['name'] ?? null))), id: ((null === (($value)['id'] ?? null) ? null : $this->transform_input_object_type_IntExprInput(($value)['id'] ?? null))), withCategory: ((null === (($value)['withCategory'] ?? null) ? null : $this->transform_enum_type_YesNo(($value)['withCategory'] ?? null))));
+    	}
+
+
+    	public function get_input_object_type_TestInput(): InputObjectType
+    	{
+    		if ($this->property_input_object_type_TestInput === null) {
+    		                $this->property_input_object_type_TestInput = new \GraphQL\Type\Definition\InputObjectType([
+    		                    "description" => '',
+    		                    "name" => 'TestInput',
+    		                    "fields" => function () {
+    		                        return [
+
+    		'enum' => [
+    		                        "type" => $this->get_enum_type_YesNo(),
+    		                        "description" => '',
+    		                    ],
+    		'requiredEnum' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull($this->get_enum_type_YesNo()),
+    		                        "description" => '',
+    		                    ],
+    		'listEnum' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::listOf($this->get_enum_type_YesNo()),
+    		                        "description" => '',
+    		                    ],
+    		'requiredListEnum' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf($this->get_enum_type_YesNo())),
+    		                        "description" => '',
+    		                    ],
+    		'requiredListRequiredEnum' => [
+    		                        "type" => \GraphQL\Type\Definition\Type::nonNull(\GraphQL\Type\Definition\Type::listOf(\GraphQL\Type\Definition\Type::nonNull($this->get_enum_type_YesNo()))),
+    		                        "description" => '',
+    		                    ],
+
+    		                        ];
+    		                    },
+    		                ]);
+    		            }
+
+    		            return $this->property_input_object_type_TestInput;
+    	}
+
+
+    	private function transform_input_object_type_TestInput($value)
+    	{
+    		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: ((null === (($value)['enum'] ?? null) ? null : $this->transform_enum_type_YesNo(($value)['enum'] ?? null))), requiredEnum: ((function ($__value) {
+    		                return $__value === null ? null : ((null === ($__value) ? null : $this->transform_enum_type_YesNo($__value)));
+    		            })(($value)['requiredEnum'] ?? null)), listEnum: ((function ($__value) {
+    		                return $__value === null ? null : array_map(function ($__value) {
+    		                    return ((null === ($__value) ? null : $this->transform_enum_type_YesNo($__value)));
+    		                }, $__value);
+    		            })(($value)['listEnum'] ?? null)), requiredListEnum: ((function ($__value) {
+    		                return $__value === null ? null : ((function ($__value) {
+    		                return $__value === null ? null : array_map(function ($__value) {
+    		                    return ((null === ($__value) ? null : $this->transform_enum_type_YesNo($__value)));
+    		                }, $__value);
+    		            })($__value));
+    		            })(($value)['requiredListEnum'] ?? null)), requiredListRequiredEnum: ((function ($__value) {
+    		                return $__value === null ? null : ((function ($__value) {
+    		                return $__value === null ? null : array_map(function ($__value) {
+    		                    return ((function ($__value) {
+    		                return $__value === null ? null : ((null === ($__value) ? null : $this->transform_enum_type_YesNo($__value)));
+    		            })($__value));
+    		                }, $__value);
+    		            })($__value));
+    		            })(($value)['requiredListRequiredEnum'] ?? null)));
     	}
 
 

@@ -53,7 +53,7 @@ final class SchemaDefinition
         return $this;
     }
 
-    public function addType(ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType | UnionType $typeDefinition): self
+    public function addType(ScalarType|InputObjectType|ObjectType|EnumType|InterfaceType|UnionType $typeDefinition): self
     {
         $this->types[] = $typeDefinition;
 

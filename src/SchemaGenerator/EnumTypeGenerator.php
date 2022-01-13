@@ -26,7 +26,7 @@ final class EnumTypeGenerator implements TypeGeneratorInterface
 
         $method = $class->addMethod($this->getTypeMethodName($config));
         $method->setReturnType('\GraphQL\Type\Definition\EnumType');
-        $method->addBody(\strtr(
+        $method->addBody(strtr(
             '
                 if ($this->:property === null) {
                     $this->:property = new \GraphQL\Type\Definition\EnumType([
@@ -42,7 +42,7 @@ final class EnumTypeGenerator implements TypeGeneratorInterface
         ));
 
         foreach ($this->type->getValues() as $value) {
-            $method->addBody(\strtr(':name => [
+            $method->addBody(strtr(':name => [
                 "name" => :name,
                 "description" => :description,
                 "value" => :value,
@@ -53,7 +53,7 @@ final class EnumTypeGenerator implements TypeGeneratorInterface
             ]));
         }
 
-        $method->addBody(\strtr(
+        $method->addBody(strtr(
             '           ]
                     ]);
                 }

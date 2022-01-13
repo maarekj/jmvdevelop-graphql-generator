@@ -10,5 +10,5 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 
 abstract class AbstractCompanyOrCategoryType
 {
-    abstract public function resolveType(Company | Category $value): Type;
+	abstract public function resolveType(Company|Category $value): Type;
 }

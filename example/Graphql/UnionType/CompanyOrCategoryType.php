@@ -16,7 +16,7 @@ final class CompanyOrCategoryType extends AbstractCompanyOrCategoryType
     {
     }
 
-    public function resolveType(Category | Company $value): Type
+    public function resolveType(Category|Company $value): Type
     {
         if ($value instanceof Company) {
             return $this->schema->get_object_type_Company();

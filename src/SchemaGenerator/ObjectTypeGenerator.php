@@ -40,7 +40,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
 
         $method = $class->addMethod($this->getTypeMethodName($config));
         $method->setReturnType('\GraphQL\Type\Definition\ObjectType');
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\ObjectType([
                     "description" => :description,
@@ -56,13 +56,13 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             ':name' => $dumper->dump($this->type->getName()),
             ':description' => $dumper->dump($this->type->getDescription()),
             ':property' => $propertyName,
-            ':interfaces' => \implode(",\n", \array_map(function (string $interface) use ($config): string {
+            ':interfaces' => implode(",\n", array_map(function (string $interface) use ($config): string {
                 return getTypeFromRegistry($config, Parser::parseType($interface));
             }, $this->type->getInterfaces())),
         ]));
 
         foreach ($this->type->getFields() as $field) {
-            $method->addBody(\strtr(':fieldName => [
+            $method->addBody(strtr(':fieldName => [
                             "type" => :type,
                             "description" => :description,
                             "args" => :defArgs,
@@ -71,13 +71,13 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
                             },
                         ],', [
                 ':fieldName' => $dumper->dump($field->getName()),
-                ':resolveMethod' => 'resolve'.\ucfirst($field->getName()),
+                ':resolveMethod' => 'resolve'.ucfirst($field->getName()),
                 ':serviceName' => $dumper->dump($serviceName),
                 ':type' => getTypeFromRegistry($config, Parser::parseType($field->getType())),
                 ':description' => $dumper->dump($field->getDescription()),
                 ':args' => callArgsFrom__args(config: $config, args: $field->getArgs(), arrayName: '$__args'),
-                ':defArgs' => '['.\implode(', ', \array_map(function (Argument $argument) use ($dumper, $config) {
-                    return \strtr('[
+                ':defArgs' => '['.implode(', ', array_map(function (Argument $argument) use ($dumper, $config) {
+                    return strtr('[
                                 "name" => :name,
                                 "description" => :description,
                                 "type" => :type,
@@ -90,7 +90,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             ]));
         }
 
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
                         ];
                     },
                 ]);
@@ -141,7 +141,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
         $rootType = $this->type->getRootType();
 
         foreach ($this->type->getFields() as $field) {
-            $resolveMethod = $class->addMethod('resolve'.\ucfirst($field->getName()));
+            $resolveMethod = $class->addMethod('resolve'.ucfirst($field->getName()));
             $psalmReturnType = getPsalmTypeOf(config: $config, type: Parser::parseType($field->getType()));
             $phpReturnType = getPhpTypeOf(config: $config, type: Parser::parseType($field->getType()));
 
@@ -188,7 +188,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
     {
         return fqcn(config: $config, parts: [
             $this->type->getSuffixNamespace(),
-            \ucfirst($this->type->getName()).'Type',
+            ucfirst($this->type->getName()).'Type',
         ]);
     }
 
@@ -197,7 +197,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
         return fqcn(config: $config, parts: [
             'Generated',
             $this->type->getSuffixNamespace(),
-            'Abstract'.\ucfirst($this->type->getName()).'Type',
+            'Abstract'.ucfirst($this->type->getName()).'Type',
         ]);
     }
 }

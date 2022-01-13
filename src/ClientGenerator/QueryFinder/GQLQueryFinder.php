@@ -33,7 +33,7 @@ final class GQLQueryFinder implements QueryFinder
             }
         }
 
-        $classes = \array_values(\array_filter(\get_declared_classes(), fn ($class): bool => \str_starts_with($class, $this->prefixNs)));
+        $classes = array_values(array_filter(get_declared_classes(), fn ($class): bool => str_starts_with($class, $this->prefixNs)));
         foreach ($classes as $class) {
             $reflection = new \ReflectionClass($class);
             yield from $this->findQueriesOnClass($reflection);

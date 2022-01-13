@@ -32,7 +32,7 @@ function strDef(?string $value, string $def = ''): string
     return null === $value ? $def : $value;
 }
 
-function getTypeFromRegistry(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode $type): string
+function getTypeFromRegistry(SchemaConfig $config, ListTypeNode|NamedTypeNode|NonNullTypeNode $type): string
 {
     if ($type instanceof NamedTypeNode) {
         $typeDefinition = getTypeDefinitionOfTypeName(schema: $config->getSchema(), name: $type->name->value);
@@ -65,7 +65,7 @@ function typeIsInput(SchemaDefinition $schema, string $name): bool
     return false;
 }
 
-function getTypeDefinitionOfTypeName(SchemaDefinition $schema, string $name): null | ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType | UnionType
+function getTypeDefinitionOfTypeName(SchemaDefinition $schema, string $name): null|ScalarType|InputObjectType|ObjectType|EnumType|InterfaceType|UnionType
 {
     foreach ($schema->getTypes() as $typeDef) {
         if ($name === $typeDef->getName()) {
@@ -93,10 +93,10 @@ function getTypesWhoseImplementInterface(SchemaConfig $config, string $interface
 
 function phpTypeIsNullable(string $type): bool
 {
-    return 1 === \preg_match('/^(.+[|])?null([|].+)?$/', $type);
+    return 1 === preg_match('/^(.+[|])?null([|].+)?$/', $type);
 }
 
-function getPhpTypeOf(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode $type, bool $canBeNull = true): string
+function getPhpTypeOf(SchemaConfig $config, ListTypeNode|NamedTypeNode|NonNullTypeNode $type, bool $canBeNull = true): string
 {
     $orNull = ($canBeNull ? '|null' : '');
 
@@ -113,7 +113,7 @@ function getPhpTypeOf(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNu
     throw new \RuntimeException('impossible');
 }
 
-function getPsalmTypeOf(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode $type, bool $canBeNull = true): string
+function getPsalmTypeOf(SchemaConfig $config, ListTypeNode|NamedTypeNode|NonNullTypeNode $type, bool $canBeNull = true): string
 {
     $orNull = ($canBeNull ? '|null' : '');
     if ($type instanceof NamedTypeNode) {
@@ -141,13 +141,13 @@ function graphqlToPhpType(SchemaConfig $config, string $name): string
     } elseif ($type instanceof ObjectType) {
         return $type->getRootType();
     } elseif ($type instanceof EnumType) {
-        $hasStringValue = \count(\array_filter($type->getValues(), fn (EnumValue $value): bool => \is_string($value->getValue()))) > 0;
-        $hasIntValue = \count(\array_filter($type->getValues(), fn (EnumValue $value): bool => \is_int($value->getValue()))) > 0;
-        $hasBoolValue = \count(\array_filter($type->getValues(), fn (EnumValue $value): bool => \is_bool($value->getValue()))) > 0;
-        $hasFloatValue = \count(\array_filter($type->getValues(), fn (EnumValue $value): bool => \is_float($value->getValue()))) > 0;
-        $hasNullValue = \count(\array_filter($type->getValues(), fn (EnumValue $value): bool => null === $value->getValue())) > 0;
+        $hasStringValue = \count(array_filter($type->getValues(), fn (EnumValue $value): bool => \is_string($value->getValue()))) > 0;
+        $hasIntValue = \count(array_filter($type->getValues(), fn (EnumValue $value): bool => \is_int($value->getValue()))) > 0;
+        $hasBoolValue = \count(array_filter($type->getValues(), fn (EnumValue $value): bool => \is_bool($value->getValue()))) > 0;
+        $hasFloatValue = \count(array_filter($type->getValues(), fn (EnumValue $value): bool => \is_float($value->getValue()))) > 0;
+        $hasNullValue = \count(array_filter($type->getValues(), fn (EnumValue $value): bool => null === $value->getValue())) > 0;
 
-        $types = \array_filter([
+        $types = array_filter([
             $hasStringValue ? 'string' : null,
             $hasIntValue ? 'int' : null,
             $hasBoolValue ? 'bool' : null,
@@ -159,19 +159,19 @@ function graphqlToPhpType(SchemaConfig $config, string $name): string
             return 'mixed';
         }
 
-        return \implode('|', $types);
+        return implode('|', $types);
     } elseif ($type instanceof InterfaceType) {
-        $types = \array_unique(\array_map(function (ObjectType $objectType) use ($config): string {
+        $types = array_unique(array_map(function (ObjectType $objectType) use ($config): string {
             return graphqlToPhpType(config: $config, name: $objectType->getName());
         }, getTypesWhoseImplementInterface(config: $config, interface: $type->getName())), \SORT_REGULAR);
 
-        return \implode('|', $types);
+        return implode('|', $types);
     } elseif ($type instanceof UnionType) {
-        $types = \array_unique(\array_map(function (string $name) use ($config): string {
+        $types = array_unique(array_map(function (string $name) use ($config): string {
             return graphqlToPhpType(config: $config, name: $name);
         }, $type->getTypes()), \SORT_REGULAR);
 
-        return \implode('|', $types);
+        return implode('|', $types);
     }
 
     throw new \RuntimeException('impossible');
@@ -182,7 +182,7 @@ function graphqlToPsalmType(SchemaConfig $config, string $name): string
     $type = getTypeDefinitionOfTypeName($config->getSchema(), $name);
 
     if (null === $type) {
-        throw new \RuntimeException(\sprintf('Type "%s" not exist', $name));
+        throw new \RuntimeException(sprintf('Type "%s" not exist', $name));
     } elseif ($type instanceof ScalarType) {
         return $type->getRootType();
     } elseif ($type instanceof InputObjectType) {
@@ -190,18 +190,18 @@ function graphqlToPsalmType(SchemaConfig $config, string $name): string
     } elseif ($type instanceof ObjectType) {
         return $type->getPsalmType();
     } elseif ($type instanceof EnumType) {
-        $types = \array_unique(\array_map(function (EnumValue $value): string {
+        $types = array_unique(array_map(function (EnumValue $value): string {
             $v = $value->getValue();
             if (null === $v) {
                 return 'null';
             } elseif (\is_string($v)) {
-                return "'".\stripslashes($v)."'";
+                return "'".stripslashes($v)."'";
             } elseif (true === $v) {
                 return 'true';
             } elseif (false === $v) {
                 return 'false';
             } elseif (\is_int($v)) {
-                return \sprintf('%s', $v);
+                return sprintf('%s', $v);
             } elseif (\is_float($v)) {
                 return 'float';
             }
@@ -213,19 +213,19 @@ function graphqlToPsalmType(SchemaConfig $config, string $name): string
             return 'mixed';
         }
 
-        return \implode('|', $types);
+        return implode('|', $types);
     } elseif ($type instanceof InterfaceType) {
-        $types = \array_unique(\array_map(function (ObjectType $objectType) use ($config): string {
+        $types = array_unique(array_map(function (ObjectType $objectType) use ($config): string {
             return graphqlToPsalmType(config: $config, name: $objectType->getName());
         }, getTypesWhoseImplementInterface(config: $config, interface: $type->getName())), \SORT_REGULAR);
 
-        return \implode('|', $types);
+        return implode('|', $types);
     } elseif ($type instanceof UnionType) {
-        $types = \array_unique(\array_map(function (string $name) use ($config): string {
+        $types = array_unique(array_map(function (string $name) use ($config): string {
             return graphqlToPsalmType(config: $config, name: $name);
         }, $type->getTypes()), \SORT_REGULAR);
 
-        return \implode('|', $types);
+        return implode('|', $types);
     }
 
     throw new \RuntimeException('impossible');
@@ -257,28 +257,28 @@ function callArgsFrom__args(SchemaConfig $config, array $args, string $arrayName
         $name = $argument->getName();
         $nameKey = $dumper->dump($name);
 
-        $results[] = \strtr(':name: (:transformType)', [
+        $results[] = strtr(':name: (:transformType)', [
             ':name' => $name,
             ':nameKey' => $nameKey,
             ':transformType' => transformType(
                 config: $config,
                 type: Parser::parseType($argument->getType()),
-                value: \sprintf('(%s)[%s] ?? null', $arrayName, $nameKey),
+                value: sprintf('(%s)[%s] ?? null', $arrayName, $nameKey),
             ),
         ]);
     }
 
-    return \implode(', ', $results);
+    return implode(', ', $results);
 }
 
-function callTransformType(SchemaConfig $config, ScalarType | InputObjectType | ObjectType | EnumType | InterfaceType | UnionType $type, string $value): string
+function callTransformType(SchemaConfig $config, ScalarType|InputObjectType|ObjectType|EnumType|InterfaceType|UnionType $type, string $value): string
 {
     $transformMethod = $type->getGenerator()->transformTypeMethodName(config: $config);
 
-    return \sprintf('(null === (%s) ? null : $this->%s(%s))', $value, $transformMethod, $value);
+    return sprintf('(null === (%s) ? null : $this->%s(%s))', $value, $transformMethod, $value);
 }
 
-function transformType(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonNullTypeNode | UnionType $type, string $value): string
+function transformType(SchemaConfig $config, ListTypeNode|NamedTypeNode|NonNullTypeNode|UnionType $type, string $value): string
 {
     if ($type instanceof NamedTypeNode) {
         $typeDef = getTypeDefinitionOfTypeName(schema: $config->getSchema(), name: $type->name->value);
@@ -288,7 +288,7 @@ function transformType(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonN
 
         return callTransformType(config: $config, type: $typeDef, value: $value);
     } elseif ($type instanceof ListTypeNode) {
-        return \strtr('(function ($__value) {
+        return strtr('(function ($__value) {
                 return $__value === null ? null : array_map(function ($__value) {
                     return (:rec);
                 }, $__value);
@@ -297,7 +297,7 @@ function transformType(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonN
             ':value' => $value,
         ]);
     } elseif ($type instanceof NonNullTypeNode) {
-        return \strtr('(function ($__value) {
+        return strtr('(function ($__value) {
                 return $__value === null ? null : (:rec);
             })(:value)', [
             ':rec' => transformType(config: $config, type: $type->type, value: '$__value'),
@@ -311,29 +311,29 @@ function transformType(SchemaConfig $config, ListTypeNode | NamedTypeNode | NonN
 /** @param list<string> $parts */
 function fqcn(SchemaConfig $config, array $parts = []): string
 {
-    $trim = fn (string $part): string => \trim(\trim(\trim($part), '//'));
-    $parts = \array_map($trim, \array_merge([], [$config->getNamespace()], $parts));
+    $trim = fn (string $part): string => trim(trim(trim($part), '//'));
+    $parts = array_map($trim, array_merge([], [$config->getNamespace()], $parts));
 
-    $parts = \array_filter($parts);
+    $parts = array_filter($parts);
 
-    return \implode('\\', $parts);
+    return implode('\\', $parts);
 }
 
 function extractShortName(string $name): string
 {
-    return ($pos = \strrpos($name, '\\')) === false
+    return ($pos = strrpos($name, '\\')) === false
         ? $name
-        : \substr($name, $pos + 1);
+        : substr($name, $pos + 1);
 }
 
 function extractBaseNamespace(string $fqcn): string
 {
-    $parts = \explode('\\', \trim(\trim(\trim($fqcn), '\\')));
+    $parts = explode('\\', trim(trim(trim($fqcn), '\\')));
     if (\count($parts) <= 1) {
         return '';
     }
 
-    return \implode('\\', \array_slice($parts, 0, -1));
+    return implode('\\', \array_slice($parts, 0, -1));
 }
 
 /**
@@ -366,15 +366,15 @@ function array_flatten(array $array): array
  */
 function array_flat_map(callable $callback, array $array): array
 {
-    return array_flatten(\array_map($callback, $array));
+    return array_flatten(array_map($callback, $array));
 }
 
 function pathForFQCN(string $baseNs, string $fqcn): string
 {
-    return '/'.\strtr(
-            \preg_replace('/^'.\preg_quote($baseNs).'\\\\(.*)$/', '$1', $fqcn),
-            ['\\' => '/']
-        ).'.php';
+    return '/'.strtr(
+        preg_replace('/^'.preg_quote($baseNs).'\\\\(.*)$/', '$1', $fqcn),
+        ['\\' => '/']
+    ).'.php';
 }
 
 function writeFile(FilesystemOperator $fs, string $baseNs, PhpFile $file, bool $overwrite): void
@@ -382,8 +382,8 @@ function writeFile(FilesystemOperator $fs, string $baseNs, PhpFile $file, bool $
     AddUseInFile::visitFile($file);
 
     $classes = array_flat_map(function (PhpNamespace $ns): array {
-        return \array_map(fn (ClassType $class): string => $ns->getName().'\\'.strDef($class->getName(), ''), \array_values($ns->getClasses()));
-    }, \array_values($file->getNamespaces()));
+        return array_map(fn (ClassType $class): string => $ns->getName().'\\'.strDef($class->getName(), ''), array_values($ns->getClasses()));
+    }, array_values($file->getNamespaces()));
 
     if (\count($classes) <= 0) {
         throw new \RuntimeException('Impossible to write file class.');

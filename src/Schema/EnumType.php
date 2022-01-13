@@ -44,7 +44,7 @@ final class EnumType extends TypeDefinition implements OutputType, InputType
         return $this;
     }
 
-    public static function value(string $name, null | string | int | bool | float $value = null, string $description = ''): EnumValue
+    public static function value(string $name, null|string|int|bool|float $value = null, string $description = ''): EnumValue
     {
         return new EnumValue(name: $name, value: $value, description: $description);
     }

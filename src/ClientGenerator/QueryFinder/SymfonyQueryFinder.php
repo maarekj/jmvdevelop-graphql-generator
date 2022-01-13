@@ -25,7 +25,7 @@ final class SymfonyQueryFinder implements QueryFinder
         foreach ($files as $file) {
             $path = $file->getRealPath();
             if (false !== $path) {
-                $content = \file_get_contents($path);
+                $content = file_get_contents($path);
                 if (false !== $content) {
                     yield new Source($content, $path);
                 }

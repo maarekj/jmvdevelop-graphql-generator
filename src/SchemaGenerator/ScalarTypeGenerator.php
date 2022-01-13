@@ -32,7 +32,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
         $method = $class->addMethod($this->getTypeMethodName($config));
         $method->setReturnType('\GraphQL\Type\Definition\CustomScalarType');
         $method->addBody(
-            \strtr(
+            strtr(
                 '
                 if ($this->:property === null) {
                     $this->:property = new \GraphQL\Type\Definition\CustomScalarType([
@@ -130,7 +130,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
     {
         return fqcn(config: $config, parts: [
             $this->type->getSuffixNamespace(),
-            \ucfirst($this->type->getName()).'Type',
+            ucfirst($this->type->getName()).'Type',
         ]);
     }
 
@@ -139,7 +139,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
         return fqcn(config: $config, parts: [
             'Generated',
             $this->type->getSuffixNamespace(),
-            'Abstract'.\ucfirst($this->type->getName()).'Type',
+            'Abstract'.ucfirst($this->type->getName()).'Type',
         ]);
     }
 }

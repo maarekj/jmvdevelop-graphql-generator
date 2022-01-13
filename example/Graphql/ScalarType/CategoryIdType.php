@@ -17,12 +17,12 @@ final class CategoryIdType extends AbstractCategoryIdType
     {
     }
 
-    public function serialize(Category $value): string | int | float | null | bool
+    public function serialize(Category $value): string|int|float|null|bool
     {
         return $value->getId();
     }
 
-    public function parseValue(float | int | string | null | bool $value): Category
+    public function parseValue(float|int|string|null|bool $value): Category
     {
         if (null !== $value && \is_int($value)) {
             $category = $this->repo->find($value);

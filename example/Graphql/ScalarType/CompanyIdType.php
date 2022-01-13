@@ -17,12 +17,12 @@ final class CompanyIdType extends AbstractCompanyIdType
     {
     }
 
-    public function serialize(Company $value): string | int | float | null | bool
+    public function serialize(Company $value): string|int|float|null|bool
     {
         return $value->getId();
     }
 
-    public function parseValue(float | int | string | null | bool $value): Company
+    public function parseValue(float|int|string|null|bool $value): Company
     {
         if (null !== $value && \is_int($value)) {
             $entity = $this->repo->find($value);

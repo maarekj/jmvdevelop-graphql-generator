@@ -72,7 +72,7 @@ final class GraphqlToPhpCompiler
             );
         }
 
-        return \strtr($res, [
+        return strtr($res, [
             ':nameOrAlias' => $this->dump($nameOrAlias),
             ':variable' => $variable,
             ':return' => $return,
@@ -95,7 +95,7 @@ final class GraphqlToPhpCompiler
             /** @var Type $ofType */
             $ofType = $type->getOfType();
 
-            return \strtr($res, [
+            return strtr($res, [
                 ':variable' => $variable,
                 ':sub' => $this->compileType(variable: '$___data', field: $field, type: $ofType),
             ]);

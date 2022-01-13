@@ -28,7 +28,7 @@ final class GraphqlTypeToPhpTypeCompiler
     {
     }
 
-    public function compileTypeNodeToPhpType(NamedTypeNode | ListTypeNode | NonNullTypeNode $typeNode, bool $forceCanBeNull, bool $canBeNull = true): string
+    public function compileTypeNodeToPhpType(NamedTypeNode|ListTypeNode|NonNullTypeNode $typeNode, bool $forceCanBeNull, bool $canBeNull = true): string
     {
         $type = AST::typeFromAST($this->config->getSchema(), $typeNode);
         Assert::notNull($type);
@@ -48,7 +48,7 @@ final class GraphqlTypeToPhpTypeCompiler
                 return $this->compileTypeToPhpType(type: $ofType, canBeNull: true, forceCanBeNull: false);
             }
 
-            return $this->compileTypeToPsalmType(type: $ofType, canBeNull: false, forceCanBeNull: false);
+            return $this->compileTypeToPhpType(type: $ofType, canBeNull: false, forceCanBeNull: false);
         } elseif ($type instanceof ListOfType) {
             return 'array'.$orNull;
         } elseif ($type instanceof ScalarType) {
@@ -66,7 +66,7 @@ final class GraphqlTypeToPhpTypeCompiler
         return 'array'.$orNull;
     }
 
-    public function compileTypeNodeToPsalmType(NamedTypeNode | ListTypeNode | NonNullTypeNode $typeNode, bool $forceCanBeNull): string
+    public function compileTypeNodeToPsalmType(NamedTypeNode|ListTypeNode|NonNullTypeNode $typeNode, bool $forceCanBeNull): string
     {
         $type = AST::typeFromAST($this->config->getSchema(), $typeNode);
         Assert::notNull($type);
@@ -103,12 +103,12 @@ final class GraphqlTypeToPhpTypeCompiler
 
             return $inputClass.$orNull;
         } elseif ($type instanceof EnumType) {
-            $values = \array_map(
+            $values = array_map(
                 fn (EnumValueDefinition $value): string => $dumper->dump($value->value),
                 $type->getValues()
             );
 
-            return \implode('|', $values).$orNull;
+            return implode('|', $values).$orNull;
         }
 
         return 'array'.$orNull;
@@ -116,13 +116,13 @@ final class GraphqlTypeToPhpTypeCompiler
 
     public function compileSelectionSetToPsalmType(SelectionSetNode $set, ObjectType $baseType, bool $canBeNull): string
     {
-        $res = \array_map(function (SelectionNode $selection) use ($baseType): string {
+        $res = array_map(function (SelectionNode $selection) use ($baseType): string {
             return $this->compileSelectionToPsalmType(selection: $selection, baseType: $baseType);
-        }, \iterator_to_array($set->selections));
+        }, iterator_to_array($set->selections));
 
         $orNull = ($canBeNull ? '|null' : '');
 
-        return 'array{'.\implode(', ', $res).'}'.$orNull;
+        return 'array{'.implode(', ', $res).'}'.$orNull;
     }
 
     public function compileSelectionToPsalmType(SelectionNode $selection, ObjectType $baseType): string
@@ -151,7 +151,7 @@ final class GraphqlTypeToPhpTypeCompiler
             $sub = $this->compileTypeWithFieldNodeToPsalmType(type: $fieldType, field: $field);
         }
 
-        return \strtr($res, [
+        return strtr($res, [
             ':nameOrAlias' => $nameOrAlias,
             ':sub' => $sub,
         ]);

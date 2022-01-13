@@ -22,16 +22,16 @@ final class CompanyType extends AbstractCompanyType
     /** @return list<Category> */
     public function resolveCategories(Company $root): array
     {
-        return \array_values(\array_filter(\array_map(fn ($id) => $this->categoryRepo->find($id), $root->getCategories())));
+        return array_values(array_filter(array_map(fn ($id) => $this->categoryRepo->find($id), $root->getCategories())));
     }
 
     /** @return list<Category> */
-    public function resolveSearchCategories(Company $root, ?string $name, ?array $keywords, string $orderBy): array | null
+    public function resolveSearchCategories(Company $root, ?string $name, ?array $keywords, string $orderBy): array|null
     {
-        return \array_values(\array_filter(\array_map(fn ($id) => $this->categoryRepo->find($id), $root->getCategories())));
+        return array_values(array_filter(array_map(fn ($id) => $this->categoryRepo->find($id), $root->getCategories())));
     }
 
-    public function resolveUser(Company $root): User | null
+    public function resolveUser(Company $root): User|null
     {
         $id = $root->getUser();
 

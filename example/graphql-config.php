@@ -142,6 +142,14 @@ $schema->addType(InputObjectType::create(name: 'SearchCompanyWhereInput', fields
     InputObjectType::field(name: 'withCategory', type: 'YesNo'),
 ]));
 
+$schema->addType(InputObjectType::create(name: 'TestInput', fields: [
+    InputObjectType::field(name: 'enum', type: 'YesNo'),
+    InputObjectType::field(name: 'requiredEnum', type: 'YesNo!'),
+    InputObjectType::field(name: 'listEnum', type: '[YesNo]'),
+    InputObjectType::field(name: 'requiredListEnum', type: '[YesNo]!'),
+    InputObjectType::field(name: 'requiredListRequiredEnum', type: '[YesNo!]!'),
+]));
+
 $schema->addQueryField(QueryField::create(
     name: 'searchByName',
     type: '[WithName!]!',

@@ -37,7 +37,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
 
         $method = $class->addMethod($this->getTypeMethodName($config));
         $method->setReturnType('\GraphQL\Type\Definition\InterfaceType');
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\InterfaceType([
                     "description" => :description,
@@ -55,7 +55,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
         ]));
 
         foreach ($this->type->getFields() as $field) {
-            $method->addBody(\strtr(':fieldName => [
+            $method->addBody(strtr(':fieldName => [
                             "type" => :type,
                             "description" => :description,
                         ],', [
@@ -65,7 +65,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
             ]));
         }
 
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
                         ];
                     },
                 ]);
@@ -149,7 +149,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
     {
         return fqcn(config: $config, parts: [
             $this->type->getSuffixNamespace(),
-            \ucfirst($this->type->getName()).'Type',
+            ucfirst($this->type->getName()).'Type',
         ]);
     }
 
@@ -158,7 +158,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
         return fqcn(config: $config, parts: [
             'Generated',
             $this->type->getSuffixNamespace(),
-            'Abstract'.\ucfirst($this->type->getName()).'Type',
+            'Abstract'.ucfirst($this->type->getName()).'Type',
         ]);
     }
 }

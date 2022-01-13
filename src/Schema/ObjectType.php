@@ -26,8 +26,8 @@ final class ObjectType extends TypeDefinition implements OutputType
         private array $interfaces = [],
         string $description = '',
     ) {
-        $this->rootType = '\\'.\ltrim($this->rootType, '\\');
-        $this->psalmType = '\\'.\ltrim($this->psalmType, '\\');
+        $this->rootType = '\\'.ltrim($this->rootType, '\\');
+        $this->psalmType = '\\'.ltrim($this->psalmType, '\\');
         parent::__construct(name: $name, ns: $ns, description: $description);
     }
 

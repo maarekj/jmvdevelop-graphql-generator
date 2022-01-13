@@ -37,7 +37,7 @@ class UnionTypeGenerator implements TypeGeneratorInterface
 
         $method = $class->addMethod($this->getTypeMethodName($config));
         $method->setReturnType('\GraphQL\Type\Definition\UnionType');
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\UnionType([
                     "description" => :description,
@@ -55,12 +55,12 @@ class UnionTypeGenerator implements TypeGeneratorInterface
             ':name' => $dumper->dump($this->type->getName()),
             ':description' => $dumper->dump($this->type->getDescription()),
             ':property' => $propertyName,
-            ':types' => \implode(",\n", \array_map(function (string $type) use ($config) {
+            ':types' => implode(",\n", array_map(function (string $type) use ($config) {
                 return getTypeFromRegistry($config, Parser::parseType($type));
             }, $this->type->getTypes())),
         ]));
 
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
              return $this->:property;', [
             ':property' => $propertyName,
         ]));
@@ -139,7 +139,7 @@ class UnionTypeGenerator implements TypeGeneratorInterface
     {
         return fqcn(config: $config, parts: [
             $this->type->getSuffixNamespace(),
-            \ucfirst($this->type->getName()).'Type',
+            ucfirst($this->type->getName()).'Type',
         ]);
     }
 
@@ -148,7 +148,7 @@ class UnionTypeGenerator implements TypeGeneratorInterface
         return fqcn(config: $config, parts: [
             'Generated',
             $this->type->getSuffixNamespace(),
-            'Abstract'.\ucfirst($this->type->getName()).'Type',
+            'Abstract'.ucfirst($this->type->getName()).'Type',
         ]);
     }
 }

@@ -16,7 +16,7 @@ final class WithNameType extends AbstractWithNameType
     {
     }
 
-    public function resolveType(Category | Company $value): Type
+    public function resolveType(Category|Company $value): Type
     {
         if ($value instanceof Category) {
             return $this->schema->get_object_type_Category();

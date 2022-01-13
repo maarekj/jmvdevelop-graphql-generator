@@ -11,8 +11,8 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\User;
 
 abstract class AbstractWithIdType
 {
-    /**
-     * Object with id.
-     */
-    abstract public function resolveType(User | Category | Company $value): Type;
+	/**
+	 * Object with id
+	 */
+	abstract public function resolveType(User|Category|Company $value): Type;
 }

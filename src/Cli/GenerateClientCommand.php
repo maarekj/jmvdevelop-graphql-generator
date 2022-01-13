@@ -41,8 +41,8 @@ final class GenerateClientCommand extends Command
         $configPath = $input->getOption('config');
         Assert::stringNotEmpty($configPath);
 
-        if (false === \is_file($configPath)) {
-            $style->error(\sprintf('The config file %s not found', $configPath));
+        if (false === is_file($configPath)) {
+            $style->error(sprintf('The config file %s not found', $configPath));
 
             return 1;
         }

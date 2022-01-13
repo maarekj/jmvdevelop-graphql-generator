@@ -17,12 +17,12 @@ final class UserIdType extends AbstractUserIdType
     {
     }
 
-    public function serialize(User $value): string | int | float | null | bool
+    public function serialize(User $value): string|int|float|null|bool
     {
         return $value->getId();
     }
 
-    public function parseValue(float | int | string | null | bool $value): User
+    public function parseValue(float|int|string|null|bool $value): User
     {
         if (null !== $value && \is_int($value)) {
             $entity = $this->repo->find($value);

@@ -79,7 +79,7 @@ final class SchemaGenerator
         foreach ($this->config->getSchema()->getTypes() as $type) {
             $type->getGenerator()->createGetTypeMethodOnSchema(config: $this->config, class: $class);
             $type->getGenerator()->createTransformTypeMethodOnSchema(config: $this->config, class: $class);
-            $subscribedServices = \array_merge([], $subscribedServices, $type->getGenerator()->subscribeService(config: $this->config));
+            $subscribedServices = array_merge([], $subscribedServices, $type->getGenerator()->subscribeService(config: $this->config));
         }
 
         $addQueryOrMutationType =
@@ -98,10 +98,10 @@ final class SchemaGenerator
                     ', [$fieldName]);
 
                 foreach ($fields as $field) {
-                    $class = $this->namespace.'\\'.$field->getSuffixNamespace().'\\'.\ucfirst($field->getName()).$suffixClass;
+                    $class = $this->namespace.'\\'.$field->getSuffixNamespace().'\\'.ucfirst($field->getName()).$suffixClass;
                     $subscribedServices[$class] = $class;
 
-                    $queryMethod->addBody(\strtr(':fieldName => [
+                    $queryMethod->addBody(strtr(':fieldName => [
                         "name" => :fieldName,
                         "description" => :description,
                         "type" => :type,
@@ -116,8 +116,8 @@ final class SchemaGenerator
                         ':description' => $dumper->dump($field->getDescription()),
                         ':type' => getTypeFromRegistry(config: $this->config, type: Parser::parseType($field->getType())),
                         ':callArgs' => callArgsFrom__args(config: $this->config, args: $field->getArgs(), arrayName: '$__args'),
-                        ':defArgs' => '['.\implode(', ', \array_map(function (Argument $argument) use ($dumper) {
-                            return \strtr('[
+                        ':defArgs' => '['.implode(', ', array_map(function (Argument $argument) use ($dumper) {
+                            return strtr('[
                                 "name" => :name,
                                 "description" => :description,
                                 "type" => :type,
@@ -167,7 +167,7 @@ final class SchemaGenerator
         writeFile(fs: $fs, baseNs: $baseNs, file: $userFile, overwrite: false);
     }
 
-    private function generateQueryOrMutationField(FilesystemOperator $fs, QueryField | MutationField $field): void
+    private function generateQueryOrMutationField(FilesystemOperator $fs, QueryField|MutationField $field): void
     {
         $suffixClass = $field instanceof QueryField ? 'Field' : 'Mutation';
 
@@ -175,7 +175,7 @@ final class SchemaGenerator
         $file->setStrictTypes(true);
 
         $abstractClass = fqcn(config: $this->config, parts: [
-            'Generated', $field->getSuffixNamespace(), 'Abstract'.\ucfirst($field->getName()).$suffixClass,
+            'Generated', $field->getSuffixNamespace(), 'Abstract'.ucfirst($field->getName()).$suffixClass,
         ]);
 
         $namespace = $file->addNamespace(extractBaseNamespace($abstractClass));
@@ -206,7 +206,7 @@ final class SchemaGenerator
             $autoResolveReturnArg = $field->getAutoResolveReturnArg();
             if (null !== $autoResolveReturnArg) {
                 $resolveMethod->setAbstract(false);
-                $resolveMethod->addBody(\sprintf('
+                $resolveMethod->addBody(sprintf('
                 return $%s;
             ', $autoResolveReturnArg));
             }
@@ -214,7 +214,7 @@ final class SchemaGenerator
 
         $concretClass = fqcn(config: $this->config, parts: [
             $field->getSuffixNamespace(),
-            \ucfirst($field->getName()).$suffixClass,
+            ucfirst($field->getName()).$suffixClass,
         ]);
 
         $userFile = new PhpFile();

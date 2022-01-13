@@ -23,7 +23,7 @@ $assertMatchExecuteGraphqlSnapshot = function ($query, array $variables = []) us
         source: $query,
         variableValues: $variables,
     );
-    assertMatchesJsonSnapshot(\json_encode($result->toArray(DebugFlag::INCLUDE_TRACE | DebugFlag::INCLUDE_DEBUG_MESSAGE)));
+    assertMatchesJsonSnapshot(json_encode($result->toArray(DebugFlag::INCLUDE_TRACE | DebugFlag::INCLUDE_DEBUG_MESSAGE)));
 };
 
 beforeEach(function () use (&$container): void {

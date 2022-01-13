@@ -25,7 +25,7 @@ final class NativeScalarTypeGenerator extends ScalarTypeGenerator
         $method = $class->addMethod($this->getTypeMethodName($config));
         $method->setReturnType('\GraphQL\Type\Definition\ScalarType');
         $method->addBody(
-            \strtr(
+            strtr(
                 '
                 return \GraphQL\Type\Definition\Type:::nativeType();
             ',

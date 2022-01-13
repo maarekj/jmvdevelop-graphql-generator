@@ -17,7 +17,7 @@ final class WithIdType extends AbstractWithIdType
     {
     }
 
-    public function resolveType(User | Category | Company $value): Type
+    public function resolveType(User|Category|Company $value): Type
     {
         if ($value instanceof User) {
             return $this->schema->get_object_type_User();

@@ -46,26 +46,26 @@ beforeEach(function () use (&$container, &$client): void {
 
 test('company1And2Query', function () use (&$client): void {
     $data = $client->execute_company1And2Query();
-    assertMatchesJsonSnapshot(\json_encode($data));
+    assertMatchesJsonSnapshot(json_encode($data));
 });
 
 test('searchCompaniesWithNoArg', function () use (&$client): void {
     $data = $client->execute_searchCompaniesWithNoArg();
-    assertMatchesJsonSnapshot(\json_encode($data));
+    assertMatchesJsonSnapshot(json_encode($data));
 });
 
 test('searchCompaniesWithId', function () use (&$client): void {
     $data = $client->execute_searchCompaniesWithId(id: 1);
-    assertMatchesJsonSnapshot(\json_encode($data));
+    assertMatchesJsonSnapshot(json_encode($data));
 });
 
 test('searchCompanies', function () use (&$client): void {
     $data = $client->execute_searchCompanies(where: null);
-    assertMatchesJsonSnapshot(\json_encode($data));
+    assertMatchesJsonSnapshot(json_encode($data));
 
     $data = $client->execute_searchCompanies(where: new SearchCompanyWhereInput());
-    assertMatchesJsonSnapshot(\json_encode($data));
+    assertMatchesJsonSnapshot(json_encode($data));
 
     $data = $client->execute_searchCompanies(where: new SearchCompanyWhereInput(id: new IntExprInput(eq: 1)));
-    assertMatchesJsonSnapshot(\json_encode($data));
+    assertMatchesJsonSnapshot(json_encode($data));
 });

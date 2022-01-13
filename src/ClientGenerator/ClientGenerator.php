@@ -105,16 +105,16 @@ final class ClientGenerator
         Assert::isInstanceOf($queryType, ObjectType::class);
 
         $class->addComment('@psalm-type T_'.$operationName.' = '.$graphqlTypeToPhpCompiler->compileSelectionSetToPsalmType(
-                set: $operation->selectionSet,
-                baseType: $queryType,
-                canBeNull: false,
-            ));
+            set: $operation->selectionSet,
+            baseType: $queryType,
+            canBeNull: false,
+        ));
 
         $parseMethod->addBody('return ('.$graphqlToPhpCompiler->compileSelectionSet(
-                variable: '$data',
-                set: $operation->selectionSet,
-                baseType: $queryType
-            ).');');
+            variable: '$data',
+            set: $operation->selectionSet,
+            baseType: $queryType
+        ).');');
 
         $parseMethod->addComment('@psalm-return T_'.$operationName);
 
@@ -142,16 +142,16 @@ final class ClientGenerator
             $variables[] = '"'.$variableDefinition->variable->name->value.'" => '.$this->compilePhpValueToGraphql(variable: '$'.$variableDefinition->variable->name->value, typeNode: $variableDefinition->type);
         }
 
-        $executeMethod->addBody(\strtr('
+        $executeMethod->addBody(strtr('
 $___result = $this->execute($this->gql_:name(), :variables);
 return $this->parse_:name($___result);
 ', [
             ':name' => $operationName,
-            ':variables' => '['.\implode(",\n", $variables).']',
+            ':variables' => '['.implode(",\n", $variables).']',
         ]));
     }
 
-    private function compilePhpValueToGraphql(string $variable, NamedTypeNode | ListTypeNode | NonNullTypeNode $typeNode, bool $canBeNull = true): string
+    private function compilePhpValueToGraphql(string $variable, NamedTypeNode|ListTypeNode|NonNullTypeNode $typeNode, bool $canBeNull = true): string
     {
         $nullOr = $canBeNull ? "({$variable}) === null ? null : " : '';
 
@@ -162,7 +162,7 @@ return $this->parse_:name($___result);
         } elseif ($typeNode instanceof NonNullTypeNode) {
             return $this->compilePhpValueToGraphql(variable: $variable, typeNode: $typeNode->type, canBeNull: false);
         } elseif ($typeNode instanceof ListTypeNode) {
-            return \strtr(':nullOr array_map(fn($_value) =>
+            return strtr(':nullOr array_map(fn($_value) =>
                             return (:sub);
             }, (:variable))', [
                 ':nullOr' => $nullOr,

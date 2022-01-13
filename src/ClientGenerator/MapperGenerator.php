@@ -119,7 +119,7 @@ final class MapperGenerator
         $name = $type->name;
 
         $method = $class->addMethod('php_to_graphql_'.$name)->setReturnType('array');
-        $inputClass = '\\'.$this->config->getNamespace().'\\ClientGenerated\\InputObject\\'.\ucfirst($type->name);
+        $inputClass = '\\'.$this->config->getNamespace().'\\ClientGenerated\\InputObject\\'.ucfirst($type->name);
         $method->addParameter('data')->setType($inputClass);
 
         $method->addBody('return [
@@ -146,7 +146,7 @@ final class MapperGenerator
             /** @var Type $ofType */
             $ofType = $type->getOfType();
 
-            return \strtr(':nullOr array_map(fn ($_value) => (:sub), (:variable))', [
+            return strtr(':nullOr array_map(fn ($_value) => (:sub), (:variable))', [
                 ':nullOr' => $nullOr,
                 ':variable' => $variable,
                 ':sub' => $this->compileInputObjectFieldType(variable: '$_value', type: $ofType, canBeNull: true),

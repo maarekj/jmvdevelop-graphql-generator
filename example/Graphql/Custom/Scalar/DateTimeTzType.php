@@ -11,12 +11,12 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Scalar\Abstract
 
 final class DateTimeTzType extends AbstractDateTimeTzType
 {
-    public function serialize(\DateTimeImmutable $value): string | int | float | null | bool
+    public function serialize(\DateTimeImmutable $value): string|int|float|null|bool
     {
         return $value->format(\DateTimeInterface::RFC3339_EXTENDED);
     }
 
-    public static function staticParseValue(float | int | string | null | bool $value): \DateTimeImmutable
+    public static function staticParseValue(float|int|string|null|bool $value): \DateTimeImmutable
     {
         if (null !== $value && \is_string($value)) {
             $date = \DateTimeImmutable::createFromFormat(\DateTimeInterface::RFC3339_EXTENDED, $value);
@@ -28,7 +28,7 @@ final class DateTimeTzType extends AbstractDateTimeTzType
         throw new Error('Invalid date');
     }
 
-    public function parseValue(float | int | string | null | bool $value): \DateTimeImmutable
+    public function parseValue(float|int|string|null|bool $value): \DateTimeImmutable
     {
         return self::staticParseValue($value);
     }

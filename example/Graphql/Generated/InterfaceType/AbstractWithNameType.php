@@ -10,8 +10,8 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 
 abstract class AbstractWithNameType
 {
-    /**
-     * Object with string name.
-     */
-    abstract public function resolveType(Category | Company $value): Type;
+	/**
+	 * Object with string name
+	 */
+	abstract public function resolveType(Category|Company $value): Type;
 }

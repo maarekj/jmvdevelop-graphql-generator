@@ -14,7 +14,8 @@ final class CustomScalarConfig implements ScalarConfig
     public function __construct(
         private string $name,
         private string $php,
-        ?string $psalm = null)
+        ?string $psalm = null
+    )
     {
         $this->psalm = null === $psalm ? $this->php : $psalm;
     }

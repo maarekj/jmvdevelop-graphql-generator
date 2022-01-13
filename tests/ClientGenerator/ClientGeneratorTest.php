@@ -15,7 +15,7 @@ use Symfony\Component\Finder\Finder;
 
 test('generateClient', function (): void {
     $finder = (Finder::create()->in(__DIR__.'/queries')->files()->name('*.graphql'));
-    $schema = BuildSchema::build(\file_get_contents(__DIR__.'/schema.graphql'));
+    $schema = BuildSchema::build(file_get_contents(__DIR__.'/schema.graphql'));
 
     $config = new Config(
         out: __DIR__.'/Graphql',

@@ -56,11 +56,11 @@ final class AddUseInFile
         self::addUseFromType($namespace, $parameter->getType());
     }
 
-    private static function addUseFromType(PhpNamespace $namespace, null | string | Type $type): void
+    private static function addUseFromType(PhpNamespace $namespace, null|string|Type $type): void
     {
-        $type = null === $type ? '' : \trim((string) $type);
-        $types = \array_map(fn ($t) => \trim($t), \explode('|', $type));
-        $types = \array_filter($types, fn ($t) => match ($t) {
+        $type = null === $type ? '' : trim((string) $type);
+        $types = array_map(fn ($t) => trim($t), explode('|', $type));
+        $types = array_filter($types, fn ($t) => match ($t) {
             'self', 'static',
             'string', 'float', 'int', 'bool', 'mixed', 'array', 'iterable', 'object', 'scalar', 'null',
             '\\string', '\\float', '\\int', '\\bool', '\\mixed', '\\array', '\\iterable', '\\object', '\\scalar', '\\null' => false,
@@ -74,9 +74,9 @@ final class AddUseInFile
 
     private static function addUseIfCan(PhpNamespace $namespace, ?string $type): void
     {
-        if (null !== $type && '' !== \trim($type)) {
+        if (null !== $type && '' !== trim($type)) {
             try {
-                $classes = \array_values(\array_map(fn (ClassType $class) => $class->getName(), $namespace->getClasses()));
+                $classes = array_values(array_map(fn (ClassType $class) => $class->getName(), $namespace->getClasses()));
                 $shortName = extractShortName($type);
                 if (true === \in_array($shortName, $classes, true)) {
                     return;

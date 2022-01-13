@@ -39,7 +39,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         $method = $class->addMethod($this->getTypeMethodName($config));
 
         $method->setReturnType('\GraphQL\Type\Definition\InputObjectType');
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
             if ($this->:property === null) {
                 $this->:property = new \GraphQL\Type\Definition\InputObjectType([
                     "description" => :description,
@@ -53,7 +53,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         ]));
 
         foreach ($this->type->getFields() as $field) {
-            $method->addBody(\strtr(':fieldName => [
+            $method->addBody(strtr(':fieldName => [
                         "type" => :type,
                         "description" => :description,
                     ],', [
@@ -63,7 +63,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
             ]));
         }
 
-        $method->addBody(\strtr('
+        $method->addBody(strtr('
                         ];
                     },
                 ]);
@@ -80,7 +80,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
     {
         $method = $class->addMethod($this->transformTypeMethodName($config))->setPrivate();
         $method->addParameter('value');
-        $method->addBody(\sprintf(
+        $method->addBody(sprintf(
             'return new %s(%s);',
             '\\'.$this->fqcnClass($config),
             callArgsFrom__args(config: $config, args: $this->type->getFields(), arrayName: '$value'),
@@ -133,7 +133,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         return fqcn(config: $config, parts: [
             'Generated',
             $this->type->getSuffixNamespace(),
-            \ucfirst($this->type->getName()).'Type',
+            ucfirst($this->type->getName()).'Type',
         ]);
     }
 
@@ -161,7 +161,7 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
         $psalmArgType = getPsalmTypeOf(config: $config, type: Parser::parseType($field->getType()));
         $phpArgType = getPhpTypeOf(config: $config, type: Parser::parseType($field->getType()));
 
-        $method = $class->addMethod('_with'.\ucfirst($field->getName()));
+        $method = $class->addMethod('_with'.ucfirst($field->getName()));
         $method->addParameter($field->getName())->setType($phpArgType);
         $method->setReturnType($this->fqcnClass(config: $config));
 
@@ -178,9 +178,9 @@ class InputObjectTypeGenerator implements TypeGeneratorInterface
             }
         }
 
-        $method->addBody(\strtr('return new :className(:chain);', [
+        $method->addBody(strtr('return new :className(:chain);', [
             ':className' => '\\'.$this->fqcnClass(config: $config),
-            ':chain' => \implode(', ', $chain),
+            ':chain' => implode(', ', $chain),
         ]));
     }
 }

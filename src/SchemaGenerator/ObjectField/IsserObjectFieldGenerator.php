@@ -12,6 +12,6 @@ final class IsserObjectFieldGenerator implements ObjectFieldGenerator
 {
     public function generateBodyMethod(ObjectType $type, ObjectField $field, Method $method): void
     {
-        $method->addBody(\sprintf('return $root->is%s();', \ucfirst($field->getName())));
+        $method->addBody(sprintf('return $root->is%s();', ucfirst($field->getName())));
     }
 }

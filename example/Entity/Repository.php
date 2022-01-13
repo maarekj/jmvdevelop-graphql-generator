@@ -22,14 +22,14 @@ abstract class Repository
 
     public function nextId(): int
     {
-        return \max(
-            \array_merge([0], \array_map(
+        return max(
+            array_merge([0], array_map(
                     /** @param TEntity $o */
                     function ($o): int {
                         return $this->entityGetId($o);
                     },
-                    $this->findAll()
-                ))
+                $this->findAll()
+            ))
         ) + 1;
     }
 
@@ -54,6 +54,6 @@ abstract class Repository
     /** @return list<TEntity> */
     public function findAll(): array
     {
-        return \array_values($this->entities);
+        return array_values($this->entities);
     }
 }

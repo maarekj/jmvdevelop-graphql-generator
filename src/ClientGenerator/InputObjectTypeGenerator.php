@@ -38,7 +38,7 @@ final class InputObjectTypeGenerator
         $constructor = $class->addMethod('__construct');
 
         $fields = $this->type->getFields();
-        \usort($fields, function (InputObjectField $a, InputObjectField $b): int {
+        usort($fields, function (InputObjectField $a, InputObjectField $b): int {
             return $b->getType() instanceof NonNull <=> $a->getType() instanceof NonNull;
         });
 
@@ -55,7 +55,7 @@ final class InputObjectTypeGenerator
 
     public function fqcnClass(): string
     {
-        return $this->config->getNamespace().'\\ClientGenerated\\InputObject\\'.\ucfirst($this->type->name);
+        return $this->config->getNamespace().'\\ClientGenerated\\InputObject\\'.ucfirst($this->type->name);
     }
 
     private function addFieldToConstructor(Method $constructor, InputObjectField $field): void
@@ -82,7 +82,7 @@ final class InputObjectTypeGenerator
         $psalmArgType = $this->graphqlTypeToPhpTypeCompiler->compileTypeToPsalmType(type: $field->getType());
         $phpArgType = $this->graphqlTypeToPhpTypeCompiler->compileTypeToPhpType(type: $field->getType(), forceCanBeNull: false);
 
-        $method = $class->addMethod('_with'.\ucfirst($field->name));
+        $method = $class->addMethod('_with'.ucfirst($field->name));
         $method->addParameter($field->name)->setType($phpArgType);
         $method->setReturnType('self');
 
@@ -99,9 +99,9 @@ final class InputObjectTypeGenerator
             }
         }
 
-        $method->addBody(\strtr('return new :className(:chain);', [
+        $method->addBody(strtr('return new :className(:chain);', [
             ':className' => '\\'.$this->fqcnClass(),
-            ':chain' => \implode(', ', $chain),
+            ':chain' => implode(', ', $chain),
         ]));
     }
 }

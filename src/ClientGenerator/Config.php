@@ -20,7 +20,7 @@ final class Config
         private Schema $schema,
         private array $scalars = [],
     ) {
-        $this->scalars = \array_merge([], [
+        $this->scalars = array_merge([], [
             new IdScalarConfig(name: 'String', php: 'string'),
             new IdScalarConfig(name: 'Int', php: 'int'),
             new IdScalarConfig(name: 'ID', php: 'string'),

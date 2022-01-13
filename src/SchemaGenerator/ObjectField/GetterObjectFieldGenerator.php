@@ -12,6 +12,6 @@ final class GetterObjectFieldGenerator implements ObjectFieldGenerator
 {
     public function generateBodyMethod(ObjectType $type, ObjectField $field, Method $method): void
     {
-        $method->addBody(\sprintf('return $root->get%s();', \ucfirst($field->getName())));
+        $method->addBody(sprintf('return $root->get%s();', ucfirst($field->getName())));
     }
 }

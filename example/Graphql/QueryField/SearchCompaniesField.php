@@ -21,9 +21,9 @@ final class SearchCompaniesField extends AbstractSearchCompaniesField
      *
      * @return null|Pager<Company>
      */
-    public function resolve(?SearchCompanyWhereInputType $where): Pager | null
+    public function resolve(?SearchCompanyWhereInputType $where): Pager|null
     {
-        $results = \array_values(\array_filter($this->repo->findAll(), function (Company $company) use ($where): bool {
+        $results = array_values(array_filter($this->repo->findAll(), function (Company $company) use ($where): bool {
             if (null === $where) {
                 return true;
             }
