@@ -9,8 +9,8 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUs
 
 abstract class AbstractEditUserMutation
 {
-    /**
-     * Create an User.
-     */
-    abstract public function resolve(EditUserInputType $data): User;
+	/**
+	 * Create an User
+	 */
+	abstract public function resolve(EditUserInputType $data): User;
 }
