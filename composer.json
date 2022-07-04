@@ -35,12 +35,12 @@
   },
   "require": {
     "nette/php-generator": "^3.5",
-    "league/flysystem": "^2.0",
-    "league/flysystem-memory": "^2.0",
     "symfony/console": "^4.0.0|^5.2|^6.0",
     "webmozart/assert": "^1.10",
     "webonyx/graphql-php": "^14.6",
-    "azjezz/psl": "^1.9"
+    "azjezz/psl": "^1.9",
+    "league/flysystem": "^3.1",
+    "league/flysystem-memory": "^3.0"
   },
   "config": {
     "allow-plugins": {
