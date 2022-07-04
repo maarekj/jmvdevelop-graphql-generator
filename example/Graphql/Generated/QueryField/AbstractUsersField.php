@@ -6,10 +6,10 @@ namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField;
 
 abstract class AbstractUsersField
 {
-	/**
-	 * Get all users
-	 *
-	 * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\User>
-	 */
-	abstract public function resolve(): array;
+    /**
+     * Get all users.
+     *
+     * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\User>
+     */
+    abstract public function resolve(): array;
 }

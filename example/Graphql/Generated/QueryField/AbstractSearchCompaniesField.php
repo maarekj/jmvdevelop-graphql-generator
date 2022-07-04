@@ -9,10 +9,10 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\Search
 
 abstract class AbstractSearchCompaniesField
 {
-	/**
-	 * Search companies
-	 *
-	 * @return \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>|null
-	 */
-	abstract public function resolve(SearchCompanyWhereInputType|null $where): Pager|null;
+    /**
+     * Search companies.
+     *
+     * @return null|\JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
+     */
+    abstract public function resolve(SearchCompanyWhereInputType|null $where): Pager|null;
 }

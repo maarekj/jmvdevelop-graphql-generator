@@ -9,8 +9,8 @@ ClientGenerated/AbstractClient.php: |
     use JmvDevelop\GraphqlGenerator\Example\Graphql\Mapper;
 
     /**
-     * @psalm-type T_user = array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}|null}
      * @psalm-type T_users = array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}>}
+     * @psalm-type T_user = array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}|null}
      */
     abstract class AbstractClient
     {
@@ -20,55 +20,6 @@ ClientGenerated/AbstractClient.php: |
 
 
     	abstract public function execute(string $query, array $variables = []): array;
-
-
-    	public function gql_user(): string
-    	{
-    		return "query user(\$id: Int!) {\n  user_by_id(id: \$id) {\n    id\n    email\n    groups {\n      id\n      name\n      roles\n    }\n  }\n}";
-    	}
-
-
-    	/**
-    	 * @psalm-return T_user
-    	 */
-    	public function parse_user(array $data)
-    	{
-    		return ([
-    		        'user_by_id' => ($data) === null ? null : (function($___data) {
-    		            return $___data === null ? null : [
-    		        'id' => ($___data) === null ? null : (function($___data) {
-    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
-    		        })(($___data)['id']),'email' => ($___data) === null ? null : (function($___data) {
-    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
-    		        })(($___data)['email']),'groups' => ($___data) === null ? null : (function($___data) {
-    		            return $___data === null ? null : array_map(function($___data) {
-    		                return [
-    		        'id' => ($___data) === null ? null : (function($___data) {
-    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
-    		        })(($___data)['id']),'name' => ($___data) === null ? null : (function($___data) {
-    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
-    		        })(($___data)['name']),'roles' => ($___data) === null ? null : (function($___data) {
-    		            return $___data === null ? null : array_map(function($___data) {
-    		                return $this->mapper->graphql_to_php_String($___data);
-    		            }, $___data);
-    		        })(($___data)['roles']),
-    		        ];
-    		            }, $___data);
-    		        })(($___data)['groups']),
-    		        ];
-    		        })(($data)['user_by_id']),
-    		        ]);
-    	}
-
-
-    	/**
-    	 * @psalm-return T_user
-    	 */
-    	public function execute_user(int $id)
-    	{
-    		$___result = $this->execute($this->gql_user(), ["id" => $this->mapper->php_to_graphql_Int($id)]);
-    		return $this->parse_user($___result);
-    	}
 
 
     	public function gql_users(): string
@@ -125,6 +76,55 @@ ClientGenerated/AbstractClient.php: |
     		            }, ($roles)),
     		"where" => ($where) === null ? null : $this->mapper->php_to_graphql_UserWhere($where)]);
     		return $this->parse_users($___result);
+    	}
+
+
+    	public function gql_user(): string
+    	{
+    		return "query user(\$id: Int!) {\n  user_by_id(id: \$id) {\n    id\n    email\n    groups {\n      id\n      name\n      roles\n    }\n  }\n}";
+    	}
+
+
+    	/**
+    	 * @psalm-return T_user
+    	 */
+    	public function parse_user(array $data)
+    	{
+    		return ([
+    		        'user_by_id' => ($data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : [
+    		        'id' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
+    		        })(($___data)['id']),'email' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
+    		        })(($___data)['email']),'groups' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : array_map(function($___data) {
+    		                return [
+    		        'id' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_Int($___data);
+    		        })(($___data)['id']),'name' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : $this->mapper->graphql_to_php_String($___data);
+    		        })(($___data)['name']),'roles' => ($___data) === null ? null : (function($___data) {
+    		            return $___data === null ? null : array_map(function($___data) {
+    		                return $this->mapper->graphql_to_php_String($___data);
+    		            }, $___data);
+    		        })(($___data)['roles']),
+    		        ];
+    		            }, $___data);
+    		        })(($___data)['groups']),
+    		        ];
+    		        })(($data)['user_by_id']),
+    		        ]);
+    	}
+
+
+    	/**
+    	 * @psalm-return T_user
+    	 */
+    	public function execute_user(int $id)
+    	{
+    		$___result = $this->execute($this->gql_user(), ["id" => $this->mapper->php_to_graphql_Int($id)]);
+    		return $this->parse_user($___result);
     	}
     }
 Client.php: |

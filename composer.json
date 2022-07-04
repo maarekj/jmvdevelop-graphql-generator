@@ -41,5 +41,10 @@
     "webmozart/assert": "^1.10",
     "webonyx/graphql-php": "^14.6",
     "azjezz/psl": "^1.9"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
   }
 }

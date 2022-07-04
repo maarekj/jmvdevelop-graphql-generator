@@ -6,5 +6,5 @@ namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test;
 
 abstract class AbstractTestWithNullableInputFieldMutation
 {
-	abstract public function resolve(TestWithNullableInputFieldType|null $data): bool;
+    abstract public function resolve(TestWithNullableInputFieldType|null $data): bool;
 }

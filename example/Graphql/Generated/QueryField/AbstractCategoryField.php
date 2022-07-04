@@ -8,11 +8,11 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\Category;
 
 abstract class AbstractCategoryField
 {
-	/**
-	 * Get a category with id
-	 */
-	public function resolve(Category $id): Category|null
-	{
-		return $id;
-	}
+    /**
+     * Get a category with id.
+     */
+    public function resolve(Category $id): Category|null
+    {
+        return $id;
+    }
 }

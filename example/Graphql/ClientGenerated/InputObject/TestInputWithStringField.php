@@ -6,13 +6,12 @@ namespace JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObjec
 
 final class TestInputWithStringField
 {
-	public function __construct(public string $name)
-	{
-	}
+    public function __construct(public string $name)
+    {
+    }
 
-
-	public function _withName(string $name): self
-	{
-		return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\TestInputWithStringField(name: $name);
-	}
+    public function _withName(string $name): self
+    {
+        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\TestInputWithStringField(name: $name);
+    }
 }

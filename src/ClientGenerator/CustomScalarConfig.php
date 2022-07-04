@@ -15,8 +15,7 @@ final class CustomScalarConfig implements ScalarConfig
         private string $name,
         private string $php,
         ?string $psalm = null
-    )
-    {
+    ) {
         $this->psalm = null === $psalm ? $this->php : $psalm;
     }
 
