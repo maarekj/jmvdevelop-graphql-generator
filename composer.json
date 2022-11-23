@@ -25,22 +25,22 @@
   ],
   "require-dev": {
     "php": "^8.0",
-    "pestphp/pest": "^1.0",
-    "vimeo/psalm": "^4.7",
+    "pestphp/pest": "^v1.22",
+    "vimeo/psalm": "^4.30",
     "symfony/dependency-injection": "^5.3|^6.0",
     "symfony/config": "^5.3|^6.0",
     "symfony/finder": "^5.3|^6.0",
     "spatie/pest-plugin-snapshots": "^1.1",
-    "php-standard-library/psalm-plugin": "^1.1"
+    "php-standard-library/psalm-plugin": "^2.0"
   },
   "require": {
-    "nette/php-generator": "^3.5",
+    "nette/php-generator": "^3.6",
     "symfony/console": "^4.0.0|^5.2|^6.0",
     "webmozart/assert": "^1.10",
-    "webonyx/graphql-php": "^14.6",
-    "azjezz/psl": "^1.9",
-    "league/flysystem": "^3.1",
-    "league/flysystem-memory": "^3.0"
+    "webonyx/graphql-php": "^14.11",
+    "league/flysystem": "^3.10",
+    "league/flysystem-memory": "^3.10",
+    "azjezz/psl": "^2.1"
   },
   "config": {
     "allow-plugins": {
