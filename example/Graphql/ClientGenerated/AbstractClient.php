@@ -32,29 +32,29 @@ abstract class AbstractClient
     public function parse_searchCompaniesWithId(array $data)
     {
         return [
-            'searchCompanies' => ($data) === null ? null : (function ($___data) {
+            'searchCompanies' => null === $data ? null : (function ($___data) {
                 return null === $___data ? null : [
-                    'currentPage' => ($___data) === null ? null : (function ($___data) {
+                    'currentPage' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['currentPage']), 'nbPages' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['currentPage']), 'nbPages' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['nbPages']), 'count' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['nbPages']), 'count' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['count']), 'maxPerPage' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['count']), 'maxPerPage' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['maxPerPage']), 'results' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['maxPerPage']), 'results' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : array_map(function ($___data) {
                             return [
-                                'id' => ($___data) === null ? null : (function ($___data) {
+                                'id' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                                })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                                })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                                })(($___data)['name']),
+                                })($___data['name']),
                             ];
                         }, $___data);
-                    })(($___data)['results']),
+                    })($___data['results']),
                 ];
-            })(($data)['searchCompanies']),
+            })($data['searchCompanies']),
         ];
     }
 
@@ -79,39 +79,39 @@ abstract class AbstractClient
     public function parse_searchCompanies(array $data)
     {
         return [
-            'searchCompanies' => ($data) === null ? null : (function ($___data) {
+            'searchCompanies' => null === $data ? null : (function ($___data) {
                 return null === $___data ? null : [
-                    'currentPage' => ($___data) === null ? null : (function ($___data) {
+                    'currentPage' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['currentPage']), 'nbPages' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['currentPage']), 'nbPages' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['nbPages']), 'count' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['nbPages']), 'count' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['count']), 'maxPerPage' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['count']), 'maxPerPage' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['maxPerPage']), 'results' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['maxPerPage']), 'results' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : array_map(function ($___data) {
                             return [
-                                'id' => ($___data) === null ? null : (function ($___data) {
+                                'id' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                                })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                                })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                                })(($___data)['name']), 'categories' => ($___data) === null ? null : (function ($___data) {
+                                })($___data['name']), 'categories' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : array_map(function ($___data) {
                                         return [
-                                            'id' => ($___data) === null ? null : (function ($___data) {
+                                            'id' => null === $___data ? null : (function ($___data) {
                                                 return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                                            })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                                            })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
                                                 return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                                            })(($___data)['name']),
+                                            })($___data['name']),
                                         ];
                                     }, $___data);
-                                })(($___data)['categories']),
+                                })($___data['categories']),
                             ];
                         }, $___data);
-                    })(($___data)['results']),
+                    })($___data['results']),
                 ];
-            })(($data)['searchCompanies']),
+            })($data['searchCompanies']),
         ];
     }
 
@@ -120,7 +120,7 @@ abstract class AbstractClient
      */
     public function execute_searchCompanies(SearchCompanyWhereInput|null $where)
     {
-        $___result = $this->execute($this->gql_searchCompanies(), ['where' => ($where) === null ? null : $this->mapper->php_to_graphql_SearchCompanyWhereInput($where)]);
+        $___result = $this->execute($this->gql_searchCompanies(), ['where' => null === $where ? null : $this->mapper->php_to_graphql_SearchCompanyWhereInput($where)]);
 
         return $this->parse_searchCompanies($___result);
     }
@@ -136,51 +136,51 @@ abstract class AbstractClient
     public function parse_company1And2Query(array $data)
     {
         return [
-            'jmv1' => ($data) === null ? null : (function ($___data) {
+            'jmv1' => null === $data ? null : (function ($___data) {
                 return null === $___data ? null : [
-                    'id' => ($___data) === null ? null : (function ($___data) {
+                    'id' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                    })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                    })(($___data)['name']), 'categories' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['name']), 'categories' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : array_map(function ($___data) {
                             return [
-                                'id' => ($___data) === null ? null : (function ($___data) {
+                                'id' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                                })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                                })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                                })(($___data)['name']), '__typename' => ($___data) === null ? null : (function ($___data) {
+                                })($___data['name']), '__typename' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $___data;
-                                })(($___data)['__typename']),
+                                })($___data['__typename']),
                             ];
                         }, $___data);
-                    })(($___data)['categories']), '__typename' => ($___data) === null ? null : (function ($___data) {
-                                return null === $___data ? null : $___data;
-                            })(($___data)['__typename']),
+                    })($___data['categories']), '__typename' => null === $___data ? null : (function ($___data) {
+                        return null === $___data ? null : $___data;
+                    })($___data['__typename']),
                 ];
-            })(($data)['jmv1']), 'jmv2' => ($data) === null ? null : (function ($___data) {
-                    return null === $___data ? null : [
-                        'id' => ($___data) === null ? null : (function ($___data) {
-                            return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                        })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
-                            return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                        })(($___data)['name']), 'categories' => ($___data) === null ? null : (function ($___data) {
-                            return null === $___data ? null : array_map(function ($___data) {
-                                return [
-                                    'id' => ($___data) === null ? null : (function ($___data) {
-                                        return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                                    })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
-                                        return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                                    })(($___data)['name']), '__typename' => ($___data) === null ? null : (function ($___data) {
-                                        return null === $___data ? null : $___data;
-                                    })(($___data)['__typename']),
-                                ];
-                            }, $___data);
-                        })(($___data)['categories']), '__typename' => ($___data) === null ? null : (function ($___data) {
+            })($data['jmv1']), 'jmv2' => null === $data ? null : (function ($___data) {
+                return null === $___data ? null : [
+                    'id' => null === $___data ? null : (function ($___data) {
+                        return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
+                    })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
+                        return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
+                    })($___data['name']), 'categories' => null === $___data ? null : (function ($___data) {
+                        return null === $___data ? null : array_map(function ($___data) {
+                            return [
+                                'id' => null === $___data ? null : (function ($___data) {
+                                    return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
+                                })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
+                                    return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
+                                })($___data['name']), '__typename' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $___data;
-                                })(($___data)['__typename']),
-                    ];
-                })(($data)['jmv2']),
+                                })($___data['__typename']),
+                            ];
+                        }, $___data);
+                    })($___data['categories']), '__typename' => null === $___data ? null : (function ($___data) {
+                        return null === $___data ? null : $___data;
+                    })($___data['__typename']),
+                ];
+            })($data['jmv2']),
         ];
     }
 
@@ -205,29 +205,29 @@ abstract class AbstractClient
     public function parse_searchCompaniesWithNoArg(array $data)
     {
         return [
-            'searchCompanies' => ($data) === null ? null : (function ($___data) {
+            'searchCompanies' => null === $data ? null : (function ($___data) {
                 return null === $___data ? null : [
-                    'currentPage' => ($___data) === null ? null : (function ($___data) {
+                    'currentPage' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['currentPage']), 'nbPages' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['currentPage']), 'nbPages' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['nbPages']), 'count' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['nbPages']), 'count' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['count']), 'maxPerPage' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['count']), 'maxPerPage' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : $this->mapper->graphql_to_php_Int($___data);
-                    })(($___data)['maxPerPage']), 'results' => ($___data) === null ? null : (function ($___data) {
+                    })($___data['maxPerPage']), 'results' => null === $___data ? null : (function ($___data) {
                         return null === $___data ? null : array_map(function ($___data) {
                             return [
-                                'id' => ($___data) === null ? null : (function ($___data) {
+                                'id' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_ID($___data);
-                                })(($___data)['id']), 'name' => ($___data) === null ? null : (function ($___data) {
+                                })($___data['id']), 'name' => null === $___data ? null : (function ($___data) {
                                     return null === $___data ? null : $this->mapper->graphql_to_php_String($___data);
-                                })(($___data)['name']),
+                                })($___data['name']),
                             ];
                         }, $___data);
-                    })(($___data)['results']),
+                    })($___data['results']),
                 ];
-            })(($data)['searchCompanies']),
+            })($data['searchCompanies']),
         ];
     }
 

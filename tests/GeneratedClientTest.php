@@ -9,10 +9,10 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\CompanyRepo;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\Client;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\IntExprInput;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\ClientGenerated\InputObject\SearchCompanyWhereInput;
-use function Spatie\Snapshots\assertMatchesJsonSnapshot;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use function Spatie\Snapshots\assertMatchesJsonSnapshot;
 
 /** @var \Psr\Container\ContainerInterface $container */
 $container = null;

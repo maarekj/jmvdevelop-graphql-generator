@@ -92,6 +92,7 @@ final class GraphqlToPhpCompiler
             $res = 'array_map(function($___data) {
                 return :sub;
             }, :variable)';
+
             /** @var Type $ofType */
             $ofType = $type->getOfType();
 

@@ -18,5 +18,10 @@ return $config
         'phpdoc_add_missing_param_annotation' => false,
         'native_function_invocation' => true,
         'native_constant_invocation' => true,
+        'no_unreachable_default_argument_value' => false,
+        'phpdoc_no_empty_return' => false,
+        'phpdoc_to_comment' => false,
+        'phpdoc_separation' => false,
+        'blank_line_between_import_groups' => false,
     ])
     ->setFinder($finder);

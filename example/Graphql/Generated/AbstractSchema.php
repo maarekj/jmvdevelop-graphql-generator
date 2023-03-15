@@ -272,7 +272,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCurrentPage(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCurrentPage(root: $__root);
                             },
                         ],
                         'maxPerPage' => [
@@ -280,7 +280,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveMaxPerPage(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveMaxPerPage(root: $__root);
                             },
                         ],
                         'nbPages' => [
@@ -288,7 +288,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveNbPages(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveNbPages(root: $__root);
                             },
                         ],
                         'count' => [
@@ -296,7 +296,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCount(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveCount(root: $__root);
                             },
                         ],
                         'results' => [
@@ -304,7 +304,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveResults(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\PagerCompanyType')->resolveResults(root: $__root);
                             },
                         ],
                     ];
@@ -333,7 +333,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveId(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveId(root: $__root);
                             },
                         ],
                         'email' => [
@@ -341,7 +341,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveEmail(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveEmail(root: $__root);
                             },
                         ],
                         'lastname' => [
@@ -349,7 +349,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveLastname(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveLastname(root: $__root);
                             },
                         ],
                         'firstname' => [
@@ -357,7 +357,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveFirstname(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\UserType')->resolveFirstname(root: $__root);
                             },
                         ],
                     ];
@@ -387,7 +387,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveId(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveId(root: $__root);
                             },
                         ],
                         'name' => [
@@ -395,7 +395,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveName(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\ObjectType\CategoryType')->resolveName(root: $__root);
                             },
                         ],
                     ];
@@ -425,7 +425,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveId(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveId(root: $__root);
                             },
                         ],
                         'name' => [
@@ -433,7 +433,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => '',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveName(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveName(root: $__root);
                             },
                         ],
                         'user' => [
@@ -441,7 +441,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => 'The manager of company',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveUser(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveUser(root: $__root);
                             },
                         ],
                         'categories' => [
@@ -449,7 +449,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             'description' => 'All categories of company',
                             'args' => [],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveCategories(root: $__root, );
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveCategories(root: $__root);
                             },
                         ],
                         'searchCategories' => [
@@ -469,13 +469,13 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                                 'type' => \GraphQL\Type\Definition\Type::nonNull($this->get_scalar_String()),
                             ]],
                             'resolve' => function ($__root, array $__args = []) {
-                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveSearchCategories(root: $__root, name: ((null === (($__args)['name'] ?? null) ? null : $this->transform_scalar_type_String(($__args)['name'] ?? null))), keywords: ((function ($__value) {
+                                return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Object\CompanyType')->resolveSearchCategories(root: $__root, name: (null === ($__args['name'] ?? null) ? null : $this->transform_scalar_type_String($__args['name'] ?? null)), keywords: ((function ($__value) {
                                     return null === $__value ? null : array_map(function ($__value) {
                                         return null === ($__value) ? null : $this->transform_scalar_type_String($__value);
                                     }, $__value);
-                                })(($__args)['keywords'] ?? null)), orderBy: ((function ($__value) {
-                                    return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_String($__value)));
-                                })(($__args)['orderBy'] ?? null)));
+                                })($__args['keywords'] ?? null)), orderBy: ((function ($__value) {
+                                    return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_String($__value));
+                                })($__args['orderBy'] ?? null)));
                             },
                         ],
                     ];
@@ -771,7 +771,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'resolve' => function ($__root = null, null|array $__args = null) {
                             $__args = null === $__args ? [] : $__args;
 
-                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField\SearchByNameField')->resolve(name: ((null === (($__args)['name'] ?? null) ? null : $this->transform_scalar_type_String(($__args)['name'] ?? null))), orderByName: ((null === (($__args)['orderByName'] ?? null) ? null : $this->transform_enum_type_OrderDirection(($__args)['orderByName'] ?? null))));
+                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\QueryField\SearchByNameField')->resolve(name: (null === ($__args['name'] ?? null) ? null : $this->transform_scalar_type_String($__args['name'] ?? null)), orderByName: (null === ($__args['orderByName'] ?? null) ? null : $this->transform_enum_type_OrderDirection($__args['orderByName'] ?? null)));
                         },
                     ],
                     'searchCompanies' => [
@@ -786,7 +786,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'resolve' => function ($__root = null, null|array $__args = null) {
                             $__args = null === $__args ? [] : $__args;
 
-                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\SearchCompaniesField')->resolve(where: ((null === (($__args)['where'] ?? null) ? null : $this->transform_input_object_type_SearchCompanyWhereInput(($__args)['where'] ?? null))));
+                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\SearchCompaniesField')->resolve(where: (null === ($__args['where'] ?? null) ? null : $this->transform_input_object_type_SearchCompanyWhereInput($__args['where'] ?? null)));
                         },
                     ],
                     'company' => [
@@ -802,8 +802,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CompanyField')->resolve(id: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_CompanyId($__value)));
-                            })(($__args)['id'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_CompanyId($__value));
+                            })($__args['id'] ?? null)));
                         },
                     ],
                     'strictCompany' => [
@@ -819,8 +819,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictCompanyField')->resolve(id: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_CompanyId($__value)));
-                            })(($__args)['id'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_CompanyId($__value));
+                            })($__args['id'] ?? null)));
                         },
                     ],
                     'category' => [
@@ -836,8 +836,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\CategoryField')->resolve(id: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_CategoryId($__value)));
-                            })(($__args)['id'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_CategoryId($__value));
+                            })($__args['id'] ?? null)));
                         },
                     ],
                     'strictCategory' => [
@@ -853,8 +853,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictCategoryField')->resolve(id: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_CategoryId($__value)));
-                            })(($__args)['id'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_CategoryId($__value));
+                            })($__args['id'] ?? null)));
                         },
                     ],
                     'user' => [
@@ -870,8 +870,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\UserField')->resolve(id: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_UserId($__value)));
-                            })(($__args)['id'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_UserId($__value));
+                            })($__args['id'] ?? null)));
                         },
                     ],
                     'users' => [
@@ -898,8 +898,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\QueryField\StrictUserField')->resolve(id: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_UserId($__value)));
-                            })(($__args)['id'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_UserId($__value));
+                            })($__args['id'] ?? null)));
                         },
                     ],
                     'companiesAndCategories' => [
@@ -937,8 +937,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Custom\Mutation\CreateUserMutation')->resolve(data: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_input_object_type_CreateUserInput($__value)));
-                            })(($__args)['data'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_input_object_type_CreateUserInput($__value));
+                            })($__args['data'] ?? null)));
                         },
                     ],
                     'editUser' => [
@@ -954,8 +954,8 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                             $__args = null === $__args ? [] : $__args;
 
                             return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\MutationField\EditUserMutation')->resolve(data: ((function ($__value) {
-                                return null === $__value ? null : ((null === ($__value) ? null : $this->transform_input_object_type_EditUserInput($__value)));
-                            })(($__args)['data'] ?? null)));
+                                return null === $__value ? null : (null === ($__value) ? null : $this->transform_input_object_type_EditUserInput($__value));
+                            })($__args['data'] ?? null)));
                         },
                     ],
                     'testWithNullableInputField' => [
@@ -970,7 +970,7 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
                         'resolve' => function ($__root = null, null|array $__args = null) {
                             $__args = null === $__args ? [] : $__args;
 
-                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Test\TestWithNullableInputFieldMutation')->resolve(data: ((null === (($__args)['data'] ?? null) ? null : $this->transform_input_object_type_TestWithNullableInputField(($__args)['data'] ?? null))));
+                            return $this->service('JmvDevelop\GraphqlGenerator\Example\Graphql\Test\TestWithNullableInputFieldMutation')->resolve(data: (null === ($__args['data'] ?? null) ? null : $this->transform_input_object_type_TestWithNullableInputField($__args['data'] ?? null)));
                         },
                     ],
                 ];
@@ -1105,12 +1105,12 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
 
     private function transform_input_object_type_StringExprInput($value)
     {
-        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\StringExprInputType(eq: ((null === (($value)['eq'] ?? null) ? null : $this->transform_scalar_type_String(($value)['eq'] ?? null))), neq: ((null === (($value)['neq'] ?? null) ? null : $this->transform_scalar_type_String(($value)['neq'] ?? null))), like: ((null === (($value)['like'] ?? null) ? null : $this->transform_scalar_type_String(($value)['like'] ?? null))));
+        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\StringExprInputType(eq: (null === ($value['eq'] ?? null) ? null : $this->transform_scalar_type_String($value['eq'] ?? null)), neq: (null === ($value['neq'] ?? null) ? null : $this->transform_scalar_type_String($value['neq'] ?? null)), like: (null === ($value['like'] ?? null) ? null : $this->transform_scalar_type_String($value['like'] ?? null)));
     }
 
     private function transform_input_object_type_IntExprInput($value)
     {
-        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: ((null === (($value)['eq'] ?? null) ? null : $this->transform_scalar_type_Int(($value)['eq'] ?? null))), neq: ((null === (($value)['neq'] ?? null) ? null : $this->transform_scalar_type_Int(($value)['neq'] ?? null))), gt: ((null === (($value)['gt'] ?? null) ? null : $this->transform_scalar_type_Int(($value)['gt'] ?? null))), gte: ((null === (($value)['gte'] ?? null) ? null : $this->transform_scalar_type_Int(($value)['gte'] ?? null))), lt: ((null === (($value)['lt'] ?? null) ? null : $this->transform_scalar_type_Int(($value)['lt'] ?? null))), lte: ((null === (($value)['lte'] ?? null) ? null : $this->transform_scalar_type_Int(($value)['lte'] ?? null))));
+        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\IntExprInputType(eq: (null === ($value['eq'] ?? null) ? null : $this->transform_scalar_type_Int($value['eq'] ?? null)), neq: (null === ($value['neq'] ?? null) ? null : $this->transform_scalar_type_Int($value['neq'] ?? null)), gt: (null === ($value['gt'] ?? null) ? null : $this->transform_scalar_type_Int($value['gt'] ?? null)), gte: (null === ($value['gte'] ?? null) ? null : $this->transform_scalar_type_Int($value['gte'] ?? null)), lt: (null === ($value['lt'] ?? null) ? null : $this->transform_scalar_type_Int($value['lt'] ?? null)), lte: (null === ($value['lte'] ?? null) ? null : $this->transform_scalar_type_Int($value['lte'] ?? null)));
     }
 
     private function transform_input_object_type_SearchCompanyWhereInput($value)
@@ -1119,65 +1119,65 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
             return null === $__value ? null : array_map(function ($__value) {
                 return null === ($__value) ? null : $this->transform_input_object_type_SearchCompanyWhereInput($__value);
             }, $__value);
-        })(($value)['_and'] ?? null)), _or: ((function ($__value) {
+        })($value['_and'] ?? null)), _or: ((function ($__value) {
             return null === $__value ? null : array_map(function ($__value) {
                 return null === ($__value) ? null : $this->transform_input_object_type_SearchCompanyWhereInput($__value);
             }, $__value);
-        })(($value)['_or'] ?? null)), name: ((null === (($value)['name'] ?? null) ? null : $this->transform_input_object_type_StringExprInput(($value)['name'] ?? null))), id: ((null === (($value)['id'] ?? null) ? null : $this->transform_input_object_type_IntExprInput(($value)['id'] ?? null))), withCategory: ((null === (($value)['withCategory'] ?? null) ? null : $this->transform_enum_type_YesNo(($value)['withCategory'] ?? null))));
+        })($value['_or'] ?? null)), name: (null === ($value['name'] ?? null) ? null : $this->transform_input_object_type_StringExprInput($value['name'] ?? null)), id: (null === ($value['id'] ?? null) ? null : $this->transform_input_object_type_IntExprInput($value['id'] ?? null)), withCategory: (null === ($value['withCategory'] ?? null) ? null : $this->transform_enum_type_YesNo($value['withCategory'] ?? null)));
     }
 
     private function transform_input_object_type_TestInput($value)
     {
-        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: ((null === (($value)['enum'] ?? null) ? null : $this->transform_enum_type_YesNo(($value)['enum'] ?? null))), requiredEnum: ((function ($__value) {
-            return null === $__value ? null : ((null === ($__value) ? null : $this->transform_enum_type_YesNo($__value)));
-        })(($value)['requiredEnum'] ?? null)), listEnum: ((function ($__value) {
+        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\TestInputType(enum: (null === ($value['enum'] ?? null) ? null : $this->transform_enum_type_YesNo($value['enum'] ?? null)), requiredEnum: ((function ($__value) {
+            return null === $__value ? null : (null === ($__value) ? null : $this->transform_enum_type_YesNo($__value));
+        })($value['requiredEnum'] ?? null)), listEnum: ((function ($__value) {
             return null === $__value ? null : array_map(function ($__value) {
                 return null === ($__value) ? null : $this->transform_enum_type_YesNo($__value);
             }, $__value);
-        })(($value)['listEnum'] ?? null)), requiredListEnum: ((function ($__value) {
+        })($value['listEnum'] ?? null)), requiredListEnum: ((function ($__value) {
             return null === $__value ? null : ((function ($__value) {
                 return null === $__value ? null : array_map(function ($__value) {
                     return null === ($__value) ? null : $this->transform_enum_type_YesNo($__value);
                 }, $__value);
             })($__value));
-        })(($value)['requiredListEnum'] ?? null)), requiredListRequiredEnum: ((function ($__value) {
+        })($value['requiredListEnum'] ?? null)), requiredListRequiredEnum: ((function ($__value) {
             return null === $__value ? null : ((function ($__value) {
                 return null === $__value ? null : array_map(function ($__value) {
                     return (function ($__value) {
-                        return null === $__value ? null : ((null === ($__value) ? null : $this->transform_enum_type_YesNo($__value)));
+                        return null === $__value ? null : (null === ($__value) ? null : $this->transform_enum_type_YesNo($__value));
                     })($__value);
                 }, $__value);
             })($__value));
-        })(($value)['requiredListRequiredEnum'] ?? null)));
+        })($value['requiredListRequiredEnum'] ?? null)));
     }
 
     private function transform_input_object_type_CreateUserInput($value)
     {
         return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\InputObject\CreateUserInputType(email: ((function ($__value) {
-            return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_String($__value)));
-        })(($value)['email'] ?? null)), lastname: ((null === (($value)['lastname'] ?? null) ? null : $this->transform_scalar_type_String(($value)['lastname'] ?? null))), firstname: ((null === (($value)['firstname'] ?? null) ? null : $this->transform_scalar_type_String(($value)['firstname'] ?? null))));
+            return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_String($__value));
+        })($value['email'] ?? null)), lastname: (null === ($value['lastname'] ?? null) ? null : $this->transform_scalar_type_String($value['lastname'] ?? null)), firstname: (null === ($value['firstname'] ?? null) ? null : $this->transform_scalar_type_String($value['firstname'] ?? null)));
     }
 
     private function transform_input_object_type_EditUserInput($value)
     {
         return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\InputObjectType\EditUserInputType(id: ((function ($__value) {
-            return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_UserId($__value)));
-        })(($value)['id'] ?? null)), email: ((function ($__value) {
-            return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_String($__value)));
-        })(($value)['email'] ?? null)), lastname: ((null === (($value)['lastname'] ?? null) ? null : $this->transform_scalar_type_String(($value)['lastname'] ?? null))), firstname: ((null === (($value)['firstname'] ?? null) ? null : $this->transform_scalar_type_String(($value)['firstname'] ?? null))));
+            return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_UserId($__value));
+        })($value['id'] ?? null)), email: ((function ($__value) {
+            return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_String($__value));
+        })($value['email'] ?? null)), lastname: (null === ($value['lastname'] ?? null) ? null : $this->transform_scalar_type_String($value['lastname'] ?? null)), firstname: (null === ($value['firstname'] ?? null) ? null : $this->transform_scalar_type_String($value['firstname'] ?? null)));
     }
 
     private function transform_input_object_type_TestInputWithStringField($value)
     {
         return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test\TestInputWithStringFieldType(name: ((function ($__value) {
-            return null === $__value ? null : ((null === ($__value) ? null : $this->transform_scalar_type_String($__value)));
-        })(($value)['name'] ?? null)));
+            return null === $__value ? null : (null === ($__value) ? null : $this->transform_scalar_type_String($__value));
+        })($value['name'] ?? null)));
     }
 
     private function transform_input_object_type_TestWithNullableInputField($value)
     {
-        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test\TestWithNullableInputFieldType(nullableField: ((null === (($value)['nullableField'] ?? null) ? null : $this->transform_input_object_type_TestInputWithStringField(($value)['nullableField'] ?? null))), field: ((function ($__value) {
-            return null === $__value ? null : ((null === ($__value) ? null : $this->transform_input_object_type_TestInputWithStringField($__value)));
-        })(($value)['field'] ?? null)));
+        return new \JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test\TestWithNullableInputFieldType(nullableField: (null === ($value['nullableField'] ?? null) ? null : $this->transform_input_object_type_TestInputWithStringField($value['nullableField'] ?? null)), field: ((function ($__value) {
+            return null === $__value ? null : (null === ($__value) ? null : $this->transform_input_object_type_TestInputWithStringField($__value));
+        })($value['field'] ?? null)));
     }
 }

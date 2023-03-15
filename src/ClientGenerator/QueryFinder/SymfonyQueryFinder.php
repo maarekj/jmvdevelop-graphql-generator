@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace JmvDevelop\GraphqlGenerator\ClientGenerator\QueryFinder;
 
 use GraphQL\Language\Source;
-use function Psl\Type\instance_of;
-use function Psl\Type\object;
-use function Psl\Type\vec;
 use Symfony\Component\Finder\Finder;
+use function Psl\Type\instance_of;
+use function Psl\Type\vec;
 
 final class SymfonyQueryFinder implements QueryFinder
 {

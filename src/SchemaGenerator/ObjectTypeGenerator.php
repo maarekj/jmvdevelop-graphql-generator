@@ -8,6 +8,11 @@ use GraphQL\Language\Parser;
 use JmvDevelop\GraphqlGenerator\Schema\Argument;
 use JmvDevelop\GraphqlGenerator\Schema\ObjectType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
+use League\Flysystem\FilesystemOperator;
+use Nette\PhpGenerator\ClassType;
+use Nette\PhpGenerator\Dumper;
+use Nette\PhpGenerator\Method;
+use Nette\PhpGenerator\PhpFile;
 use function JmvDevelop\GraphqlGenerator\Utils\addArgumentInParameterOfMethod;
 use function JmvDevelop\GraphqlGenerator\Utils\callArgsFrom__args;
 use function JmvDevelop\GraphqlGenerator\Utils\extractBaseNamespace;
@@ -17,11 +22,6 @@ use function JmvDevelop\GraphqlGenerator\Utils\getPhpTypeOf;
 use function JmvDevelop\GraphqlGenerator\Utils\getPsalmTypeOf;
 use function JmvDevelop\GraphqlGenerator\Utils\getTypeFromRegistry;
 use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
-use League\Flysystem\FilesystemOperator;
-use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\Dumper;
-use Nette\PhpGenerator\Method;
-use Nette\PhpGenerator\PhpFile;
 
 class ObjectTypeGenerator implements TypeGeneratorInterface
 {

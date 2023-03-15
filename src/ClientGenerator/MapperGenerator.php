@@ -11,11 +11,11 @@ use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ScalarType;
 use GraphQL\Type\Definition\Type;
-use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
 use League\Flysystem\FilesystemOperator;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\PhpFile;
+use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
 
 final class MapperGenerator
 {

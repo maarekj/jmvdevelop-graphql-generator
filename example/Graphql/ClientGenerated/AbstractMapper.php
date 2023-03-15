@@ -31,32 +31,32 @@ abstract class AbstractMapper
     public function php_to_graphql_SearchCompanyWhereInput(SearchCompanyWhereInput $data): array
     {
         return [
-            '_and' => (($data)->_and) === null ? null : array_map(fn ($_value) => (($_value) === null ? null : $this->php_to_graphql_SearchCompanyWhereInput($_value)), (($data)->_and)),
-            '_or' => (($data)->_or) === null ? null : array_map(fn ($_value) => (($_value) === null ? null : $this->php_to_graphql_SearchCompanyWhereInput($_value)), (($data)->_or)),
-            'name' => (($data)->name) === null ? null : $this->php_to_graphql_StringExprInput(($data)->name),
-            'id' => (($data)->id) === null ? null : $this->php_to_graphql_IntExprInput(($data)->id),
-            'withCategory' => (($data)->withCategory) === null ? null : $this->php_to_graphql_YesNo(($data)->withCategory),
+            '_and' => null === $data->_and ? null : array_map(fn ($_value) => null === $_value ? null : $this->php_to_graphql_SearchCompanyWhereInput($_value), $data->_and),
+            '_or' => null === $data->_or ? null : array_map(fn ($_value) => null === $_value ? null : $this->php_to_graphql_SearchCompanyWhereInput($_value), $data->_or),
+            'name' => null === $data->name ? null : $this->php_to_graphql_StringExprInput($data->name),
+            'id' => null === $data->id ? null : $this->php_to_graphql_IntExprInput($data->id),
+            'withCategory' => null === $data->withCategory ? null : $this->php_to_graphql_YesNo($data->withCategory),
         ];
     }
 
     public function php_to_graphql_StringExprInput(StringExprInput $data): array
     {
         return [
-            'eq' => (($data)->eq) === null ? null : $this->php_to_graphql_String(($data)->eq),
-            'neq' => (($data)->neq) === null ? null : $this->php_to_graphql_String(($data)->neq),
-            'like' => (($data)->like) === null ? null : $this->php_to_graphql_String(($data)->like),
+            'eq' => null === $data->eq ? null : $this->php_to_graphql_String($data->eq),
+            'neq' => null === $data->neq ? null : $this->php_to_graphql_String($data->neq),
+            'like' => null === $data->like ? null : $this->php_to_graphql_String($data->like),
         ];
     }
 
     public function php_to_graphql_IntExprInput(IntExprInput $data): array
     {
         return [
-            'eq' => (($data)->eq) === null ? null : $this->php_to_graphql_Int(($data)->eq),
-            'neq' => (($data)->neq) === null ? null : $this->php_to_graphql_Int(($data)->neq),
-            'gt' => (($data)->gt) === null ? null : $this->php_to_graphql_Int(($data)->gt),
-            'gte' => (($data)->gte) === null ? null : $this->php_to_graphql_Int(($data)->gte),
-            'lt' => (($data)->lt) === null ? null : $this->php_to_graphql_Int(($data)->lt),
-            'lte' => (($data)->lte) === null ? null : $this->php_to_graphql_Int(($data)->lte),
+            'eq' => null === $data->eq ? null : $this->php_to_graphql_Int($data->eq),
+            'neq' => null === $data->neq ? null : $this->php_to_graphql_Int($data->neq),
+            'gt' => null === $data->gt ? null : $this->php_to_graphql_Int($data->gt),
+            'gte' => null === $data->gte ? null : $this->php_to_graphql_Int($data->gte),
+            'lt' => null === $data->lt ? null : $this->php_to_graphql_Int($data->lt),
+            'lte' => null === $data->lte ? null : $this->php_to_graphql_Int($data->lte),
         ];
     }
 
@@ -99,34 +99,34 @@ abstract class AbstractMapper
     public function php_to_graphql_CreateUserInput(CreateUserInput $data): array
     {
         return [
-            'email' => $this->php_to_graphql_String(($data)->email),
-            'lastname' => (($data)->lastname) === null ? null : $this->php_to_graphql_String(($data)->lastname),
-            'firstname' => (($data)->firstname) === null ? null : $this->php_to_graphql_String(($data)->firstname),
+            'email' => $this->php_to_graphql_String($data->email),
+            'lastname' => null === $data->lastname ? null : $this->php_to_graphql_String($data->lastname),
+            'firstname' => null === $data->firstname ? null : $this->php_to_graphql_String($data->firstname),
         ];
     }
 
     public function php_to_graphql_EditUserInput(EditUserInput $data): array
     {
         return [
-            'id' => $this->php_to_graphql_UserId(($data)->id),
-            'email' => $this->php_to_graphql_String(($data)->email),
-            'lastname' => (($data)->lastname) === null ? null : $this->php_to_graphql_String(($data)->lastname),
-            'firstname' => (($data)->firstname) === null ? null : $this->php_to_graphql_String(($data)->firstname),
+            'id' => $this->php_to_graphql_UserId($data->id),
+            'email' => $this->php_to_graphql_String($data->email),
+            'lastname' => null === $data->lastname ? null : $this->php_to_graphql_String($data->lastname),
+            'firstname' => null === $data->firstname ? null : $this->php_to_graphql_String($data->firstname),
         ];
     }
 
     public function php_to_graphql_TestWithNullableInputField(TestWithNullableInputField $data): array
     {
         return [
-            'nullableField' => (($data)->nullableField) === null ? null : $this->php_to_graphql_TestInputWithStringField(($data)->nullableField),
-            'field' => $this->php_to_graphql_TestInputWithStringField(($data)->field),
+            'nullableField' => null === $data->nullableField ? null : $this->php_to_graphql_TestInputWithStringField($data->nullableField),
+            'field' => $this->php_to_graphql_TestInputWithStringField($data->field),
         ];
     }
 
     public function php_to_graphql_TestInputWithStringField(TestInputWithStringField $data): array
     {
         return [
-            'name' => $this->php_to_graphql_String(($data)->name),
+            'name' => $this->php_to_graphql_String($data->name),
         ];
     }
 

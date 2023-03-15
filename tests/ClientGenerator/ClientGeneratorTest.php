@@ -10,11 +10,11 @@ use JmvDevelop\GraphqlGenerator\ClientGenerator\QueryFinder\SymfonyQueryFinder;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
-use function Spatie\Snapshots\assertMatchesSnapshot;
 use Symfony\Component\Finder\Finder;
+use function Spatie\Snapshots\assertMatchesSnapshot;
 
 test('generateClient', function (): void {
-    $finder = (Finder::create()->in(__DIR__.'/queries')->files()->name('*.graphql'));
+    $finder = Finder::create()->in(__DIR__.'/queries')->files()->name('*.graphql');
     $schema = BuildSchema::build(file_get_contents(__DIR__.'/schema.graphql'));
 
     $config = new Config(

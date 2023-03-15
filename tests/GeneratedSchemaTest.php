@@ -9,11 +9,11 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\CategoryRepo;
 use JmvDevelop\GraphqlGenerator\Example\Entity\Company;
 use JmvDevelop\GraphqlGenerator\Example\Entity\CompanyRepo;
 use JmvDevelop\GraphqlGenerator\Example\Graphql\Schema;
-use function PHPUnit\Framework\assertNull;
-use function Spatie\Snapshots\assertMatchesJsonSnapshot;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use function PHPUnit\Framework\assertNull;
+use function Spatie\Snapshots\assertMatchesJsonSnapshot;
 
 $container = null;
 

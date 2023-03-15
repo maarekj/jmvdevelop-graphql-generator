@@ -6,15 +6,15 @@ namespace JmvDevelop\GraphqlGenerator\SchemaGenerator;
 
 use JmvDevelop\GraphqlGenerator\Schema\ScalarType;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
-use function JmvDevelop\GraphqlGenerator\Utils\extractBaseNamespace;
-use function JmvDevelop\GraphqlGenerator\Utils\extractShortName;
-use function JmvDevelop\GraphqlGenerator\Utils\fqcn;
-use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
 use League\Flysystem\FilesystemOperator;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\Method;
 use Nette\PhpGenerator\PhpFile;
+use function JmvDevelop\GraphqlGenerator\Utils\extractBaseNamespace;
+use function JmvDevelop\GraphqlGenerator\Utils\extractShortName;
+use function JmvDevelop\GraphqlGenerator\Utils\fqcn;
+use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
 
 class ScalarTypeGenerator implements TypeGeneratorInterface
 {

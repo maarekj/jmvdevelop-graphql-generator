@@ -24,10 +24,10 @@ abstract class Repository
     {
         return max(
             array_merge([0], array_map(
-                    /** @param TEntity $o */
-                    function ($o): int {
-                        return $this->entityGetId($o);
-                    },
+                /** @param TEntity $o */
+                function ($o): int {
+                    return $this->entityGetId($o);
+                },
                 $this->findAll()
             ))
         ) + 1;

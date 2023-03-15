@@ -7,6 +7,11 @@ namespace JmvDevelop\GraphqlGenerator\SchemaGenerator;
 use GraphQL\Language\Parser;
 use JmvDevelop\GraphqlGenerator\Schema\SchemaConfig;
 use JmvDevelop\GraphqlGenerator\Schema\UnionType;
+use League\Flysystem\FilesystemOperator;
+use Nette\PhpGenerator\ClassType;
+use Nette\PhpGenerator\Dumper;
+use Nette\PhpGenerator\Method;
+use Nette\PhpGenerator\PhpFile;
 use function JmvDevelop\GraphqlGenerator\Utils\extractBaseNamespace;
 use function JmvDevelop\GraphqlGenerator\Utils\extractShortName;
 use function JmvDevelop\GraphqlGenerator\Utils\fqcn;
@@ -14,11 +19,6 @@ use function JmvDevelop\GraphqlGenerator\Utils\getPhpTypeOf;
 use function JmvDevelop\GraphqlGenerator\Utils\getPsalmTypeOf;
 use function JmvDevelop\GraphqlGenerator\Utils\getTypeFromRegistry;
 use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
-use League\Flysystem\FilesystemOperator;
-use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\Dumper;
-use Nette\PhpGenerator\Method;
-use Nette\PhpGenerator\PhpFile;
 
 class UnionTypeGenerator implements TypeGeneratorInterface
 {

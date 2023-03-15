@@ -3,6 +3,6 @@
 /.phpunit.result.cache
 /vendor
 /.idea
-/bin/tools/php-cs-fixer
+/bin/.php-cs-fixer
 /.php_cs.cache
 /.php-cs-fixer.cache

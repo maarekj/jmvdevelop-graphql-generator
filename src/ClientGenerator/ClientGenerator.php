@@ -13,13 +13,13 @@ use GraphQL\Language\Parser;
 use GraphQL\Language\Printer;
 use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\ObjectType;
-use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\PhpFile;
 use Webmozart\Assert\Assert;
+use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
 
 final class ClientGenerator
 {
