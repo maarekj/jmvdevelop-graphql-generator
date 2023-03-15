@@ -13,5 +13,8 @@ abstract class AbstractCategoryIdType
 
     abstract public function parseValue(string|int|float|bool|null $value): Category;
 
+    /**
+     * @var null|array<mixed, mixed> $variables
+     */
     abstract public function parseLiteral(Node $valueNode, ?array $variables): Category;
 }

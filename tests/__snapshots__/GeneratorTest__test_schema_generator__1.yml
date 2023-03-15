@@ -16,6 +16,9 @@ Generated/Custom/Scalar/AbstractDateTimeTzType.php: |
     	abstract public function parseValue(string|int|float|bool|null $value): DateTimeImmutable;
 
 
+    	/**
+    	 * @var array<mixed, mixed>|null $variables
+    	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): DateTimeImmutable;
     }
 Custom/Scalar/DateTimeTzType.php: |
@@ -48,6 +51,9 @@ Generated/ScalarType/AbstractCompanyIdType.php: |
     	abstract public function parseValue(string|int|float|bool|null $value): Company;
 
 
+    	/**
+    	 * @var array<mixed, mixed>|null $variables
+    	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): Company;
     }
 ScalarType/CompanyIdType.php: |
@@ -80,6 +86,9 @@ Generated/ScalarType/AbstractUserIdType.php: |
     	abstract public function parseValue(string|int|float|bool|null $value): User;
 
 
+    	/**
+    	 * @var array<mixed, mixed>|null $variables
+    	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): User;
     }
 ScalarType/UserIdType.php: |
@@ -112,6 +121,9 @@ Generated/ScalarType/AbstractCategoryIdType.php: |
     	abstract public function parseValue(string|int|float|bool|null $value): Category;
 
 
+    	/**
+    	 * @var array<mixed, mixed>|null $variables
+    	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): Category;
     }
 ScalarType/CategoryIdType.php: |

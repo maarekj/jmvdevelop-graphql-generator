@@ -105,6 +105,7 @@ class ScalarTypeGenerator implements TypeGeneratorInterface
         $parseValue->setReturnType($this->type->getRootType());
 
         $parseLiteral = $class->addMethod('parseLiteral')->setAbstract();
+        $parseLiteral->addComment('@var array<mixed, mixed>|null $variables');
         $parseLiteral->addParameter('valueNode')->setType('\GraphQL\Language\AST\Node');
         $parseLiteral->addParameter('variables')->setType('array')->setNullable(true);
         $parseLiteral->setReturnType($this->type->getRootType());

@@ -36,6 +36,7 @@ final class CompanyIdType extends AbstractCompanyIdType
         throw new Error('Invalid type');
     }
 
+    /** @var null|array<mixed, mixed> */
     public function parseLiteral(Node $valueNode, ?array $variables): Company
     {
         if (!$valueNode instanceof IntValueNode) {

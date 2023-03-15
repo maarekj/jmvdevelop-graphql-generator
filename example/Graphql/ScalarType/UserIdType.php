@@ -36,6 +36,7 @@ final class UserIdType extends AbstractUserIdType
         throw new Error('Invalid type');
     }
 
+    /** @var null|array<mixed, mixed> */
     public function parseLiteral(Node $valueNode, ?array $variables): User
     {
         if (!$valueNode instanceof IntValueNode) {
