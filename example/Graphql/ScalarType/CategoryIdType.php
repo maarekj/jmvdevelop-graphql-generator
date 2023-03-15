@@ -36,7 +36,7 @@ final class CategoryIdType extends AbstractCategoryIdType
         throw new Error('Invalid type');
     }
 
-    /** @var null|array<mixed, mixed> */
+    /** @param null|array<mixed, mixed> $variables */
     public function parseLiteral(Node $valueNode, ?array $variables): Category
     {
         if (!$valueNode instanceof IntValueNode) {

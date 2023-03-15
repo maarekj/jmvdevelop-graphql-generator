@@ -14,7 +14,7 @@ abstract class AbstractCompanyIdType
     abstract public function parseValue(string|int|float|bool|null $value): Company;
 
     /**
-     * @var null|array<mixed, mixed> $variables
+     * @param null|array<mixed, mixed> $variables
      */
     abstract public function parseLiteral(Node $valueNode, ?array $variables): Company;
 }

@@ -13,7 +13,7 @@ abstract class AbstractDateTimeTzType
     abstract public function parseValue(string|int|float|bool|null $value): \DateTimeImmutable;
 
     /**
-     * @var null|array<mixed, mixed> $variables
+     * @param null|array<mixed, mixed> $variables
      */
     abstract public function parseLiteral(Node $valueNode, ?array $variables): \DateTimeImmutable;
 }

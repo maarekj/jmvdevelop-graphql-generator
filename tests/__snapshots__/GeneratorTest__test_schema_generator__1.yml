@@ -17,7 +17,7 @@ Generated/Custom/Scalar/AbstractDateTimeTzType.php: |
 
 
     	/**
-    	 * @var array<mixed, mixed>|null $variables
+    	 * @param array<mixed, mixed>|null $variables
     	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): DateTimeImmutable;
     }
@@ -52,7 +52,7 @@ Generated/ScalarType/AbstractCompanyIdType.php: |
 
 
     	/**
-    	 * @var array<mixed, mixed>|null $variables
+    	 * @param array<mixed, mixed>|null $variables
     	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): Company;
     }
@@ -87,7 +87,7 @@ Generated/ScalarType/AbstractUserIdType.php: |
 
 
     	/**
-    	 * @var array<mixed, mixed>|null $variables
+    	 * @param array<mixed, mixed>|null $variables
     	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): User;
     }
@@ -122,7 +122,7 @@ Generated/ScalarType/AbstractCategoryIdType.php: |
 
 
     	/**
-    	 * @var array<mixed, mixed>|null $variables
+    	 * @param array<mixed, mixed>|null $variables
     	 */
     	abstract public function parseLiteral(Node $valueNode, ?array $variables): Category;
     }
