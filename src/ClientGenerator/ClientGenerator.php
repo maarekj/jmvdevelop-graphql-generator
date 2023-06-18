@@ -47,7 +47,8 @@ final class ClientGenerator
         ;
 
         $class->addMethod('__construct')
-            ->addPromotedParameter('mapper')->setType($baseNs.'\Mapper')->setVisibility('protected');
+            ->addPromotedParameter('mapper')->setType($baseNs.'\Mapper')->setVisibility('protected')
+        ;
 
         $executeMethod = $class->addMethod('execute')->setReturnType('array')->setAbstract();
         $executeMethod->addParameter('query')->setType('string');
@@ -68,7 +69,7 @@ final class ClientGenerator
 
         $userNamespace = $userFile->addNamespace($baseNs);
         $userClass = $userNamespace->addClass('Client');
-        $userClass->setFinal()->addExtend('\\'.$baseNs.'\\ClientGenerated\\AbstractClient');
+        $userClass->setFinal()->setExtends('\\'.$baseNs.'\\ClientGenerated\\AbstractClient');
 
         writeFile(fs: $fs, baseNs: $baseNs, file: $file, overwrite: true);
         writeFile(fs: $fs, baseNs: $baseNs, file: $userFile, overwrite: false);
@@ -87,7 +88,7 @@ final class ClientGenerator
     private function handleOperation(ClassType $class, OperationDefinitionNode $operation): void
     {
         $dumper = new Dumper();
-        $graphqlToPhpCompiler = new GraphqlToPhpCompiler(schema: $this->config->getSchema());
+        $graphqlToPhpCompiler = new GraphqlToPhpCompiler();
         $graphqlTypeToPhpCompiler = new GraphqlTypeToPhpTypeCompiler(config: $this->config);
 
         $operationName = $operation->name?->value;
@@ -109,6 +110,11 @@ final class ClientGenerator
             baseType: $queryType,
             canBeNull: false,
         ));
+        $class->addComment('@phpstan-type T_'.$operationName.' '.$graphqlTypeToPhpCompiler->compileSelectionSetToPsalmType(
+            set: $operation->selectionSet,
+            baseType: $queryType,
+            canBeNull: false,
+        ));
 
         $parseMethod->addBody('return ('.$graphqlToPhpCompiler->compileSelectionSet(
             variable: '$data',
@@ -117,12 +123,14 @@ final class ClientGenerator
         ).');');
 
         $parseMethod->addComment('@psalm-return T_'.$operationName);
+        $parseMethod->addComment('@phpstan-return T_'.$operationName);
 
         $variables = [];
 
         $executeMethod = $class->addMethod('execute_'.$operationName);
 
         $executeMethod->addComment('@psalm-return T_'.$operationName);
+        $executeMethod->addComment('@phpstan-return T_'.$operationName);
 
         foreach ($operation->variableDefinitions as $variableDefinition) {
             $forceCanBeNull = null !== $variableDefinition->defaultValue;

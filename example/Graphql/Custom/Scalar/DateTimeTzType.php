@@ -18,7 +18,7 @@ final class DateTimeTzType extends AbstractDateTimeTzType
 
     public static function staticParseValue(float|int|string|null|bool $value): \DateTimeImmutable
     {
-        if (null !== $value && \is_string($value)) {
+        if (\is_string($value)) {
             $date = \DateTimeImmutable::createFromFormat(\DateTimeInterface::RFC3339_EXTENDED, $value);
             if (false !== $date) {
                 return $date;

@@ -24,10 +24,10 @@ use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
 
 final class SchemaGenerator
 {
-    private string $namespace;
+    private readonly string $namespace;
 
     public function __construct(
-        private SchemaConfig $config,
+        private readonly SchemaConfig $config,
     ) {
         $this->namespace = $this->config->getNamespace();
     }
@@ -64,8 +64,6 @@ final class SchemaGenerator
             ->setAbstract()
         ;
 
-        $dumper = new Dumper();
-
         $construct = $class->addMethod('__construct');
         $construct->addPromotedParameter('services')->setType('\Psr\Container\ContainerInterface')->setPrivate();
 
@@ -85,9 +83,11 @@ final class SchemaGenerator
         $addQueryOrMutationType =
             /**
              * @param list<MutationField|QueryField> $fields
-             * @param array<string, string>          $subscribedServices
              */
-            function (string $methodName, string $fieldName, string $suffixClass, array $fields, array &$subscribedServices) use ($class, $dumper): void {
+            function (string $methodName, string $fieldName, string $suffixClass, array $fields) use ($class, &$subscribedServices): void {
+                /** @var list<MutationField|QueryField> $fields */
+                $dumper = new Dumper();
+
                 $queryMethod = $class->addMethod($methodName);
                 $queryMethod->setReturnType('\GraphQL\Type\Definition\ObjectType');
 
@@ -141,7 +141,6 @@ final class SchemaGenerator
             fieldName: 'Query',
             suffixClass: 'Field',
             fields: $this->config->getSchema()->getQueryFields(),
-            subscribedServices: $subscribedServices,
         );
 
         $addQueryOrMutationType(
@@ -149,7 +148,6 @@ final class SchemaGenerator
             fieldName: 'Mutation',
             suffixClass: 'Mutation',
             fields: $this->config->getSchema()->getMutationFields(),
-            subscribedServices: $subscribedServices
         );
 
         $getSubscribedServicesMethod = $class->addMethod('getSubscribedServices')->setReturnType('array')->setStatic();
@@ -160,7 +158,7 @@ final class SchemaGenerator
 
         $userNamespace = $userFile->addNamespace($this->namespace);
         $userClass = $userNamespace->addClass('Schema');
-        $userClass->setFinal()->addExtend('\\'.$this->namespace.'\\Generated\\AbstractSchema');
+        $userClass->setFinal()->setExtends('\\'.$this->namespace.'\\Generated\\AbstractSchema');
 
         $baseNs = $this->config->getNamespace();
         writeFile(fs: $fs, baseNs: $baseNs, file: $file, overwrite: true);
@@ -222,7 +220,7 @@ final class SchemaGenerator
 
         $userNamespace = $userFile->addNamespace(extractBaseNamespace($concretClass));
         $userClass = $userNamespace->addClass(extractShortName($concretClass));
-        $userClass->setFinal()->addExtend('\\'.$abstractClass);
+        $userClass->setFinal()->setExtends('\\'.$abstractClass);
 
         $baseNs = $this->config->getNamespace();
         writeFile(fs: $fs, baseNs: $baseNs, file: $file, overwrite: true);

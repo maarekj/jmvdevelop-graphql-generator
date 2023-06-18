@@ -4,6 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://getpsalm.org/schema/config"
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+        findUnusedCode="true"
+        findUnusedBaselineEntry="true"
 >
     <projectFiles>
         <directory name="src"/>
@@ -23,5 +25,9 @@
     <issueHandlers>
         <RedundantCondition errorLevel="suppress"/>
         <UnusedParam errorLevel="info"/>
+        <PossiblyUnusedMethod errorLevel="info"/>
+        <PossiblyUnusedReturnValue errorLevel="info"/>
+        <PossiblyUnusedProperty errorLevel="info"/>
+        <UnusedClass errorLevel="info"/>
     </issueHandlers>
 </psalm>

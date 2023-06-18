@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JmvDevelop\GraphqlGenerator\Utils;
 
 use Nette\InvalidStateException;
+use Nette\PhpGenerator\ClassLike;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Method;
 use Nette\PhpGenerator\Parameter;
@@ -28,18 +29,20 @@ final class AddUseInFile
         }
     }
 
-    private static function visitClass(PhpNamespace $namespace, ClassType $class): void
+    private static function visitClass(PhpNamespace $namespace, ClassLike $class): void
     {
-        foreach ((array) $class->getExtends() as $extend) {
-            self::addUseIfCan($namespace, $extend);
-        }
+        if ($class instanceof ClassType) {
+            foreach ((array) $class->getExtends() as $extend) {
+                self::addUseIfCan($namespace, $extend);
+            }
 
-        foreach ($class->getImplements() as $implement) {
-            self::addUseIfCan($namespace, $implement);
-        }
+            foreach ($class->getImplements() as $implement) {
+                self::addUseIfCan($namespace, $implement);
+            }
 
-        foreach ($class->getMethods() as $method) {
-            self::visitMethod($namespace, $method);
+            foreach ($class->getMethods() as $method) {
+                self::visitMethod($namespace, $method);
+            }
         }
     }
 
@@ -76,7 +79,7 @@ final class AddUseInFile
     {
         if (null !== $type && '' !== trim($type)) {
             try {
-                $classes = array_values(array_map(fn (ClassType $class) => $class->getName(), $namespace->getClasses()));
+                $classes = array_values(array_map(fn (ClassLike $class) => $class->getName(), $namespace->getClasses()));
                 $shortName = extractShortName($type);
                 if (true === \in_array($shortName, $classes, true)) {
                     return;

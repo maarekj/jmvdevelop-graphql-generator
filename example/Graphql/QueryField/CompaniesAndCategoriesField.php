@@ -12,7 +12,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractCom
 
 final class CompaniesAndCategoriesField extends AbstractCompaniesAndCategoriesField
 {
-    public function __construct(private CompanyRepo $companyRepo, private CategoryRepo $categoryRepo)
+    public function __construct(private readonly CompanyRepo $companyRepo, private readonly CategoryRepo $categoryRepo)
     {
     }
 

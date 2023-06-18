@@ -1,0 +1,22 @@
+includes:
+    - vendor/php-standard-library/phpstan-extension/extension.neon
+
+parameters:
+    #editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+    level: 9
+
+    paths:
+        - src
+        - example
+
+    excludePaths:
+        - example/Graphql/Generated/AbstractSchema.php
+        - example/Graphql/ClientGenerated
+        - example/Graphql/Mapper.php
+
+    ignoreErrors:
+        #- "#Constructor of class .* has an unused parameter .*\\.#"
+        - '#Unreachable statement - code above always terminates.#'
+
+    checkImplicitMixed: true

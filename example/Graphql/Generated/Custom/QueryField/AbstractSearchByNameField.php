@@ -9,8 +9,8 @@ abstract class AbstractSearchByNameField
     /**
      * Search all entities with name.
      *
+     * @param  null|'ASC'|'DEFAULT'|'DESC'                                                                                    $orderByName
      * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Category|\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
-     * @psalm-param 'ASC'|'DESC'|'DEFAULT'|null $orderByName
      */
     abstract public function resolve(string|null $name, string|null $orderByName): array;
 }

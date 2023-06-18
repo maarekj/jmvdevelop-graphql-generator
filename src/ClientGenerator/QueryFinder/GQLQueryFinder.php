@@ -12,8 +12,8 @@ use function Psl\Type\vec;
 final class GQLQueryFinder implements QueryFinder
 {
     public function __construct(
-        private Finder $finderPhpFiles,
-        private string $prefixNs,
+        private readonly Finder $finderPhpFiles,
+        private readonly string $prefixNs,
     ) {
     }
 
@@ -40,7 +40,10 @@ final class GQLQueryFinder implements QueryFinder
         }
     }
 
-    /** @return iterable<Source|string> */
+    /**
+     * @param  \ReflectionClass<object> $reflection
+     * @return iterable<Source|string>
+     */
     private function findQueriesOnClass(\ReflectionClass $reflection): iterable
     {
         $attributes = $reflection->getAttributes(GQL::class);

@@ -9,25 +9,31 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Mapper;
 
 /**
  * @psalm-type T_searchCompaniesWithId = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}|null}
+ * @phpstan-type T_searchCompaniesWithId array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}|null}
  * @psalm-type T_searchCompanies = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string}>}>}|null}
+ * @phpstan-type T_searchCompanies array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string, categories: list<array{id: string, name: string}>}>}|null}
  * @psalm-type T_company1And2Query = array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}|null, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}|null}
+ * @phpstan-type T_company1And2Query array{jmv1: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}|null, jmv2: array{id: string, name: string, categories: list<array{id: string, name: string, __typename: string}>, __typename: string}|null}
  * @psalm-type T_searchCompaniesWithNoArg = array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}|null}
+ * @phpstan-type T_searchCompaniesWithNoArg array{searchCompanies: array{currentPage: int, nbPages: int, count: int, maxPerPage: int, results: list<array{id: string, name: string}>}|null}
  */
 abstract class AbstractClient
 {
-    public function __construct(protected Mapper $mapper)
-    {
+    public function __construct(
+        protected Mapper $mapper,
+    ) {
     }
 
     abstract public function execute(string $query, array $variables = []): array;
 
     public function gql_searchCompaniesWithId(): string
     {
-        return "query searchCompaniesWithId(\$id: Int!) {\n  searchCompanies(where: {id: {eq: \$id}}) {\n    currentPage\n    nbPages\n    count\n    maxPerPage\n    results {\n      id\n      name\n    }\n  }\n}";
+        return "query searchCompaniesWithId(\$id: Int!) {\n  searchCompanies(where: { id: { eq: \$id } }) {\n    currentPage\n    nbPages\n    count\n    maxPerPage\n    results {\n      id\n      name\n    }\n  }\n}";
     }
 
     /**
      * @psalm-return T_searchCompaniesWithId
+     * @phpstan-return T_searchCompaniesWithId
      */
     public function parse_searchCompaniesWithId(array $data)
     {
@@ -60,6 +66,7 @@ abstract class AbstractClient
 
     /**
      * @psalm-return T_searchCompaniesWithId
+     * @phpstan-return T_searchCompaniesWithId
      */
     public function execute_searchCompaniesWithId(int $id)
     {
@@ -75,6 +82,7 @@ abstract class AbstractClient
 
     /**
      * @psalm-return T_searchCompanies
+     * @phpstan-return T_searchCompanies
      */
     public function parse_searchCompanies(array $data)
     {
@@ -117,6 +125,7 @@ abstract class AbstractClient
 
     /**
      * @psalm-return T_searchCompanies
+     * @phpstan-return T_searchCompanies
      */
     public function execute_searchCompanies(SearchCompanyWhereInput|null $where)
     {
@@ -132,6 +141,7 @@ abstract class AbstractClient
 
     /**
      * @psalm-return T_company1And2Query
+     * @phpstan-return T_company1And2Query
      */
     public function parse_company1And2Query(array $data)
     {
@@ -186,6 +196,7 @@ abstract class AbstractClient
 
     /**
      * @psalm-return T_company1And2Query
+     * @phpstan-return T_company1And2Query
      */
     public function execute_company1And2Query()
     {
@@ -201,6 +212,7 @@ abstract class AbstractClient
 
     /**
      * @psalm-return T_searchCompaniesWithNoArg
+     * @phpstan-return T_searchCompaniesWithNoArg
      */
     public function parse_searchCompaniesWithNoArg(array $data)
     {
@@ -233,6 +245,7 @@ abstract class AbstractClient
 
     /**
      * @psalm-return T_searchCompaniesWithNoArg
+     * @phpstan-return T_searchCompaniesWithNoArg
      */
     public function execute_searchCompaniesWithNoArg()
     {

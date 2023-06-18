@@ -6,9 +6,6 @@ namespace JmvDevelop\GraphqlGenerator\ClientGenerator;
 
 final class IdScalarConfig implements ScalarConfig
 {
-    /**
-     * @param callable(string):string $compiler
-     */
     public function __construct(private string $name, private string $php)
     {
     }

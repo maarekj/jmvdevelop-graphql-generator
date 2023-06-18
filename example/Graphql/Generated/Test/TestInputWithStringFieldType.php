@@ -6,8 +6,9 @@ namespace JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Test;
 
 final class TestInputWithStringFieldType
 {
-    public function __construct(public string $name)
-    {
+    public function __construct(
+        public string $name,
+    ) {
     }
 
     public function _withName(string $name): TestInputWithStringFieldType

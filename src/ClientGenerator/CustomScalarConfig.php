@@ -8,9 +8,6 @@ final class CustomScalarConfig implements ScalarConfig
 {
     private string $psalm;
 
-    /**
-     * @param callable(string):string $compiler
-     */
     public function __construct(
         private string $name,
         private string $php,

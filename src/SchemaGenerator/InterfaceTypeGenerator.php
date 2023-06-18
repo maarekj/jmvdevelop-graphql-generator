@@ -139,7 +139,7 @@ class InterfaceTypeGenerator implements TypeGeneratorInterface
         $file
             ->addNamespace(extractBaseNamespace($this->concretFqcnClass($config)))
             ->addClass(extractShortName($this->concretFqcnClass($config)))->setFinal()
-            ->addExtend('\\'.$this->abstractFqcnClass($config))
+            ->setExtends('\\'.$this->abstractFqcnClass($config))
         ;
 
         writeFile(fs: $fs, baseNs: $config->getNamespace(), file: $file, overwrite: false);

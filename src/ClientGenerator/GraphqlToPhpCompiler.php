@@ -12,7 +12,6 @@ use GraphQL\Type\Definition\NonNull;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ScalarType;
 use GraphQL\Type\Definition\Type;
-use GraphQL\Type\Schema;
 use Nette\PhpGenerator\Dumper;
 use Webmozart\Assert\Assert;
 
@@ -20,7 +19,7 @@ final class GraphqlToPhpCompiler
 {
     private Dumper $dumper;
 
-    public function __construct(Schema $schema)
+    public function __construct()
     {
         $this->dumper = new Dumper();
     }
@@ -84,8 +83,7 @@ final class GraphqlToPhpCompiler
         if ($type instanceof ScalarType) {
             return '$this->mapper->graphql_to_php_'.$type->name.'('.$variable.')';
         } elseif ($type instanceof NonNull) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             return $this->compileType(variable: $variable, field: $field, type: $ofType);
         } elseif ($type instanceof ListOfType) {
@@ -93,8 +91,7 @@ final class GraphqlToPhpCompiler
                 return :sub;
             }, :variable)';
 
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             return strtr($res, [
                 ':variable' => $variable,

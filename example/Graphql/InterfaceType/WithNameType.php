@@ -12,7 +12,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Schema;
 
 final class WithNameType extends AbstractWithNameType
 {
-    public function __construct(private Schema $schema)
+    public function __construct(private readonly Schema $schema)
     {
     }
 

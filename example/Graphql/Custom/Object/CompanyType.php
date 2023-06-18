@@ -14,8 +14,8 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\Object\Abstract
 final class CompanyType extends AbstractCompanyType
 {
     public function __construct(
-        private UserRepo $userRepo,
-        private CategoryRepo $categoryRepo,
+        private readonly UserRepo $userRepo,
+        private readonly CategoryRepo $categoryRepo,
     ) {
     }
 

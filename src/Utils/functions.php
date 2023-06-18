@@ -21,7 +21,7 @@ use JmvDevelop\GraphqlGenerator\Schema\UnionType;
 use JmvDevelop\GraphqlGenerator\Schema\WithName;
 use JmvDevelop\GraphqlGenerator\Schema\WithType;
 use League\Flysystem\FilesystemOperator;
-use Nette\PhpGenerator\ClassType;
+use Nette\PhpGenerator\ClassLike;
 use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\Method;
 use Nette\PhpGenerator\PhpFile;
@@ -237,7 +237,7 @@ function addArgumentInParameterOfMethod(SchemaConfig $config, Method $method, Ar
     $phpArgType = getPhpTypeOf($config, Parser::parseType($arg->getType()));
 
     if ($psalmArgType !== $phpArgType) {
-        $method->addComment('@psalm-param '.$psalmArgType.' $'.$arg->getName());
+        $method->addComment('@param '.$psalmArgType.' $'.$arg->getName());
     }
 
     if ($promoted) {
@@ -372,7 +372,7 @@ function array_flat_map(callable $callback, array $array): array
 function pathForFQCN(string $baseNs, string $fqcn): string
 {
     return '/'.strtr(
-        preg_replace('/^'.preg_quote($baseNs).'\\\\(.*)$/', '$1', $fqcn),
+        (string) preg_replace('/^'.preg_quote($baseNs).'\\\\(.*)$/', '$1', $fqcn),
         ['\\' => '/']
     ).'.php';
 }
@@ -382,7 +382,7 @@ function writeFile(FilesystemOperator $fs, string $baseNs, PhpFile $file, bool $
     AddUseInFile::visitFile($file);
 
     $classes = array_flat_map(function (PhpNamespace $ns): array {
-        return array_map(fn (ClassType $class): string => $ns->getName().'\\'.strDef($class->getName(), ''), array_values($ns->getClasses()));
+        return array_map(fn (ClassLike $class): string => $ns->getName().'\\'.strDef($class->getName(), ''), array_values($ns->getClasses()));
     }, array_values($file->getNamespaces()));
 
     if (\count($classes) <= 0) {

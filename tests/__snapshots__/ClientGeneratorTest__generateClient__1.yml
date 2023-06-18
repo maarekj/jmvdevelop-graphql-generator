@@ -10,12 +10,15 @@ ClientGenerated/AbstractClient.php: |
 
     /**
      * @psalm-type T_users = array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}>}
+     * @phpstan-type T_users array{users: list<array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}>}
      * @psalm-type T_user = array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}|null}
+     * @phpstan-type T_user array{user_by_id: array{id: int, email: string, groups: list<array{id: int, name: string, roles: list<string>}>}|null}
      */
     abstract class AbstractClient
     {
-    	public function __construct(protected Mapper $mapper)
-    	{
+    	public function __construct(
+    		protected Mapper $mapper,
+    	) {
     	}
 
 
@@ -30,6 +33,7 @@ ClientGenerated/AbstractClient.php: |
 
     	/**
     	 * @psalm-return T_users
+    	 * @phpstan-return T_users
     	 */
     	public function parse_users(array $data)
     	{
@@ -65,6 +69,7 @@ ClientGenerated/AbstractClient.php: |
 
     	/**
     	 * @psalm-return T_users
+    	 * @phpstan-return T_users
     	 * @param list<string>|null $roles
     	 */
     	public function execute_users(int|null $limit, int|null $offset, array|null $roles, UserWhere|null $where)
@@ -87,6 +92,7 @@ ClientGenerated/AbstractClient.php: |
 
     	/**
     	 * @psalm-return T_user
+    	 * @phpstan-return T_user
     	 */
     	public function parse_user(array $data)
     	{
@@ -120,6 +126,7 @@ ClientGenerated/AbstractClient.php: |
 
     	/**
     	 * @psalm-return T_user
+    	 * @phpstan-return T_user
     	 */
     	public function execute_user(int $id)
     	{
@@ -177,6 +184,30 @@ ClientGenerated/AbstractMapper.php: |
     	}
 
 
+    	public function php_to_graphql_Boolean(bool $data)
+    	{
+    		return $data;
+    	}
+
+
+    	public function graphql_to_php_Boolean($data): bool
+    	{
+    		return $data;
+    	}
+
+
+    	public function php_to_graphql_Float(float $data)
+    	{
+    		return $data;
+    	}
+
+
+    	public function graphql_to_php_Float($data): float
+    	{
+    		return $data;
+    	}
+
+
     	abstract public function php_to_graphql_DateTimeTz(DateTimeImmutable $data);
 
 
@@ -217,18 +248,6 @@ ClientGenerated/AbstractMapper.php: |
     	}
 
 
-    	public function php_to_graphql_Boolean(bool $data)
-    	{
-    		return $data;
-    	}
-
-
-    	public function graphql_to_php_Boolean($data): bool
-    	{
-    		return $data;
-    	}
-
-
     	public function php_to_graphql_ExprDatetime(ExprDatetime $data): array
     	{
     		return [
@@ -242,30 +261,6 @@ ClientGenerated/AbstractMapper.php: |
     		'isNotNull' => (($data)->isNotNull) === null ? null : $this->php_to_graphql_Boolean(($data)->isNotNull)
     		,
     		];
-    	}
-
-
-    	public function php_to_graphql_ID(string $data)
-    	{
-    		return $data;
-    	}
-
-
-    	public function graphql_to_php_ID($data): string
-    	{
-    		return $data;
-    	}
-
-
-    	public function php_to_graphql_Float(float $data)
-    	{
-    		return $data;
-    	}
-
-
-    	public function graphql_to_php_Float($data): float
-    	{
-    		return $data;
     	}
 
 

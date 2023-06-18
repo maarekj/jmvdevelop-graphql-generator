@@ -9,7 +9,7 @@ use JmvDevelop\GraphqlGenerator\Example\Entity\Pager;
 abstract class AbstractPagerCompanyType
 {
     /**
-     * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+     * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
      */
     public function resolveCurrentPage(Pager $root): int
     {
@@ -17,7 +17,7 @@ abstract class AbstractPagerCompanyType
     }
 
     /**
-     * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+     * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
      */
     public function resolveMaxPerPage(Pager $root): int
     {
@@ -25,7 +25,7 @@ abstract class AbstractPagerCompanyType
     }
 
     /**
-     * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+     * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
      */
     public function resolveNbPages(Pager $root): int
     {
@@ -33,7 +33,7 @@ abstract class AbstractPagerCompanyType
     }
 
     /**
-     * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
+     * @param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
      */
     public function resolveCount(Pager $root): int
     {
@@ -41,8 +41,8 @@ abstract class AbstractPagerCompanyType
     }
 
     /**
+     * @param  \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
      * @return list<\JmvDevelop\GraphqlGenerator\Example\Entity\Company>
-     * @psalm-param \JmvDevelop\GraphqlGenerator\Example\Entity\Pager<\JmvDevelop\GraphqlGenerator\Example\Entity\Company> $root
      */
     public function resolveResults(Pager $root): array
     {

@@ -13,7 +13,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType\AbstractCom
 
 final class CompanyIdType extends AbstractCompanyIdType
 {
-    public function __construct(private CompanyRepo $repo)
+    public function __construct(private readonly CompanyRepo $repo)
     {
     }
 
@@ -24,7 +24,7 @@ final class CompanyIdType extends AbstractCompanyIdType
 
     public function parseValue(float|int|string|null|bool $value): Company
     {
-        if (null !== $value && \is_int($value)) {
+        if (\is_int($value)) {
             $entity = $this->repo->find($value);
             if (null === $entity) {
                 throw new Error('Entity not found');

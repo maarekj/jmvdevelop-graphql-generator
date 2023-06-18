@@ -9,7 +9,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractUse
 
 final class UsersField extends AbstractUsersField
 {
-    public function __construct(private UserRepo $repo)
+    public function __construct(private readonly UserRepo $repo)
     {
     }
 

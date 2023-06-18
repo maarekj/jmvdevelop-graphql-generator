@@ -12,7 +12,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\QueryField\AbstractSea
 
 final class SearchCompaniesField extends AbstractSearchCompaniesField
 {
-    public function __construct(private CompanyRepo $repo)
+    public function __construct(private readonly CompanyRepo $repo)
     {
     }
 

@@ -140,16 +140,6 @@ abstract class AbstractMapper
         return $data;
     }
 
-    public function php_to_graphql_Float(float $data)
-    {
-        return $data;
-    }
-
-    public function graphql_to_php_Float($data): float
-    {
-        return $data;
-    }
-
     abstract public function php_to_graphql___TypeKind($data);
 
     abstract public function graphql_to_php___TypeKind($data);

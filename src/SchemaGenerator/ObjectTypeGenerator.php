@@ -156,7 +156,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
             $resolveMethod->setReturnType($phpReturnType);
 
             if ($rootType !== $psalmType) {
-                $resolveMethod->addComment('@psalm-param '.$psalmType.' $root');
+                $resolveMethod->addComment('@param '.$psalmType.' $root');
             }
             $resolveMethod->addParameter('root')->setType($this->type->getRootType());
 
@@ -178,7 +178,7 @@ class ObjectTypeGenerator implements TypeGeneratorInterface
         $file
             ->addNamespace(extractBaseNamespace($this->concretFqcnClass($config)))
             ->addClass(extractShortName($this->concretFqcnClass($config)))->setFinal()
-            ->addExtend('\\'.$this->abstractFqcnClass($config))
+            ->setExtends('\\'.$this->abstractFqcnClass($config))
         ;
 
         writeFile(fs: $fs, baseNs: $config->getNamespace(), file: $file, overwrite: false);

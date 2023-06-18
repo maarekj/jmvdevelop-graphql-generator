@@ -13,7 +13,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType\AbstractUse
 
 final class UserIdType extends AbstractUserIdType
 {
-    public function __construct(private UserRepo $repo)
+    public function __construct(private readonly UserRepo $repo)
     {
     }
 
@@ -24,7 +24,7 @@ final class UserIdType extends AbstractUserIdType
 
     public function parseValue(float|int|string|null|bool $value): User
     {
-        if (null !== $value && \is_int($value)) {
+        if (\is_int($value)) {
             $entity = $this->repo->find($value);
             if (null === $entity) {
                 throw new Error('Entity not found');

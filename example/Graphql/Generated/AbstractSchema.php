@@ -38,8 +38,9 @@ abstract class AbstractSchema implements ServiceSubscriberInterface
     private $property_input_object_type_TestInputWithStringField;
     private $property_input_object_type_TestWithNullableInputField;
 
-    public function __construct(private ContainerInterface $services)
-    {
+    public function __construct(
+        private ContainerInterface $services,
+    ) {
     }
 
     public function get_scalar_ID(): ScalarType

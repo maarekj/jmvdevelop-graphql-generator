@@ -13,7 +13,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\ScalarType\AbstractCat
 
 final class CategoryIdType extends AbstractCategoryIdType
 {
-    public function __construct(private CategoryRepo $repo)
+    public function __construct(private readonly CategoryRepo $repo)
     {
     }
 
@@ -24,7 +24,7 @@ final class CategoryIdType extends AbstractCategoryIdType
 
     public function parseValue(float|int|string|null|bool $value): Category
     {
-        if (null !== $value && \is_int($value)) {
+        if (\is_int($value)) {
             $category = $this->repo->find($value);
             if (null === $category) {
                 throw new Error('Entity not found');

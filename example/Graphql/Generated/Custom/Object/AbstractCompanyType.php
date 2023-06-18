@@ -34,13 +34,13 @@ abstract class AbstractCompanyType
     /**
      * Search categories of company.
      *
+     * @param  null|list<null|string>                                               $keywords
      * @return null|list<null|\JmvDevelop\GraphqlGenerator\Example\Entity\Category>
-     * @psalm-param list<string|null>|null $keywords
      */
     abstract public function resolveSearchCategories(
         Company $root,
         string|null $name,
         array|null $keywords,
-        string $orderBy
+        string $orderBy,
     ): array|null;
 }

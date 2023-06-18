@@ -13,7 +13,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Schema;
 
 final class WithIdType extends AbstractWithIdType
 {
-    public function __construct(private Schema $schema)
+    public function __construct(private readonly Schema $schema)
     {
     }
 

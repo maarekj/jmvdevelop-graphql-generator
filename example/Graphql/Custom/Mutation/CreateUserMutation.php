@@ -12,7 +12,7 @@ use function JmvDevelop\GraphqlGenerator\Utils\strDef;
 
 final class CreateUserMutation extends AbstractCreateUserMutation
 {
-    public function __construct(private UserRepo $repo)
+    public function __construct(private readonly UserRepo $repo)
     {
     }
 

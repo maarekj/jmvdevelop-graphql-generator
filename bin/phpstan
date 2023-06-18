@@ -4,7 +4,7 @@ set -e
 BASE_DIR=$(realpath "$(dirname "$0")")
 PROJECT_DIR=$(realpath "${BASE_DIR}/../")
 
-BIN="${PROJECT_DIR}/vendor/bin/psalm --config="${PROJECT_DIR}/psalm.xml" $*"
+BIN="${PROJECT_DIR}/vendor/bin/phpstan --configuration="${PROJECT_DIR}/phpstan.neon" $*"
 echo "$BIN"
 
 $BIN

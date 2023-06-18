@@ -7,15 +7,20 @@ namespace JmvDevelop\GraphqlGenerator\ClientGenerator;
 use GraphQL\Type\Definition\EnumType;
 use GraphQL\Type\Definition\InputObjectField;
 use GraphQL\Type\Definition\InputObjectType;
+use GraphQL\Type\Definition\InterfaceType;
 use GraphQL\Type\Definition\ListOfType;
 use GraphQL\Type\Definition\NonNull;
+use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\ScalarType;
 use GraphQL\Type\Definition\Type;
+use GraphQL\Type\Definition\UnionType;
 use League\Flysystem\FilesystemOperator;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\PhpFile;
 use function JmvDevelop\GraphqlGenerator\Utils\writeFile;
+use function Psl\Type\instance_of;
+use function Psl\Type\union;
 
 final class MapperGenerator
 {
@@ -45,7 +50,7 @@ final class MapperGenerator
 
         $userNamespace = $userFile->addNamespace($baseNs);
         $userClass = $userNamespace->addClass('Mapper');
-        $userClass->setFinal()->addExtend('\\'.$baseNs.'\\ClientGenerated\\AbstractMapper');
+        $userClass->setFinal()->setExtends('\\'.$baseNs.'\\ClientGenerated\\AbstractMapper');
 
         writeFile(fs: $fs, baseNs: $baseNs, file: $file, overwrite: true);
         writeFile(fs: $fs, baseNs: $baseNs, file: $userFile, overwrite: false);
@@ -138,13 +143,11 @@ final class MapperGenerator
         $nullOr = $canBeNull ? "({$variable}) === null ? null : " : '';
 
         if ($type instanceof NonNull) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             return $this->compileInputObjectFieldType(variable: $variable, type: $ofType, canBeNull: false);
         } elseif ($type instanceof ListOfType) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             return strtr(':nullOr array_map(fn ($_value) => (:sub), (:variable))', [
                 ':nullOr' => $nullOr,
@@ -152,6 +155,15 @@ final class MapperGenerator
                 ':sub' => $this->compileInputObjectFieldType(variable: '$_value', type: $ofType, canBeNull: true),
             ]);
         }
+
+        $type = union(
+            instance_of(InterfaceType::class),
+            instance_of(ObjectType::class),
+            instance_of(InputObjectType::class),
+            instance_of(UnionType::class),
+            instance_of(EnumType::class),
+            instance_of(ScalarType::class),
+        )->assert($type);
 
         return $nullOr.'$this->php_to_graphql_'.$type->name.'('.$variable.')';
     }

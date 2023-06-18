@@ -12,7 +12,7 @@ use JmvDevelop\GraphqlGenerator\Example\Graphql\Generated\Custom\QueryField\Abst
 
 final class SearchByNameField extends AbstractSearchByNameField
 {
-    public function __construct(private CategoryRepo $categoryRepo, private CompanyRepo $companyRepo)
+    public function __construct(private readonly CategoryRepo $categoryRepo, private readonly CompanyRepo $companyRepo)
     {
     }
 

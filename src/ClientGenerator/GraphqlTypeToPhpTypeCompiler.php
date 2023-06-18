@@ -30,7 +30,9 @@ final class GraphqlTypeToPhpTypeCompiler
 
     public function compileTypeNodeToPhpType(NamedTypeNode|ListTypeNode|NonNullTypeNode $typeNode, bool $forceCanBeNull, bool $canBeNull = true): string
     {
-        $type = AST::typeFromAST($this->config->getSchema(), $typeNode);
+        $type = AST::typeFromAST(function (string $name): ?Type {
+            return $this->config->getSchema()->getType($name);
+        }, $typeNode);
         Assert::notNull($type);
 
         return $this->compileTypeToPhpType(type: $type, forceCanBeNull: $forceCanBeNull);
@@ -41,8 +43,7 @@ final class GraphqlTypeToPhpTypeCompiler
         $orNull = ($canBeNull ? '|null' : '');
 
         if ($type instanceof NonNull) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             if ($forceCanBeNull) {
                 return $this->compileTypeToPhpType(type: $ofType, canBeNull: true, forceCanBeNull: false);
@@ -68,7 +69,9 @@ final class GraphqlTypeToPhpTypeCompiler
 
     public function compileTypeNodeToPsalmType(NamedTypeNode|ListTypeNode|NonNullTypeNode $typeNode, bool $forceCanBeNull): string
     {
-        $type = AST::typeFromAST($this->config->getSchema(), $typeNode);
+        $type = AST::typeFromAST(function (string $name): ?Type {
+            return $this->config->getSchema()->getType($name);
+        }, $typeNode);
         Assert::notNull($type);
 
         return $this->compileTypeToPsalmType(type: $type, forceCanBeNull: $forceCanBeNull);
@@ -81,8 +84,7 @@ final class GraphqlTypeToPhpTypeCompiler
         $orNull = ($canBeNull ? '|null' : '');
 
         if ($type instanceof NonNull) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             if ($forceCanBeNull) {
                 return $this->compileTypeToPsalmType(type: $ofType, canBeNull: true, forceCanBeNull: false);
@@ -90,8 +92,7 @@ final class GraphqlTypeToPhpTypeCompiler
 
             return $this->compileTypeToPsalmType(type: $ofType, canBeNull: false, forceCanBeNull: false);
         } elseif ($type instanceof ListOfType) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             return 'list<'.$this->compileTypeToPsalmType(type: $ofType, forceCanBeNull: false).'>'.$orNull;
         } elseif ($type instanceof ScalarType) {
@@ -162,13 +163,11 @@ final class GraphqlTypeToPhpTypeCompiler
         if ($type instanceof ScalarType) {
             return $this->compileTypeToPsalmType(type: $type, canBeNull: $canBeNull);
         } elseif ($type instanceof NonNull) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             return $this->compileTypeWithFieldNodeToPsalmType(field: $field, type: $ofType, canBeNull: false);
         } elseif ($type instanceof ListOfType) {
-            /** @var Type $ofType */
-            $ofType = $type->getOfType();
+            $ofType = $type->getWrappedType();
 
             return 'list<'.$this->compileTypeWithFieldNodeToPsalmType(field: $field, type: $ofType).'>';
         } elseif ($type instanceof ObjectType) {
